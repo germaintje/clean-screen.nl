@@ -7,7 +7,6 @@
 namespace _PhpScoper5f8847d7a6e47;
 
 try {
-
     /*
     * Initialize the Mollie API library with your API key.
     *
@@ -16,9 +15,7 @@ try {
     require "./initialize.php";
     //checkout form posts
 
-//    $subtotal = $_SESSION['subtotal'];
-//    $item_id = $_SESSION['item_id'];
-//    $item_quantity = $_SESSION["item_quantity"];
+    $subtotal = $_SESSION['subtotal'];
 
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -38,12 +35,48 @@ try {
 
     foreach ($products as $product) {
         $item_id = $product['id'];
-        $item_price = $product['price'];
-        $item_quantity = $product['quantity'];
+        $item_name = $product['name'];
         $item_img = $product['img'];
-    }
-    var_dump($products);
+        $item_quantity = $product['quantity'];
+        $item_description = $product['desc'];
+        $btw = "21.00";
+        $btw_procent = "121.00";
+        $item_price = $product['price'];
 
+        $total_amount = $item_price * $item_quantity;
+        $total_amount_decimal = number_format($total_amount, 2, '.', '');
+        $vatAmount = $total_amount * ($btw / $btw_procent);
+        $roundVat = round($vatAmount, 2);
+
+var_dump($item_quantity);
+
+
+        $lines = ([
+            "name" => "$item_name",
+            "productUrl" => "https://www.clean-screen.nl/index.php?page=product&id=" . $item_id,
+            "imageUrl" => 'https://www.clean-screeb.nl/assets/img/' . $item_img,
+            "metadata" => [
+                "order_id" => $item_id,
+                "description" => $item_description
+            ],
+            "quantity" => $item_quantity,
+            "vatRate" => $btw,
+            "unitPrice" => [
+                "currency" => "EUR",
+                "value" => "$item_price"
+            ],
+            "totalAmount" => [
+                "currency" => "EUR",
+                "value" => "$total_amount_decimal"
+            ],
+            "vatAmount" => [
+                "currency" => "EUR",
+                "value" => "$roundVats"
+            ]
+        ]);
+    }
+//    var_dump($lines);
+    echo $total_amount_decimal;
 
     /*
     * Generate a unique order id for this example. It is important to include this unique attribute
@@ -66,26 +99,9 @@ try {
     *   webhookUrl    Webhook location, used to report when the payment changes state.
     *   metadata      Custom metadata that is stored with the payment.
     */
-
-//    $payment = $mollie->payments->create([
-//        "amount" => [
-//            "currency" => "EUR",
-//            "value" => "$subtotal"
-//        ],
-//        "description" => "Order #{$orderId}",
-//        "redirectUrl" => "http://667e1a07a81e.ngrok.io/rainbuster.shop/index.php?page=02-webhook-verification",
-////        "redirectUrl" => "{$protocol}://{$hostname}{$path}/index.php?page=home",
-//        "webhookUrl" =>  "http://667e1a07a81e.ngrok.io/rainbuster.shop/index.php?page=02-webhook-verification",
-////        "webhookUrl" => "{$protocol}://{$hostname}{$path}/mollie_payment_webhook_verification.php",
-//        "metadata" => [
-//            "order_id" => $orderId,
-//            "full_address" => $full_address,
-//        ],
-//    ]);
-
     $order = $mollie->orders->create([
         "amount" => [
-            "value" => "$subtotal",
+            "value" => "$total_amount_decimal",
             "currency" => "EUR"
         ],
         "billingAddress" => [
@@ -93,48 +109,38 @@ try {
             "postalCode" => "$zip_code",
             "city" => "$city",
             "country" => "nl",
-            "firstName" => "$first_name",
-            "lastName" => "$last_name",
+            "givenName" => "$first_name",
+            "familyName" => "$first_name",
             "email" => "$mail_address",
-            "phoneNumber" => "$phone_number"
+            "phone" => "+31637284354"
         ],
         "shippingAddress" => [
             "streetAndNumber" => "$full_address",
             "postalCode" => "$zip_code",
             "city" => "$city",
             "country" => "nl",
+            "givenName" => "$first_name",
+            "familyName" => "$first_name",
+            "email" => "$mail_address",
         ],
         "metadata" => [
             "order_id" => $orderId
         ],
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
-        "redirectUrl" => "http://667e1a07a81e.ngrok.io/rainbuster.shop/index.php?page=mollie_payment",
+        "redirectUrl" => "https://30469fad719a.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
 //        "redirectUrl" => "http://667e1a07a81e.ngrok.io/rainbuster.shop/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "http://667e1a07a81e.ngrok.io/rainbuster.shop/index.php?page=02-webhook-verification",
+        "webhookUrl" => "https://30469fad719a.ngrok.io/clean-screen.nl/index.php?page=02-webhook-verification",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
         "lines" => [
-            [
-                "product_id" => "1",
-                "name" => "LEGO 42083 Bugatti Chiron",
-                "productUrl" => "https://shop.lego.com/nl-NL/Bugatti-Chiron-42083",
-                "imageUrl" => 'https://sh-s7-live-s.legocdn.com/is/image//LEGO/42083_alt1?$main$',
-                "quantity" => 2,
-                "vatRate" => "21.00",
-                "unitPrice" => [
-                    "currency" => "EUR",
-                    "value" => "399.00"
-                ],
-                "totalAmount" => [
-                    "currency" => "EUR",
-                    "value" => "698.00"
-                ]
-            ],
-        ]
+
+            $lines
+
+        ],
     ]);
 
-//    $_SESSION['tr_payment_id'] = $payment->id;
+//    var_dump($order);
     $_SESSION['tr_payment_id'] = $order->id;
 
     /*

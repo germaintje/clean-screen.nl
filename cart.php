@@ -90,7 +90,8 @@ foreach ($products as $product){
     $_SESSION["item_id"] = $product['id'];
     $_SESSION["item_quantity"] = $product['quantity'];
 }
-
+ var_dump($product['quantity']);
+var_dump($product);
 
 ///**
 // * paypal payment system
