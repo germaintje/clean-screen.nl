@@ -1,0 +1,15 @@
+.ch_button {
+    width: 100%;
+    padding: 7px 20px 7px 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+
+.paypal {
+    display: inline-block;
+    background-color: #FFC439;
+}
+.paypal:hover {
+    background-color: #f3bb37;
+}

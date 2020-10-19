@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.f_right {
+    float: right;
+}
+
+.back {
+    z-index: -1;
+}
