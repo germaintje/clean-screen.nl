@@ -13,9 +13,20 @@ try {
     * See: https://www.mollie.com/dashboard/settings/profiles
     */
     require "./initialize.php";
+
+    /*
+    * Generate a unique order id for this example. It is important to include this unique attribute
+    * in the redirectUrl (below) so a proper return page can be shown to the customer.
+    */
+    $orderId = time();
+    $_SESSION['order_id'] = $orderId;
+
+
     //checkout form posts
 
+
     $subtotal = $_SESSION['subtotal'];
+    $products_in_cart = $_SESSION['products_in_cart'];
 
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -33,57 +44,49 @@ try {
 
     $products = $_SESSION['products'];
 
+    $total = 0;
+
     foreach ($products as $product) {
         $item_id = $product['id'];
         $item_name = $product['name'];
         $item_img = $product['img'];
-        $item_quantity = $product['quantity'];
         $item_description = $product['desc'];
+        $item_quantity = $products_in_cart[$product['id']];
+
         $btw = "21.00";
         $btw_procent = "121.00";
-        $item_price = $product['price'];
 
-        $total_amount = $item_price * $item_quantity;
-        $total_amount_decimal = number_format($total_amount, 2, '.', '');
-        $vatAmount = $total_amount * ($btw / $btw_procent);
-        $roundVat = round($vatAmount, 2);
+        $item_price = number_format($product['price'], 2, '.', '');
+        $total_amount = number_format($item_price * $item_quantity, 2, '.', '');
+        $total_vat_amount = number_format($total_amount * ($btw / $btw_procent), 2, '.', '');
 
-var_dump($item_quantity);
+        $total += $total_amount;
 
-
-        $lines = ([
-            "name" => "$item_name",
-            "productUrl" => "https://www.clean-screen.nl/index.php?page=product&id=" . $item_id,
-            "imageUrl" => 'https://www.clean-screeb.nl/assets/img/' . $item_img,
-            "metadata" => [
-                "order_id" => $item_id,
-                "description" => $item_description
-            ],
-            "quantity" => $item_quantity,
-            "vatRate" => $btw,
-            "unitPrice" => [
-                "currency" => "EUR",
-                "value" => "$item_price"
-            ],
-            "totalAmount" => [
-                "currency" => "EUR",
-                "value" => "$total_amount_decimal"
-            ],
-            "vatAmount" => [
-                "currency" => "EUR",
-                "value" => "$roundVats"
-            ]
-        ]);
+        $lines[] = [
+                "name" => "$item_name",
+                "productUrl" => "https://www.clean-screen.nl/index.php?page=product&id=" . $item_id,
+                "imageUrl" => 'https://www.clean-screeb.nl/assets/img/' . $item_img,
+                "metadata" => [
+                    "order_id" => $orderId,
+                    "description" => $item_description
+                ],
+                "quantity" => $item_quantity,
+                "vatRate" => $btw,
+                "unitPrice" => [
+                    "currency" => "EUR",
+                    "value" => "$item_price"
+                ],
+                "totalAmount" => [
+                    "currency" => "EUR",
+                    "value" => "$total_amount"
+                ],
+                "vatAmount" => [
+                    "currency" => "EUR",
+                    "value" => "$total_vat_amount"
+                ]
+            ];
     }
-//    var_dump($lines);
-    echo $total_amount_decimal;
 
-    /*
-    * Generate a unique order id for this example. It is important to include this unique attribute
-    * in the redirectUrl (below) so a proper return page can be shown to the customer.
-    */
-    $orderId = time();
-    $_SESSION['order_id'] = $orderId;
     /*
     * Determine the url parts to these example files.
     */
@@ -101,7 +104,7 @@ var_dump($item_quantity);
     */
     $order = $mollie->orders->create([
         "amount" => [
-            "value" => "$total_amount_decimal",
+            "value" => "$total",
             "currency" => "EUR"
         ],
         "billingAddress" => [
@@ -128,25 +131,20 @@ var_dump($item_quantity);
         ],
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
-        "redirectUrl" => "https://30469fad719a.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-//        "redirectUrl" => "http://667e1a07a81e.ngrok.io/rainbuster.shop/index.php?page=mollie_payment_webhook_verification",
+//        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
+        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "https://30469fad719a.ngrok.io/clean-screen.nl/index.php?page=02-webhook-verification",
+        "webhookUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
-        "lines" => [
-
-            $lines
-
-        ],
+        "lines" => $lines
     ]);
 
-//    var_dump($order);
     $_SESSION['tr_payment_id'] = $order->id;
 
     /*
     * In this example we store the order with its payment status in a database.
     */
-    $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+    $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
     $stmt->execute([
         $orderId,
         $subtotal,
@@ -161,7 +159,8 @@ var_dump($item_quantity);
         $_POST['street_addons'],
         $_POST['city'],
         $_POST['zip_code'],
-        $_POST['phone_number']
+        $_POST['phone_number'],
+        "netherlands"
     ]);
 
     /*

@@ -28,11 +28,7 @@ if (isset($_GET['id'])) {
             <div class="col-12 col-xl-8">
                 <h1 class="name"><?= $product['name'] ?></h1>
 
-                <span class="price">&euro; <?= $product['price'] ?>
-                    <?php if ($product['rrp'] > 0): ?>
-                        <span class="rrp">&euro; <?= $product['rrp'] ?></span>
-                    <?php endif; ?>
-                </span>
+                <span class="price">&euro; <?= decimal($product['price'], ',', '.') ?></span>
 
                 <div class="description">
                     <?= $product['desc'] ?>

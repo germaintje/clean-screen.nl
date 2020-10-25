@@ -37,13 +37,7 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
                                 <span class="product_title"><?= $product['name'] ?></span><br></a>
 
                             <a href="index.php?page=product&id=<?= $product['id'] ?>" class="">
-                                <span class="">&euro;<?= $product['price'] ?>-,</span></a>
-
-
-                            <?php if ($product['rrp'] > 0): ?>
-                                <span class="">&euro;<?= $product['rrp'] ?></span>
-                            <?php endif; ?>
-
+                                <span class="">&euro;<?= decimal($product['price'], ',', '.') ?></span></a>
                         </div>
                     </div>
                 </div>

@@ -2,278 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="mollie order test">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mollie_payment.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mollie_payment_webhook_verification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/UPGRADE-2.0.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/dist/lity.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/dist/lity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/dist/lity.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/dist/lity.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/src/lity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/lity/src/lity.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/quality-button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01-new-payment.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/02-webhook-verification.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/05-payments-history.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/initialize.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602495576.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602495645.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602495695.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602496699.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602496739.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602503247.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602504479.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602578361.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602578395.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602578435.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602579434.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602711360.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602864744.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602865012.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602865060.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602865196.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-1602865293.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/initialize_with_oauth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_logic/03-return-page.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_logic/04-ideal-payment.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_logic/06-list-activated-methods.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/.php_cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/UPGRADING.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Client.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/ClientInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/CookieJar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Cookie/SetCookie.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/BadResponseException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/ClientException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/ConnectException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/GuzzleException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/SeekException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/ServerException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Exception/TransferException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/CurlFactoryInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/CurlHandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/EasyHandle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/MockHandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Handler/StreamHandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/HandlerStack.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/MessageFormatter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Middleware.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Pool.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/RedirectMiddleware.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/RequestOptions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/RetryMiddleware.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/TransferStats.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/UriTemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Utils.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/functions_include.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/.php_cs.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/phpstan-baseline.neon" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/phpstan.neon.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/psalm.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/AggregateException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/CancellationException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/Coroutine.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/Create.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/Each.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/EachPromise.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/FulfilledPromise.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/Is.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/Promise.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/PromiseInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/PromisorInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/RejectedPromise.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/RejectionException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/TaskQueue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/TaskQueueInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/Utils.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/promises/src/functions_include.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/AppendStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/BufferStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/CachingStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/DroppingStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/FnStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Header.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/InflateStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/LazyOpenStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/LimitStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Message.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/MessageTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/MimeType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/MultipartStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/NoSeekStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/PumpStream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Query.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Request.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Response.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Rfc7230.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/ServerRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Stream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/StreamDecoratorTrait.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/StreamWrapper.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/UploadedFile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Uri.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/UriNormalizer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/UriResolver.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/Utils.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/guzzlehttp/psr7/src/functions_include.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/build/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/examples/orders/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/CompatibilityChecker.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/CustomerEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/CustomerPaymentsEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/EndpointAbstract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/MandateEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/MethodEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/PaymentEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/SettlementsEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Endpoints/SubscriptionEndpoint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Exceptions/ApiException.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Exceptions/IncompatiblePlatform.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/MollieApiClient.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/BaseCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/BaseResource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Chargeback.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/ChargebackCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/CursorCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Customer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/CustomerCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Issuer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/IssuerCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Mandate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/MandateCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Method.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/MethodCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Payment.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/PaymentCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Refund.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/RefundCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/ResourceFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Settlement.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/SettlementCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/Subscription.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Resources/SubscriptionCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/MandateMethod.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/MandateStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/PaymentMethod.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/PaymentStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/RefundStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/SequenceType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/SettlementStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/mollie/mollie-api-php/src/Types/SubscriptionStatus.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/build-phar.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/dist/random_compat.phar.pubkey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/dist/random_compat.phar.pubkey.asc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/lib/random.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/other/build_phar.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/psalm-autoload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/paragonie/random_compat/psalm.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/MessageInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/RequestInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/ResponseInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/ServerRequestInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/StreamInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/UploadedFileInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psr/http-message/src/UriInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/ralouphie/getallheaders/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/ralouphie/getallheaders/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/ralouphie/getallheaders/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/ralouphie/getallheaders/src/getallheaders.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Idn.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Info.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/DisallowedRanges.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/Regex.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/deviation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/disallowed.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/disallowed_STD3_mapped.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/disallowed_STD3_valid.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/ignored.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/mapped.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/Resources/unidata/virama.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/Normalizer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/Resources/unidata/canonicalComposition.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/Resources/unidata/canonicalDecomposition.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/Resources/unidata/combiningClass.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/Resources/unidata/compatibilityDecomposition.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Php70.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/AssertionError.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/Error.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/ParseError.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/Resources/stubs/TypeError.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php70/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php72/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php72/Php72.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php72/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php72/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/polyfill-php72/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mollie_payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/mollie_payment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@fortawesome/fontawesome-free/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@fortawesome/fontawesome-free/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bootstrap/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jquery/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/jquery/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/lity/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/lity/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/products.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,11 +34,27 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1hm4D0GvYYz0Y3OojGXGHbPTgaZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -364,6 +124,14 @@
       <workItem from="1602966734646" duration="1324000" />
       <workItem from="1603012480281" duration="4414000" />
       <workItem from="1603024188522" duration="21612000" />
+      <workItem from="1603141572915" duration="12000" />
+      <workItem from="1603141606456" duration="14000" />
+      <workItem from="1603179934227" duration="14787000" />
+      <workItem from="1603454200555" duration="668000" />
+      <workItem from="1603534148038" duration="3166000" />
+      <workItem from="1603544649743" duration="11937000" />
+      <workItem from="1603623424273" duration="4911000" />
+      <workItem from="1603641650636" duration="467000" />
     </task>
     <task id="LOCAL-00001" summary="niewe styles toegepast">
       <created>1601473105843</created>
@@ -538,10 +306,10 @@
     </state>
     <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603098185264" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601314225971" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1602756355593">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603141583156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602756355593" />
+    <state x="740" y="275" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603141583156" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602582167998">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -551,26 +319,31 @@
     </state>
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602438735216" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601314232266" />
-    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1603098100546">
+    <state x="-1264" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1603641651317">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1264" y="346" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1603641651317" />
+    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603625132803" />
+    <state x="609" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603578575739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603098100546" />
+    <state x="609" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603578575739" />
     <state x="663" y="148" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1601660287070">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="663" y="148" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1601660287070" />
-    <state x="584" y="241" width="607" height="536" key="find.popup" timestamp="1603014086990">
+    <state x="584" y="241" width="607" height="536" key="find.popup" timestamp="1603181815123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="584" y="241" width="607" height="536" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603014086990" />
+    <state x="584" y="241" width="607" height="536" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603181815123" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1602932553783">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602932553783" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602932549064">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1603578552817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602932549064" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603578552817" />
     <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602625774747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -1,13 +1,4 @@
 <?php
-//if($payment->getCheckoutUrl() == true){
-//    echo "yes";
-//}else{
-//    echo "no";
-//}
-
-
-echo "verschillende pagina's van mollie<br>";
-
 $protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
 $hostname = $_SERVER['HTTP_HOST'];
 $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
@@ -16,8 +7,10 @@ $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SER
 $products = $_SESSION['products'];
 $subtotal = $_SESSION['subtotal'];
 $products_in_cart = $_SESSION['products_in_cart'];
-//$product_id = $_SESSION["item_id"];
-//$product_quantity = $_SESSION["item_quantity"];
+
+if ($products_in_cart < 1) {
+    header("Location:index.php ", true, 303);
+}
 
 ?>
 
@@ -47,6 +40,23 @@ $products_in_cart = $_SESSION['products_in_cart'];
                             <label for="company_name">Bedrijfsnaam</label>
                             <input id="company_name" type="text" class="form-control" name="company_name">
                         </div>
+
+                        <div class="form-group">
+                            <label for="country">land*</label>
+                            <input id="country" type="text" class="form-control" name="company_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="province">provincie*</label>
+                            <input id="province" type="text" class="form-control" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">stad*</label>
+                            <input id="city" type="text" class="form-control" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputZip">Postcode*</label>
+                            <input id="inputZip" type="text" class="form-control" name="zip_code" required>
+                        </div>
                         <div class="form-group col-9 no_padding">
                             <label for="street">Straat*</label>
                             <input id="street" type="text" class="form-control" name="street_name" required>
@@ -56,16 +66,11 @@ $products_in_cart = $_SESSION['products_in_cart'];
                             <input id="street" type="text" class="form-control" name="street_number" required>
                         </div>
                         <div class="form-group">
-                            <input id="street" type="text" class="form-control" placeholder="Toevoegingen" name="street_addons">
+                            <input id="street" type="text" class="form-control" placeholder="Toevoegingen"
+                                   name="street_addons">
                         </div>
-                        <div class="form-group">
-                            <label for="inputZip">Postcode*</label>
-                            <input id="inputZip" type="text" class="form-control" name="zip_code" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">Plaats*</label>
-                            <input id="city" type="text" class="form-control" name="city" required>
-                        </div>
+
+
                         <div class="form-group">
                             <label for="phone_number">Telefoon*</label>
                             <input id="phone_number" type="text" class="form-control" name="phone_number" required>
@@ -110,7 +115,7 @@ $products_in_cart = $_SESSION['products_in_cart'];
                                             </td>
                                             <td class="middle">
                                                 <span>
-                                                     &euro;<?= $product['price'] * $products_in_cart[$product['id']] ?>
+                                                     &euro;<?= decimal($product['price'] * $products_in_cart[$product['id']], ',', '.') ?>
                                                 </span>
                                             </td>
                                         </tr>
@@ -122,7 +127,7 @@ $products_in_cart = $_SESSION['products_in_cart'];
                                         <span class=""><b>Subtotaal:</b></span>
                                     </td>
                                     <td>
-                                        <span class="">&euro;<?= $subtotal ?></span>
+                                        <span class="">&euro;<?= decimal($subtotal, ',', '.') ?></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,7 +135,7 @@ $products_in_cart = $_SESSION['products_in_cart'];
                                         <span class=""><b>Totaal:</b></span>
                                     </td>
                                     <td>
-                                        <span class="">&euro;<?= $subtotal ?></span>
+                                        <span class="">&euro;<?= decimal($subtotal, ',', '.') ?></span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -141,7 +146,6 @@ $products_in_cart = $_SESSION['products_in_cart'];
                             <button class="btn btn-secondary ch_button" type="submit">Bestelling plaatsen
                             </button>
                         </div>
-
 
                     </div>
                 </form>

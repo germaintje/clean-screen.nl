@@ -86,289 +86,210 @@ $_SESSION["products"] = $products;
 $_SESSION["subtotal"] = $subtotal;
 $_SESSION["products_in_cart"] = $products_in_cart;
 
-foreach ($products as $product){
+foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
-    $_SESSION["item_quantity"] = $product['quantity'];
+//    $_SESSION["item_quantity"] = $product['quantity'];
 }
- var_dump($product['quantity']);
-var_dump($product);
 
-///**
-// * paypal payment system
-// */
-//
-//// For testing purposes set this to true, if set to true it will use paypal sandbox
-//$testmode = true;
-//$paypalurl = $testmode ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
-//// If the user clicks the PayPal checkout button...
-//if (isset($_POST['paypal']) && $products_in_cart && !empty($products_in_cart)) {
-//    // Variables we need to pass to paypal
-//    // Make sure you have a business account and set the "business" variable to your paypal business account email
-//    $data = array(
-//        'cmd' => '_cart',
-//        'upload' => '1',
-//        'lc' => 'EN',
-//        'business' => 'payments@yourwebsite.com',
-//        'cancel_return' => 'https://yourwebsite.com/index.php?page=cart',
-//        'notify_url' => 'https://yourwebsite.com/index.php?page=cart&ipn_listener=paypal',
-//        'currency_code' => 'USD',
-//        'return' => 'https://yourwebsite.com/index.php?page=placeorder'
-//    );
-//    // Add all the products that are in the shopping cart to the data array variable
-//    for ($i = 0; $i < count($products); $i++) {
-//        $data['item_number_' . ($i + 1)] = $products[$i]['id'];
-//        $data['item_name_' . ($i + 1)] = $products[$i]['name'];
-//        $data['quantity_' . ($i + 1)] = $products_in_cart[$products[$i]['id']];
-//        $data['amount_' . ($i + 1)] = $products[$i]['price'];
-//    }
-//    // Send the user to the paypal checkout screen
-//    header('location:' . $paypalurl . '?' . http_build_query($data));
-//    // End the script don't need to execute anything else
-//    exit;
-//}
-//
-//// Below is the listener for paypal, make sure to set the IPN URL (e.g. http://example.com/cart.php?ipn_listener=paypal) in your paypal account, this will not work on a local server
-//if (isset($_GET['ipn_listener']) && $_GET['ipn_listener'] == 'paypal') {
-//    // Get all input variables and convert them all to URL string variables
-//    $raw_post_data = file_get_contents('php://input');
-//    $raw_post_array = explode('&', $raw_post_data);
-//    $myPost = array();
-//    foreach ($raw_post_array as $keyval) {
-//        $keyval = explode('=', $keyval);
-//        if (count($keyval) == 2) $myPost[$keyval[0]] = urldecode($keyval[1]);
-//    }
-//    $req = 'cmd=_notify-validate';
-//    $get_magic_quotes_exists = function_exists('get_magic_quotes_gpc') ? true : false;
-//    foreach ($myPost as $key => $value) {
-//        if ($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) {
-//            $value = urlencode(stripslashes($value));
-//        } else {
-//            $value = urlencode($value);
-//        }
-//        $req .= "&$key=$value";
-//    }
-//    // Below will verify the transaction, it will make sure the input data is correct
-//    $ch = curl_init($paypalurl);
-//    curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-//    curl_setopt($ch, CURLOPT_POST, 1);
-//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//    curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
-//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-//    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-//    curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
-//    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
-//    $res = curl_exec($ch);
-//    curl_close($ch);
-//    if (strcmp($res, 'VERIFIED') == 0) {
-//        // Transaction is verified and successful...
-//        $item_id = array();
-//        $item_quantity = array();
-//        $item_mc_gross = array();
-//        // Add all the item numbers, quantities and prices to the above array variables
-//        for ($i = 1; $i < ($_POST['num_cart_items'] + 1); $i++) {
-//            array_push($item_id, $_POST['item_number' . $i]);
-//            array_push($item_quantity, $_POST['quantity' . $i]);
-//            array_push($item_mc_gross, $_POST['mc_gross_' . $i]);
-//        }
-//        // Insert the transaction into our transactions table, as the payment status changes the query will execute again and update it, make sure the "txn_id" column is unique
-//        $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE payment_status = VALUES(payment_status)');
-//        $stmt->execute([
-//            NULL,
-//            $_POST['txn_id'],
-//            $_POST['mc_gross'],
-//            $_POST['payment_status'],
-//            implode(',', $item_id),
-//            implode(',', $item_quantity),
-//            implode(',', $item_mc_gross),
-//            date('Y-m-d H:i:s'),
-//            $_POST['payer_email'],
-//            $_POST['first_name'],
-//            $_POST['last_name'],
-//            $_POST['address_street'],
-//            $_POST['address_city'],
-//            $_POST['address_state'],
-//            $_POST['address_zip'],
-//            $_POST['address_country']
-//        ]);
-//    }
-//    exit;
-//}
+if (count($products_in_cart) < 1) {
+    $shipping = 0.00;
+    $checkout_button = "<a class=\"btn btn-primary ch_button disabled\" type=\"submit\">Checkout</a>";
+} else {
+    $shipping = 4.95;
+    $checkout_button = "<a class=\"btn btn-primary ch_button\" type=\"submit\" href=\"index.php?page=checkout\">Checkout</a>";
+}
+
+
+if (count($products_in_cart) > 1) {
+    $product_shopping_cart = count($products_in_cart) . " Artikelen";
+} else {
+    $product_shopping_cart = count($products_in_cart) . " Artikel";
+}
+//todo:: zet nog ff in de database
+
+$total = $subtotal + $shipping;
 
 ?>
 
 <?= template_header('Winkelwagen') ?>
 
 <div class="row">
-    <div class="col-12 no_padding">
+    <div class="col-12 no_padding margin_top_bottom">
         <div class="container">
             <div class="desktop_cart">
                 <form action="index.php?page=cart" method="post">
-                    <div class="col-12 col-xl-7">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td>Product</td>
-                                    <td>Prijs</td>
-                                    <td>Aantal</td>
-                                    <td>Subtotaal</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php if (empty($products)): ?>
-                                    <tr>
-                                        <td colspan="6" style="text-align:center;"><p class="alert alert-danger">Je hebt
-                                                nog
-                                                geen artikelen in je winkelmand <a href="index.php?page=products">Winkel
-                                                    nu!</a></p>
-                                        </td>
-                                    </tr>
-                                <?php else: ?>
-                                    <?php foreach ($products as $product): ?>
-                                        <tr>
-                                            <td class="middle">
-                                                <a href="index.php?page=cart&remove=<?= $product['id'] ?>"
-                                                   class="text-danger"><i
-                                                            class="fas fa-times"></i></a>
-                                            </td>
-                                            <td class="middle td_img">
-                                                <a href="index.php?page=product&id=<?= $product['id'] ?>">
-                                                    <img class="cart_img" src="assets/img/<?= $product['img'] ?>"
-                                                         alt="<?= $product['name'] ?>">
+                    <div class="col-12 col-xl-8">
+                        <div class="col-12 cart_lines_border">
+                            <h4>winkelmand (<?= $product_shopping_cart ?>)</h4>
+                            <?php if (empty($products_in_cart)): ?>
+                                <p class="alert alert-danger">Je hebt
+                                    nog
+                                    geen artikelen in je winkelmand <a href="index.php?page=products">Winkel
+                                        nu!</a>
+                                </p>
+                            <?php else: ?>
+                                <?php foreach ($products as $product): ?>
+                                    <div class="col-12 border_underline">
+                                        <div class="col-4 no_padding">
+                                            <a href="index.php?page=product&id=<?= $product['id'] ?>">
+                                                <img class="cart_img" src="assets/img/<?= $product['img'] ?>"
+                                                     alt="<?= $product['name'] ?>">
+                                            </a>
+                                        </div>
+                                        <div class="col-4 no_padding">
+                                            <div class="col-12 no_padding h_5pc">
+                                                <a class="text-secondary item_title"
+                                                   href="index.php?page=product&id=<?= $product['id'] ?>">
+                                                    <?= $product['name'] ?>
                                                 </a>
-                                            </td>
-                                            <td class="middle">
-                                                <a class="text-secondary"
-                                                   href="index.php?page=product&id=<?= $product['id'] ?>"><?= $product['name'] ?></a>
-                                            </td>
-                                            <td class="middle">
-                                            <span>
-                                                &euro;<?= $product['price'] ?>
+                                            </div>
+                                            <br>
+                                            <div class="col-12 cart_margin">
+                                                <a href="index.php?page=cart&remove=<?= $product['id'] ?>"
+                                                   class="delete_line"><i
+                                                            class="fas fa-trash-alt red"></i> Verwijder artikel</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 no_padding">
+                                            <div class="col-12 no_padding h_5pc">
+                                                <div class="number pagination f_right">
+                                                    <button class="minus btn page-link"><i class="fas fa-minus"></i>
+                                                    </button>
+                                                    <input class="page-link" type="number"
+                                                           name="quantity-<?= $product['id'] ?>"
+                                                           value="<?= $products_in_cart[$product['id']] ?>" min="1"
+                                                           max="<?= $product['quantity_item_left'] ?>"
+                                                           placeholder="Quantity"
+                                                           required>
+                                                    <button class="plus page-link"><i class="fas fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 cart_margin">
+                                                    <span class="f_right bold item_total">
+                                            &euro;<?= decimal($product['price'] * $products_in_cart[$product['id']], ',', '.') ?>
                                             </span>
-                                            </td>
-                                            <td class="middle">
-                                                <input class="" type="number"
-                                                       name="quantity-<?= $product['id'] ?>"
-                                                       value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                                       max="<?= $product['quantity'] ?>" placeholder="Quantity"
-                                                       required>
-                                            </td>
-                                            <td class="middle">
-                                            <span>
-                                            &euro;<?= $product['price'] * $products_in_cart[$product['id']] ?>
-                                            </span>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                                <tr>
-                                    <td colspan="6">
-                                        <input type="submit" value="Winkelmand bijwerken" name="update">
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <button class="f_right btn btn-secondary" type="submit" name="update"><i
+                                        class="fas fa-sync-alt"></i> Winkelmand bijwerken
+                            </button>
                         </div>
                     </div>
-
-                    <div class="col-12 col-xl-5 no_padding">
-                        <h3 class="col-12 text-center">Winkelmand</h3>
-                        <div class="col-12">
-                            <span class=""><b>Subtotaal:</b></span>
-                            <span class="">&euro;<?= $subtotal ?></span>
-                        </div>
-                        <div class="col-12">
-                            <span class=""><b>Totaal:</b></span>
-                            <span class="">&euro;<?= $subtotal ?></span>
-                        </div>
-                        <div class="col-12">
-                            <div class="col-12">
-                                <a class="btn btn-secondary ch_button" type="submit" href="index.php?page=checkout">Checkout</a>
+                    <div class="col-12 col-xl-4 f_right">
+                        <div class="col-12 cart_lines_border">
+                            <h4 class="title_pad">Te betalen bedrag</h4>
+                            <div class="col-12 padding_self_cart">
+                                <span class="">Subtotaal</span>
+                                <span class="f_right">&euro;<?= decimal($subtotal, ',', '.') ?></span>
+                            </div>
+                            <div class="col-12 padding_self_cart border_underline">
+                                <span class="">Verzendkosten</span>
+                                <span class="f_right">&euro;<?= decimal($shipping, ',', '.') ?></span>
+                            </div>
+                            <div class="col-12 no_padding_l_r">
+                                <span class=""><b>Totaal:</b></span>
+                                <span class="f_right">&euro;<?= decimal($total, ',', '.') ?></span>
+                            </div>
+                            <div class="col-12 no_padding">
+                                <div class="col-12 no_padding">
+                                    <?= $checkout_button ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
+
+            <!--            Mobile cart styles -->
 
             <div class="mobile_cart">
                 <form action="index.php?page=cart" method="post">
-                    <div class="col-12 no_padding">
-                        <?php if (empty($products)): ?>
-                            <p class="alert alert-danger">Je hebt nog
-                                geen artikelen in je winkelmand <a href="index.php?page=products">Winkel
-                                    nu!</a></p>
-                        <?php else: ?>
-                            <?php foreach ($products as $product): ?>
-                                <table class="table">
-                                    <tr>
-                                        <td><b>Product:</b></td>
-                                        <td>
-                                            <a class="text-secondary f_right"
-                                               href="index.php?page=product&id=<?= $product['id'] ?>"><?= $product['name'] ?></a>
-                                        </td>
-                                        <td>
+                    <div class="col-12">
+                        <div class="col-12 cart_lines_border">
+                            <h4>winkelmand (<?= $product_shopping_cart ?>)</h4>
+                            <?php if (empty($products)): ?>
+                                <p class="alert alert-danger">Je hebt nog
+                                    geen artikelen in je winkelmand <a href="index.php?page=products">Winkel
+                                        nu!</a></p>
+                            <?php else: ?>
+                                <?php foreach ($products as $product): ?>
+                                    <div class="col-12 border_underline">
+                                        <div class="col-4 no_padding">
+                                            <a href="index.php?page=product&id=<?= $product['id'] ?>">
+                                                <img class="cart_img" src="assets/img/<?= $product['img'] ?>"
+                                                     alt="<?= $product['name'] ?>">
+                                            </a>
+                                        </div>
+                                        <div class="col-8 no_padding">
+                                            <div class="col-12 no_padding">
+                                                <a class="text-secondary item_title"
+                                                   href="index.php?page=product&id=<?= $product['id'] ?>">
+                                                    <?= $product['name'] ?>
+                                                </a>
+                                            </div>
+                                            <br>
+                                            <div class="number pagination f_left">
+                                                <button class="minus btn page-link"><i class="fas fa-minus"></i>
+                                                </button>
+                                                <input class="page-link input_number_quantity no_padding" type="number"
+                                                       name="quantity-<?= $product['id'] ?>"
+                                                       value="<?= $products_in_cart[$product['id']] ?>" min="1"
+                                                       max="<?= $product['quantity_item_left'] ?>"
+                                                       placeholder="Quantity"
+                                                       required>
+                                                <button class="plus page-link"><i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 no_padding">
                                             <a href="index.php?page=cart&remove=<?= $product['id'] ?>"
-                                               class="text-danger f_right"><i
-                                                        class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Prijs:</b></td>
-                                        <td colspan="2">
-                                            <span class="f_right">
-                                                &euro;<?= $product['price'] ?>
+                                               class="delete_line"><i
+                                                        class="fas fa-trash-alt red"></i> Verwijder artikel</a>
+
+                                            <span class="f_right bold item_total">
+                                            &euro;<?= decimal($product['price'] * $products_in_cart[$product['id']], ',', '.') ?>
                                             </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Aantal:</b></td>
-                                        <td colspan="2">
-                                            <input class="f_right" type="number"
-                                                   name="quantity-<?= $product['id'] ?>"
-                                                   value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                                   max="<?= $product['quantity'] ?>" placeholder="Quantity"
-                                                   required>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Subtotaal:</b></td>
-                                        <td colspan="2">
-                                            <span class="f_right">
-                                            &euro;<?= $product['price'] * $products_in_cart[$product['id']] ?>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        <tr>
-                            <td colspan="6">
-                                <input type="submit" value="Winkelmand bijwerken" name="update">
-                            </td>
-                        </tr>
+                                        </div>
+
+
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <button class="f_left btn btn-secondary" type="submit" name="update"><i
+                                        class="fas fa-sync-alt"></i> Winkelmand bijwerken
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="col-12 col-xl-5 no_padding">
-                        <h3 class="col-12 text-center">Winkelmand</h3>
-                        <div class="col-12">
-                            <span class=""><b>Subtotaal:</b></span>
-                            <span class="">&euro;<?= $subtotal ?></span>
-                        </div>
-                        <div class="col-12">
-                            <span class=""><b>Totaal:</b></span>
-                            <span class="">&euro;<?= $subtotal ?></span>
-                        </div>
-                        <div class="col-12">
-                            <div class="col-12">
-                                <button class="btn btn-secondary ch_button" type="submit" name="">Checkout</button>
+                    <div class="col-12 col-xl-4 f_right">
+                        <div class="col-12 cart_lines_border">
+                            <h4 class="title_pad">Te betalen bedrag</h4>
+                            <div class="col-12 padding_self_cart">
+                                <span class="">Subtotaal</span>
+                                <span class="f_right">&euro;<?= decimal($subtotal, ',', '.') ?></span>
+                            </div>
+                            <div class="col-12 padding_self_cart border_underline">
+                                <span class="">Verzendkosten</span>
+                                <span class="f_right">&euro;<?= decimal($shipping, ',', '.') ?></span>
+                            </div>
+                            <div class="col-12 no_padding_l_r">
+                                <span class=""><b>Totaal:</b></span>
+                                <span class="f_right">&euro;<?= decimal($total, ',', '.') ?></span>
+                            </div>
+                            <div class="col-12 no_padding">
+                                <div class="col-12 no_padding">
+                                    <?= $checkout_button ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
+            <!--            End mobile styles-->
 
 
         </div>

@@ -1,7 +1,7 @@
 <?php
 function pdo_connect_mysql()
 {
-    if ($_SERVER['HTTP_HOST'] == "rainbuster.germaindejong.nl") {
+    if ($_SERVER['HTTP_HOST'] == "clean-screen.germaindejong.nl") {
         // Update the details below with your MySQL details
         $DATABASE_HOST = 'localhost:3306';
         $DATABASE_USER = 'germain';
@@ -13,7 +13,7 @@ function pdo_connect_mysql()
             // If there is an error with the connection, stop the script and display the error.
             die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
         }
-    } elseif ($_SERVER['HTTP_HOST'] == "www.rainbuster.germaindejong.nl") {
+    } elseif ($_SERVER['HTTP_HOST'] == "www.clean-screen.germaindejong.nl") {
         // Update the details below with your MySQL details
         $DATABASE_HOST = 'localhost:3306';
         $DATABASE_USER = 'germain';
@@ -30,7 +30,7 @@ function pdo_connect_mysql()
         $DATABASE_HOST = 'localhost';
         $DATABASE_USER = 'root';
         $DATABASE_PASS = '';
-        $DATABASE_NAME = 'rainbuster';
+        $DATABASE_NAME = 'clean-screen';
         try {
             return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
         } catch (PDOException $exception) {
@@ -46,6 +46,12 @@ function template_header($title)
 {
     // Get the amount of items in the shopping cart, this will be displayed in the header.
     $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+
+    if ($num_items_in_cart > 1) {
+        $header_cart_text = "Artikelen";
+    } else {
+        $header_cart_text = "Artikel";
+    }
 
     echo <<<EOT
 <!DOCTYPE html>
@@ -78,7 +84,7 @@ function template_header($title)
             </div>
 
             <div class="cart_width" style="width: 100%">
-                <a class="nav-link shopping_cart" href="index.php?page=cart"><i class="fas fa-shopping-cart"> </i> <span>$num_items_in_cart</span> artikelen</a>
+                <a class="nav-link shopping_cart" href="index.php?page=cart"><i class="fas fa-shopping-cart"> </i> <span>$num_items_in_cart</span> $header_cart_text</a>
             </div>
 
         </div>
@@ -139,9 +145,15 @@ function template_footer()
         <script src="node_modules/jquery/dist/jquery.js"></script>
         <script src="node_modules/lity/dist/lity.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="assets/js/quality-button.js"></script>
     </body>
 </html>
 EOT;
+}
+
+function decimal($number, $decimal_sep, $thousand_sep)
+{
+    return number_format($number, 2, $decimal_sep, $thousand_sep);
 }
 
 ?>
