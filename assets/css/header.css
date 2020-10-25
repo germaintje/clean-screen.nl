@@ -201,6 +201,19 @@ shopping cart page
     padding-bottom: 15px;
 }
 
+/**chekcout page*/
+.multi_checkout_tekst{
+    font-size: 12px;
+}
+
+.border_underline_checkout {
+    border-bottom: none;
+}
+
+.border_underline_checkout:last-of-type {
+    border-bottom: 1px solid #e5e5e5;
+}
+
 
 /*FOOTER START///////////////////*/
 
