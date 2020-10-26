@@ -10,9 +10,20 @@ if (count($products_in_cart) < 1) {
 $products = $_SESSION['products'];
 $subtotal = $_SESSION['subtotal'];
 
-$shipping = 4.95;
 
-$total = $subtotal + $shipping;
+/**
+ * free shipping price calculate
+ */
+if($subtotal > 50){
+    $shipping_price = 0.00;
+    $shipping = decimal($shipping_price, ',', '.');
+    $shipping = "gratis";
+}else{
+    $shipping_price = 4.95;
+    $shipping = decimal($shipping_price, ',', '.');
+}
+
+$total = $subtotal + $shipping_price;
 
 ?>
 
@@ -109,7 +120,7 @@ $total = $subtotal + $shipping;
                             </div>
                             <div class="col-12 no_padding">
                                 <span class=""><b>Verzendkosten</b></span>
-                                <span class="f_right">&euro;<?= decimal($shipping, ',', '.') ?></span>
+                                <span class="f_right"><?= $shipping ?></span>
                             </div>
                             <div class="col-12 no_padding_l_r">
                                 <span class=""><b>Totaal:</b></span>
