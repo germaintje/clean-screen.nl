@@ -91,7 +91,7 @@ $total = $subtotal + $shipping;
                             <h4 class="title_pad">Te betalen bedrag</h4>
 
                             <?php foreach ($products as $product): ?>
-                                <div class="col-12 padding_self_cart border_underline_checkout">
+                                <div class="col-12 padding_self_cart">
                                     <div class="col-8 no_padding">
                                         <?= $product['name'] ?> <b
                                                 class="multi_checkout_tekst">x<?= $products_in_cart[$product['id']] ?></b>
@@ -103,7 +103,7 @@ $total = $subtotal + $shipping;
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                            <div class="col-12 no_padding_l_r">
+                            <div class="col-12 no_padding_l_r border_topline_checkout">
                                 <span class=""><b>Subtotaal</b></span>
                                 <span class="f_right">&euro;<?= decimal($subtotal, ',', '.') ?></span>
                             </div>
@@ -123,7 +123,7 @@ $total = $subtotal + $shipping;
                             </div>
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

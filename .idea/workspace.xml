@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="mollie order test">
+    <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rainbuster.shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/clean-screen.nl.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/checkout.php" afterDir="false" />
@@ -119,7 +121,7 @@
       <workItem from="1603544649743" duration="11937000" />
       <workItem from="1603623424273" duration="4911000" />
       <workItem from="1603641650636" duration="467000" />
-      <workItem from="1603643986265" duration="2539000" />
+      <workItem from="1603643986265" duration="4255000" />
     </task>
     <task id="LOCAL-00001" summary="niewe styles toegepast">
       <created>1601473105843</created>
@@ -233,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603033056703</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="checkout page styles">
+      <created>1603646594967</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1603646594968</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +279,8 @@
     <MESSAGE value="- finetuning" />
     <MESSAGE value="*finetuning&#10;&#10;- return page" />
     <MESSAGE value="mollie order test" />
-    <option name="LAST_COMMIT_MESSAGE" value="mollie order test" />
+    <MESSAGE value="checkout page styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkout page styles" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1603033089518">
@@ -289,10 +299,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602625776683" />
-    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1603098185264">
+    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1603646593696">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603098185264" />
+    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603646593696" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601314225971" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603141583156">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -302,16 +312,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582167998" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1602438735216">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1603646597989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602438735216" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603646597989" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601314232266" />
-    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1603643987648">
+    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1603706437539">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1264" y="346" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1603641651317" />
-    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643987648" />
+    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603706437539" />
     <state x="609" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603578575739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
