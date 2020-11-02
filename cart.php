@@ -88,26 +88,39 @@ $_SESSION["products_in_cart"] = $products_in_cart;
 
 foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
-//    $_SESSION["item_quantity"] = $product['quantity'];
 }
 
+/**
+ * Shipping price calculate
+ */
 if (count($products_in_cart) < 1) {
-    $shipping = 0.00;
+    $shipping_price = 0.00;
+    $shipping = "€" . decimal($shipping_price, ',', '.');
     $checkout_button = "<a class=\"btn btn-primary ch_button disabled\" type=\"submit\">Checkout</a>";
 } else {
-    $shipping = 4.95;
+    $shipping_price = 4.95;
+    $shipping = "€" . decimal($shipping_price, ',', '.');
     $checkout_button = "<a class=\"btn btn-primary ch_button\" type=\"submit\" href=\"index.php?page=checkout\">Checkout</a>";
+}
+/**
+ * free shipping price calculate
+ */
+if($subtotal > 50){
+    $shipping_price = 0.00;
+    $shipping = "gratis";
 }
 
 
 if (count($products_in_cart) > 1) {
-    $product_shopping_cart = count($products_in_cart) . " Artikelen";
+    $product_shopping_cart = "(" . count($products_in_cart) . " Artikelen)";
+} elseif (count($products_in_cart) == 1) {
+    $product_shopping_cart = "(" . count($products_in_cart) . " Artikel)";
 } else {
-    $product_shopping_cart = count($products_in_cart) . " Artikel";
+    $product_shopping_cart = "";
 }
 //todo:: zet nog ff in de database
 
-$total = $subtotal + $shipping;
+$total = $subtotal + $shipping_price;
 
 ?>
 
@@ -120,7 +133,7 @@ $total = $subtotal + $shipping;
                 <form action="index.php?page=cart" method="post">
                     <div class="col-12 col-xl-8">
                         <div class="col-12 cart_lines_border">
-                            <h4>winkelmand (<?= $product_shopping_cart ?>)</h4>
+                            <h4>winkelmand <?= $product_shopping_cart ?></h4>
                             <?php if (empty($products_in_cart)): ?>
                                 <p class="alert alert-danger">Je hebt
                                     nog
@@ -153,7 +166,7 @@ $total = $subtotal + $shipping;
                                         <div class="col-4 no_padding">
                                             <div class="col-12 no_padding h_5pc">
                                                 <div class="number pagination f_right">
-                                                    <button class="minus btn page-link"><i class="fas fa-minus"></i>
+                                                    <button class="minus page-link"><i class="fas fa-minus"></i>
                                                     </button>
                                                     <input class="page-link" type="number"
                                                            name="quantity-<?= $product['id'] ?>"
@@ -188,7 +201,7 @@ $total = $subtotal + $shipping;
                             </div>
                             <div class="col-12 padding_self_cart border_underline">
                                 <span class="">Verzendkosten</span>
-                                <span class="f_right">&euro;<?= decimal($shipping, ',', '.') ?></span>
+                                <span class="f_right"><?= $shipping ?></span>
                             </div>
                             <div class="col-12 no_padding_l_r">
                                 <span class=""><b>Totaal:</b></span>
@@ -210,7 +223,7 @@ $total = $subtotal + $shipping;
                 <form action="index.php?page=cart" method="post">
                     <div class="col-12">
                         <div class="col-12 cart_lines_border">
-                            <h4>winkelmand (<?= $product_shopping_cart ?>)</h4>
+                            <h4>winkelmand <?= $product_shopping_cart ?></h4>
                             <?php if (empty($products)): ?>
                                 <p class="alert alert-danger">Je hebt nog
                                     geen artikelen in je winkelmand <a href="index.php?page=products">Winkel
@@ -274,7 +287,7 @@ $total = $subtotal + $shipping;
                             </div>
                             <div class="col-12 padding_self_cart border_underline">
                                 <span class="">Verzendkosten</span>
-                                <span class="f_right">&euro;<?= decimal($shipping, ',', '.') ?></span>
+                                <span class="f_right"><?= $shipping ?></span>
                             </div>
                             <div class="col-12 no_padding_l_r">
                                 <span class=""><b>Totaal:</b></span>
