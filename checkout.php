@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      */
 
     /**
-     * check if street number is valid
+     * check if street number is validd
      */
 
     /**
