@@ -1,10 +1,11 @@
 <?php
 // The amounts of products to show on each page
-$num_products_on_each_page = 4;
+$num_products_on_each_page = 8;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
+$current_company = isset($_GET['company']) && is_numeric($_GET['company']) ? (int)$_GET['company'] : 1;
 // Select products ordered by the date added
-$stmt = $pdo->prepare('SELECT * FROM products ORDER BY date_added DESC LIMIT ?,?');
+$stmt = $pdo->prepare("SELECT * FROM products WHERE company_id=$current_company AND available=0 ORDER BY date_added DESC LIMIT ?,?");
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $stmt->bindValue(1, ($current_page - 1) * $num_products_on_each_page, PDO::PARAM_INT);
 $stmt->bindValue(2, $num_products_on_each_page, PDO::PARAM_INT);
@@ -13,7 +14,10 @@ $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of products
 $total_products = $pdo->query('SELECT * FROM products')->rowCount();
+
+//var_dump($products);
 ?>
+
 
 <?= template_header('Products') ?>
 <div class="row">

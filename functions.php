@@ -72,7 +72,7 @@ function template_header($title)
 <header class="background_container">        
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand rainbuster_logo" href="index.php"><img src="assets/img/rainbusterlogo.png" alt=""> </a>
+        <a class="navbar-brand rainbuster_logo" href="index.php"><img src="assets/img/clean_screen_logo.png" alt=""> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -80,7 +80,7 @@ function template_header($title)
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" href="index.php">Home</a>
-                <a class="nav-link" href="index.php?page=products">Winkel</a>
+                <a class="nav-link" href="index.php?page=products_companies">Winkel</a>
             </div>
 
             <div class="cart_width" style="width: 100%">
@@ -117,7 +117,6 @@ function template_footer()
                 <span class="acount-icon">          
                 <a class="fit" href="index.php?page=home"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
                 <a class="fit" href="index.php?page=products"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
-                <a class="fit" href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
                 <a class="fit" href="#"><i class="fab fa-instagram" aria-hidden="true"></i> @clean-screen.nl</a>           
               </span>
                 </div>
