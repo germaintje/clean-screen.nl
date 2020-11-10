@@ -20,12 +20,14 @@ $total_companies = $pdo->query('SELECT * FROM company')->rowCount();
     <div class="col-12 products_section_middle">
         <div class="container">
             <div class="col-12 text_center">
-                <h2>Sponsoren</h2>
+<!--                <h2>Categorieën producten</h2>-->
+<!--                <h2>producten Categorieën</h2>-->
+<!--                <h2>Categorieën</h2>-->
             </div>
             <?php foreach ($companies as $company): ?>
 
                 <div class="col-12 col-md-4 col-xl-4 text_center">
-                    <div class="col-12 product_background">
+                    <div class="col-12 product_background_sponsor">
                         <div class="product">
                             <a href="index.php?page=products&company=<?= $company['company_id'] ?>" class="">
                                 <span class="product_title"><?= $company['company_name'] ?></span><br></a>

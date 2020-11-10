@@ -31,16 +31,16 @@ if (isset($_GET['id'])) {
                     <input class="btn btn-primary" type="submit" value="Binnenkort beschikbaar" disabled>
                 <?php } else { ?>
                     <form action="index.php?page=cart" method="post">
-                        <select name="quantity" class="form-control">
-                            <option value="prijs" name="quantity">2 stuks</option>
-                            <option value="prijs" name="quantity">2 stuks</option>
-                            <option value="prijs" name="quantity">2 stuks</option>
-                            <option value="prijs" name="quantity">2 stuks</option>
-                            <option value="prijs" name="quantity">2 stuks</option>
-                        </select>
-<!--                        <input type="number" name="quantity" value="1" min="1" max="--><?//= $product['quantity'] ?><!--"-->
-<!--                               placeholder="Quantity" required>-->
-<!--                        <input type="hidden" name="product_id" value="--><?//= $product['id'] ?><!--">-->
+<!--                        <select name="quantity" class="form-control">-->
+<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
+<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
+<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
+<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
+<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
+<!--                        </select>-->
+                        <input type="number" name="quantity" value="1" min="1" max="<?= $product['quantity'] ?>"
+                               placeholder="Quantity" required>
+                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                         <input class="btn btn-primary" type="submit" value="In winkelmand">
                     </form>
                 <?php } ?>

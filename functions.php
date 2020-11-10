@@ -116,13 +116,17 @@ function template_footer()
                 <h4 class="title">Pagina's</h4>
                 <span class="acount-icon">          
                 <a class="fit" href="index.php?page=home"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
-                <a class="fit" href="index.php?page=products"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
-                <a class="fit" href="#"><i class="fab fa-instagram" aria-hidden="true"></i> @clean-screen.nl</a>           
+                <a class="fit" href="index.php?page=products_companies"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
+                <a class="fit" href="https://instagram.com/cleanscreen.nl?igshid=1rdinvprr2935"><i class="fab fa-instagram" aria-hidden="true"></i> @clean-screen.nl</a>           
               </span>
                 </div>
             <div class="col-sm-4">
-                <h4 class="title">Payment Methods</h4>
-                <p>[Inleidende tekst voor het aangeven betalingsmogelijkheden.]</p>
+                <h4 class="title">Gegevens clean-screen.nl</h4>
+                <span>KVK: 80538894</span><br>
+                <span>Btw: NL003453793871</span><br>
+                <span>IBAN: NL89 RABO 0360 1976 71</span><br>
+                <span>Tel: 06 42484650</span><br>
+                
                 <ul class="payment">
                 <li><a href="https://www.mollie.com/en/payments/ideal"><i class="fab fa-ideal" aria-hidden="true"></i></a></li>         
                 <li><a href="https://www.mollie.com/en/payments/credit-card"><i class="fab fa-cc-mastercard" aria-hidden="true"></i></a></li>

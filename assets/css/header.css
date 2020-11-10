@@ -308,6 +308,21 @@ home
     z-index: 1;
 }
 
+.product_background_sponsor {
+    transition: transform 0.5s;
+    min-height: 16pc;
+}
+
+.product_background_sponsor span {
+    color: black;
+}
+
+.product_background_sponsor:hover {
+    /*padding: 20px;*/
+    transform: scale(1.05);
+    z-index: 1;
+}
+
 .product_title {
     font-size: 25px;
 }
