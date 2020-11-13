@@ -15,6 +15,13 @@ try {
     require "./initialize.php";
 
     /*
+    * Determine the url parts to these example files.
+    */
+    $protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
+    $hostname = $_SERVER['HTTP_HOST'];
+    $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
+
+    /*
     * Generate a unique order id for this example. It is important to include this unique attribute
     * in the redirectUrl (below) so a proper return page can be shown to the customer.
     */
@@ -34,6 +41,7 @@ try {
     $street_addons = $_SESSION["street_addons"];
     $zip_code = $_SESSION["zip_code"];
     $city = $_SESSION["city"];
+    $country = $_SESSION["country"];
     $phone_number = $_SESSION["phone_number"];
     $mail_address = $_SESSION["mail_address"];
 
@@ -54,9 +62,9 @@ try {
     $products = $_SESSION['products'];
 
     $total = 0;
-
+    $shipping_price_raw = $_SESSION["shipping_price"];
+    $shipping_price = number_format($shipping_price_raw, 2, '.', '');
     foreach ($products as $product) {
-        $shipping_price_raw = $_SESSION["shipping_price"];
         $item_id = $product['id'];
         $item_name = $product['name'];
         $item_img = $product['img'];
@@ -69,17 +77,19 @@ try {
         $item_price = number_format($product['price'], 2, '.', '');
         $total_amount = number_format($item_price * $item_quantity, 2, '.', '');
 
-        $shipping_price = number_format($shipping_price_raw, 2, '.', '');
+
         $total_vat_amount = number_format($total_amount * ($btw / $btw_procent), 2, '.', '');
 
         $total_vat_amount_shipping = number_format($shipping_price * ($btw / $btw_procent), 2, '.', '');
 
-        $total += $total_amount + $shipping_price;
+        $total += $total_amount;
+
 
         $lines[] = [
             "name" => "$item_name",
-            "productUrl" => "https://www.clean-screen.nl/index.php?page=product&id=" . $item_id,
-            "imageUrl" => 'https://www.clean-screeb.nl/assets/img/' . $item_img,
+            "sku" => $item_id,
+            "productUrl" => "https://" . $hostname . $path . "/index.php?page=product&id=" . $item_id,
+            "imageUrl" => "https://" .$hostname . $path . '/assets/img/' . $item_img,
             "metadata" => [
                 "order_id" => $orderId,
                 "description" => $item_description
@@ -100,6 +110,8 @@ try {
             ]
         ];
     }
+
+    $total_with_shipping = number_format($total + $shipping_price, 2, '.', '');
 
     $lines[] = [
         "type" => "shipping_fee",
@@ -122,13 +134,6 @@ try {
 //    print_r($lines);
 
     /*
-    * Determine the url parts to these example files.
-    */
-    $protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
-    $hostname = $_SERVER['HTTP_HOST'];
-    $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-
-    /*
     * Payment parameters:
     *   amount        Amount in EUROs. This example creates a € 10,- payment.
     *   description   Description of the payment.
@@ -138,23 +143,14 @@ try {
     */
     $order = $mollie->orders->create([
         "amount" => [
-            "value" => "$total",
+            "value" => "$total_with_shipping",
             "currency" => "EUR"
-        ],
-        "payment" => [
-            "applicationFee" => [
-                "description" => "Service fee",
-                "amount" => [
-                    "value" => "1.50",
-                    "currency" => "EUR"
-                ]
-            ],
         ],
         "billingAddress" => [
             "streetAndNumber" => "$full_address",
             "postalCode" => "$zip_code",
             "city" => "$city",
-            "country" => "nl",
+            "country" => "NL",
             "givenName" => "$first_name",
             "familyName" => "$last_name",
             "email" => "$mail_address",
@@ -164,22 +160,23 @@ try {
             "streetAndNumber" => "$full_address",
             "postalCode" => "$zip_code",
             "city" => "$city",
-            "country" => "nl",
+            "country" => "NL",
             "givenName" => "$first_name",
-            "familyName" => "$first_name",
+            "familyName" => "$last_name",
             "email" => "$mail_address",
         ],
         "metadata" => [
             "order_id" => $orderId,
             "telefoon_nummer" => $phone_number,
+            "land" => $country,
             "straat_toevoegingen" => $street_addons
         ],
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
 //        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-        "redirectUrl" => "	https://5569196819ec.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "redirectUrl" => "	https://0ee94903cb34.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "	https://5569196819ec.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook",
+        "webhookUrl" => "	https://0ee94903cb34.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
         "lines" =>
             $lines
@@ -217,6 +214,7 @@ try {
     */
     header("Location: " . $order->getCheckoutUrl(), true, 303);
 } catch (ApiException $e) {
-    echo "API call failed: " . htmlspecialchars($e->getMessage());
+    header("Location: " . "index.php", true, 303);
+//    echo "API call failed: " . htmlspecialchars($e->getMessage());
 }
 

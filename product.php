@@ -9,10 +9,12 @@ if (isset($_GET['id'])) {
     // Check if the product exists (array is not empty)
     if (!$product) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
+        header("Location: " . "index.php", true, 303);
         die ('Product does not exist!');
     }
 } else {
     // Simple error to display if the id wasn't specified
+    header("Location: " . "index.php", true, 303);
     die ('Product does not exist!');
 }
 ?>
@@ -38,8 +40,21 @@ if (isset($_GET['id'])) {
 <!--                            <option value="prijs" name="quantity">2 stuks</option>-->
 <!--                            <option value="prijs" name="quantity">2 stuks</option>-->
 <!--                        </select>-->
-                        <input type="number" name="quantity" value="1" min="1" max="<?= $product['quantity'] ?>"
-                               placeholder="Quantity" required>
+                        <div class="number pagination f_right">
+                            <button class="minus page-link"><i class="fas fa-minus"></i>
+                            </button>
+                            <input class="page-link" type="number"
+                                   name="quantity"
+                                   value="<?= $products_in_cart[$product['id']] ?>" min="1"
+                                   max="<?= $product['quantity_item_left'] ?>"
+                                   placeholder="Quantity"
+                                   required>
+                            <button class="plus page-link"><i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+
+<!--                        <input type="number" name="quantity" value="1" min="1" max="--><?//= $product['quantity'] ?><!--"-->
+<!--                               placeholder="Quantity" required>-->
                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                         <input class="btn btn-primary" type="submit" value="In winkelmand">
                     </form>

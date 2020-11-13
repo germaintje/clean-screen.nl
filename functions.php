@@ -1,31 +1,6 @@
 <?php
 function pdo_connect_mysql()
 {
-    if ($_SERVER['HTTP_HOST'] == "clean-screen.germaindejong.nl") {
-        // Update the details below with your MySQL details
-        $DATABASE_HOST = 'localhost:3306';
-        $DATABASE_USER = 'germain';
-        $DATABASE_PASS = '1G?9os7c';
-        $DATABASE_NAME = 'rainbuster';
-        try {
-            return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
-        } catch (PDOException $exception) {
-            // If there is an error with the connection, stop the script and display the error.
-            die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
-        }
-    } elseif ($_SERVER['HTTP_HOST'] == "www.clean-screen.germaindejong.nl") {
-        // Update the details below with your MySQL details
-        $DATABASE_HOST = 'localhost:3306';
-        $DATABASE_USER = 'germain';
-        $DATABASE_PASS = '1G?9os7c';
-        $DATABASE_NAME = 'rainbuster';
-        try {
-            return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
-        } catch (PDOException $exception) {
-            // If there is an error with the connection, stop the script and display the error.
-            die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
-        }
-    } else {
         // Update the details below with your MySQL details
         $DATABASE_HOST = 'localhost';
         $DATABASE_USER = 'root';
@@ -37,7 +12,6 @@ function pdo_connect_mysql()
             // If there is an error with the connection, stop the script and display the error.
             die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
         }
-    }
 }
 
 
@@ -80,7 +54,7 @@ function template_header($title)
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" href="index.php">Home</a>
-                <a class="nav-link" href="index.php?page=products_companies">Winkel</a>
+                <a class="nav-link" href="index.php?page=products">Winkel</a>
             </div>
 
             <div class="cart_width" style="width: 100%">
@@ -116,7 +90,8 @@ function template_footer()
                 <h4 class="title">Pagina's</h4>
                 <span class="acount-icon">          
                 <a class="fit" href="index.php?page=home"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
-                <a class="fit" href="index.php?page=products_companies"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
+                <a class="fit" href="index.php?page=products"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
+                <a class="fit" href="index.php?page=contact"><i class="fas fa-store" aria-hidden="true"></i> Contact</a>
                 <a class="fit" href="https://instagram.com/cleanscreen.nl?igshid=1rdinvprr2935"><i class="fab fa-instagram" aria-hidden="true"></i> @clean-screen.nl</a>           
               </span>
                 </div>
@@ -137,7 +112,7 @@ function template_footer()
             </div>
             <hr>
             
-            <div class="text-center"><p>@ 2020 Cleanscreen</p></div>
+            <div class="text-center"><p>@ 2020 Clean-screen.nl</p></div>
 
         </div>
         
@@ -149,6 +124,7 @@ function template_footer()
         <script src="node_modules/lity/dist/lity.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="assets/js/quality-button.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
     </body>
 </html>
 EOT;

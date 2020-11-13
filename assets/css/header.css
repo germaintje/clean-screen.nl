@@ -21,7 +21,6 @@
     color: #484848;
     padding-left: 0;
     padding-right: 0;
-    width: 100%;
 }
 
 @media screen and (min-width: 992px) {
@@ -339,4 +338,43 @@ home
 
 .fit {
     width: fit-content;
+}
+
+/**
+products overview
+ */
+.products_add_ov {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.product .green {
+    color: #38d638;
+    font-weight: bold;
+}
+
+.product .red {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.no_deco:hover {
+    text-decoration: none;
+}
+
+.product_title:hover {
+    font-weight: 500;
+}
+
+.product_title_price:hover {
+    font-weight: 500;
+}
+
+/**
+order page styles
+ */
+.img_order{
+    width: 30%;
+    height: auto;
 }

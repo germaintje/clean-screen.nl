@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="checkout page styles">
+    <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="checkout form handler">
+      <change afterPath="$PROJECT_DIR$/assets/vid/rain_buster_vid.mov" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contact.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/initialize.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/initialize_with_oauth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list-invoices.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mollie_payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/mollie_payment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mollie_payment_webhook_verification.php" beforeDir="false" afterPath="$PROJECT_DIR$/mollie_payment_webhook_verification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/products.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products_companies.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/ApiException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ApiException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,17 +73,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../nerdy-gadgets" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\clean-screen.nl\assets\img" />
       <recent name="C:\xampp\htdocs\rainbuster.shop" />
       <recent name="C:\xampp\htdocs\rainbuster.shop\vendor\mollie\mollie-api-php" />
       <recent name="C:\xampp\htdocs\rainbuster.shop\vendor\mollie\mollie-api-php\examples" />
       <recent name="C:\xampp\htdocs\rainbuster.shop\vendor" />
-      <recent name="C:\xampp\htdocs\rainbuster.shop\vendor\mollie/mollie-api-php" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\rainbuster.shop" />
@@ -121,6 +138,17 @@
       <workItem from="1603643986265" duration="4255000" />
       <workItem from="1603959567076" duration="602000" />
       <workItem from="1604243620990" duration="5755000" />
+      <workItem from="1604315041746" duration="295000" />
+      <workItem from="1604352709714" duration="516000" />
+      <workItem from="1604589531909" duration="6959000" />
+      <workItem from="1604653876399" duration="1192000" />
+      <workItem from="1604679169926" duration="5719000" />
+      <workItem from="1604780848186" duration="7416000" />
+      <workItem from="1604828294145" duration="28385000" />
+      <workItem from="1604985532276" duration="666000" />
+      <workItem from="1605087213280" duration="839000" />
+      <workItem from="1605170994692" duration="38598000" />
+      <workItem from="1605259462247" duration="12753000" />
     </task>
     <task id="LOCAL-00001" summary="niewe styles toegepast">
       <created>1601473105843</created>
@@ -241,7 +269,35 @@
       <option name="project" value="LOCAL" />
       <updated>1603646594968</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="checkout form handler">
+      <created>1604315258317</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1604315258317</updated>
+    </task>
+    <task id="LOCAL-00019" summary="checkout form handler 2.0">
+      <created>1604589797439</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1604589797439</updated>
+    </task>
+    <task id="LOCAL-00020" summary="laatste verbeteringen">
+      <created>1604860411866</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1604860411866</updated>
+    </task>
+    <task id="LOCAL-00021" summary="more products added">
+      <created>1604985569310</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1604985569310</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +335,11 @@
     <MESSAGE value="*finetuning&#10;&#10;- return page" />
     <MESSAGE value="mollie order test" />
     <MESSAGE value="checkout page styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkout page styles" />
+    <MESSAGE value="checkout form handler" />
+    <MESSAGE value="checkout form handler 2.0" />
+    <MESSAGE value="laatste verbeteringen" />
+    <MESSAGE value="more products added" />
+    <option name="LAST_COMMIT_MESSAGE" value="more products added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1603033089518">
@@ -298,29 +358,35 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602625776683" />
-    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1604249702177">
+    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1604985567595">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604249702177" />
+    <state x="-1429" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1604860410490" />
+    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604985567595" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601314225971" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603960233424">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1605259472841">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603960233424" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602582167998">
+    <state x="740" y="275" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605259472841" />
+    <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1604315307303">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602582167998" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1603706464086">
+    <state x="672" y="236" key="MultipleFileMergeDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604315307303" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605276779346">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603706464086" />
+    <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605276779346" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1604985571152">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1469" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1604860413906" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604985571152" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601314232266" />
-    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1604315234012">
+    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1605259463020">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1264" y="346" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1603641651317" />
-    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604315234012" />
+    <state x="656" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605259463020" />
     <state x="609" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603578575739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -329,10 +395,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="663" y="148" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1601660287070" />
-    <state x="584" y="241" width="607" height="536" key="find.popup" timestamp="1603181815123">
+    <state x="584" y="241" width="607" height="536" key="find.popup" timestamp="1605219293126">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="584" y="241" width="607" height="536" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603181815123" />
+    <state x="584" y="241" width="607" height="536" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1605219293126" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1602932553783">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -341,9 +407,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603578552817" />
-    <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602625774747">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1238" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1604861595739">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1238" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1604861595739" />
     <state x="682" y="432" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602625774747" />
   </component>
 </project>

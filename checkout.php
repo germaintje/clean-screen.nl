@@ -25,7 +25,6 @@ if ($subtotal > 50) {
 
 $total = $subtotal + $shipping_price;
 
-
 /**
  * formulier handelingen
  */
@@ -186,6 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["street_addons"] = $street_addons;
         $_SESSION["zip_code"] = $zip_code;
         $_SESSION["city"] = $city;
+        $_SESSION["country"] = $country;
         $_SESSION["phone_number"] = $phone_number;
         $_SESSION["mail_address"] = $mail_address;
         $_SESSION["shipping_price"] = $shipping_price;

@@ -137,7 +137,7 @@ $total = $subtotal + $shipping_price;
                             <?php if (empty($products_in_cart)): ?>
                                 <p class="alert alert-danger">Je hebt
                                     nog
-                                    geen artikelen in je winkelmand <a href="index.php?page=products_companies">Winkel
+                                    geen artikelen in je winkelmand <a href="index.php?page=products">Winkel
                                         nu!</a>
                                 </p>
                             <?php else: ?>

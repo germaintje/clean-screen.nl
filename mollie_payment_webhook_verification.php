@@ -1,79 +1,6 @@
 <?php
-///*
-// * Example 2 - How to verify Mollie API Payments in a webhook.
-// */
-//
-//use Mollie\Api\Exceptions\ApiException;
-//
-//try {
-//    /*
-//     * Initialize the Mollie API library with your API key.
-//     *
-//     * See: https://www.mollie.com/dashboard/settings/profiles
-//     */
-//    require "./initialize.php";
-//
-//    /*
-//     * Retrieve the payment's current state.
-//     */
-//    $payment = $mollie->payments->get($_SESSION['tr_payment_id']);
-//    $orderId = $payment->metadata->order_id;
-//    $full_address = $payment->metadata->full_address;
-//
-//    $payment_status = "open";
-//
-//    if ($payment->isPaid()) {
-//        /*
-//         * At this point you'd probably want to start the process of delivering the product to the customer.
-//         */
-//        $payment_status = "paid";
-//        var_dump($full_address);
-//    } elseif ($payment->isOpen()) {
-//        /*
-//         * The payment is open.
-//         */
-//        $payment_status = "open";
-//    } elseif ($payment->isPending()) {
-//        /*
-//         * The payment is pending.
-//         */
-//        $payment_status = "pending";
-//    } elseif ($payment->isFailed()) {
-//        /*
-//         * The payment has failed.
-//         */
-//        $payment_status = "failed";
-//    } elseif ($payment->isExpired()) {
-//        /*
-//         * The payment is expired.
-//         */
-//        $payment_status = "expired";
-//    } elseif ($payment->isCanceled()) {
-//        /*
-//         * The payment has been canceled.
-//         */
-//        $payment_status = "canceled";
-//    }
-//
-    /*
- * Update the order in the database.
- */
-//    $stmt = $pdo->prepare('UPDATE transactions SET payment_status = ? WHERE order_id = ?');
-//    $stmt->execute([
-//        $payment_status,
-//        $orderId
-//    ]);
-//
-//    session_destroy();
-//    header("Location: " . "index.php", true, 303);
 
-//} catch (ApiException $e) {
-//    echo "API call failed: " . htmlspecialchars($e->getMessage());
-////    var_dump($mollie->payments->get($_POST["id"]));
-//}
-
-
-namespace _PhpScoper5f8847d7a6e47;
+//namespace _PhpScoper5f8847d7a6e47;
 
 /*
  * Handle an order status change using the Mollie API.
@@ -92,8 +19,6 @@ try {
 
     $order = $mollie->orders->get($_SESSION['tr_payment_id']);
     $orderId = $order->metadata->order_id;
-
-
     /*
      * Update the order in the database.
      */
@@ -103,6 +28,33 @@ try {
          * The order is paid or authorized
          * At this point you'd probably want to start the process of delivering the product to the customer.
          */
+        $slc = $pdo->prepare('SELECT * FROM products');
+        $slc->execute();
+        $products = $slc->fetchAll(PDO::FETCH_ASSOC);
+        $order_lines = $order->lines;
+
+        foreach ($order_lines as $lines) {
+            $order_product_id = $lines->sku;
+            if ($lines->type != "shipping_fee") {
+                $quantity_buy = $lines->quantity;
+            }
+
+            foreach ($products as $product) {
+                $product_id = $product['id'];
+                if ($order_product_id == $product_id) {
+                    $quantity_left = $product['quantity_item_left'];
+
+                    $quantity_item_left = $quantity_left - $quantity_buy;
+
+                    $stmt = $pdo->prepare('UPDATE products SET quantity_item_left = ? WHERE id = ?');
+                    $stmt->execute([
+                        $quantity_item_left,
+                        $id = $order_product_id,
+                    ]);
+
+                }
+            }
+        }
     } elseif ($order->isCanceled()) {
         /*
          * The order is canceled.
@@ -128,8 +80,9 @@ try {
     ]);
 
     session_destroy();
-    header("Location: " . "index.php", true, 303);
+    header("Location: " . "index.php?page=order&id=$order->id", true, 303);
 
 } catch (\Mollie\Api\Exceptions\ApiException $e) {
-    echo "API call failed: " . \htmlspecialchars($e->getMessage());
+    header("Location: " . "index.php", true, 303);
+//    echo "API call failed: " . \htmlspecialchars($e->getMessage());
 }
