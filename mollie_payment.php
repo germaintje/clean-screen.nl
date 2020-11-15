@@ -174,9 +174,9 @@ try {
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
 //        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-        "redirectUrl" => "	https://0ee94903cb34.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "redirectUrl" => "	http://3933abca28a1.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "	https://0ee94903cb34.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "webhookUrl" => "	http://3933abca28a1.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
         "lines" =>
             $lines

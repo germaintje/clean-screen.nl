@@ -21,10 +21,10 @@ function template_header($title)
     // Get the amount of items in the shopping cart, this will be displayed in the header.
     $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 
-    if ($num_items_in_cart > 1) {
-        $header_cart_text = "Artikelen";
-    } else {
+    if ($num_items_in_cart == 1) {
         $header_cart_text = "Artikel";
+    } else {
+        $header_cart_text = "Artikelen";
     }
 
     echo <<<EOT
@@ -44,6 +44,7 @@ function template_header($title)
 <body>
 
 <header class="background_container">        
+<div class="col-12 no_padding shipping_banner">Gratis verzending vanaf 50 euro!</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand rainbuster_logo" href="index.php"><img src="assets/img/clean_screen_logo.png" alt=""> </a>
@@ -51,10 +52,11 @@ function template_header($title)
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse twintig_px" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" href="index.php">Home</a>
                 <a class="nav-link" href="index.php?page=products">Winkel</a>
+                <a class="nav-link" href="index.php?page=contact">Over ons</a>
             </div>
 
             <div class="cart_width" style="width: 100%">
@@ -91,7 +93,7 @@ function template_footer()
                 <span class="acount-icon">          
                 <a class="fit" href="index.php?page=home"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
                 <a class="fit" href="index.php?page=products"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
-                <a class="fit" href="index.php?page=contact"><i class="fas fa-store" aria-hidden="true"></i> Contact</a>
+                <a class="fit" href="index.php?page=contact"><i class="fas fa-store" aria-hidden="true"></i> Over ons</a>
                 <a class="fit" href="https://instagram.com/cleanscreen.nl?igshid=1rdinvprr2935"><i class="fab fa-instagram" aria-hidden="true"></i> @clean-screen.nl</a>           
               </span>
                 </div>

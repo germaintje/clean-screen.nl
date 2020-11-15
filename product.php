@@ -17,6 +17,8 @@ if (isset($_GET['id'])) {
     header("Location: " . "index.php", true, 303);
     die ('Product does not exist!');
 }
+
+
 ?>
 
 <?= template_header('Product') ?>
@@ -28,33 +30,29 @@ if (isset($_GET['id'])) {
                                                                            src="assets/img/<?= $product['img'] ?>"
                                                                            width="500" height="500"
                                                                            alt="<?= $product['name'] ?>"></a>
-                <span class="price bold">&euro; <?= decimal($product['price'], ',', '.') ?></span><br>
+<!--                <span class="price bold">&euro; --><?//= decimal($product['price'], ',', '.') ?><!--</span><br>-->
                 <?php if ($product['quantity_item_left'] == 0) { ?>
                     <input class="btn btn-primary" type="submit" value="Binnenkort beschikbaar" disabled>
                 <?php } else { ?>
-                    <form action="index.php?page=cart" method="post">
-<!--                        <select name="quantity" class="form-control">-->
-<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
-<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
-<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
-<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
-<!--                            <option value="prijs" name="quantity">2 stuks</option>-->
-<!--                        </select>-->
-                        <div class="number pagination f_right">
-                            <button class="minus page-link"><i class="fas fa-minus"></i>
-                            </button>
-                            <input class="page-link" type="number"
-                                   name="quantity"
-                                   value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                   max="<?= $product['quantity_item_left'] ?>"
-                                   placeholder="Quantity"
-                                   required>
-                            <button class="plus page-link"><i class="fas fa-plus"></i>
-                            </button>
-                        </div>
+                <form action="index.php?page=cart" method="post">
+                    <select name="quantity" class="form-control">
+                        <?php for ($i = 1; $i <= $product['quantity_item_left']; $i++) :
+                            if ($i % 2 == 0) {
+                                $korting = 0.40 * ($i - 1);
+                                $prijs = 0.00;
+                            }
+                            if ($i == 1) {
+                                $stuks = "stuk";
+                                $prijs = decimal($product['price'] * $i, ',', '.');
+                            } else {
+                                $stuks = "stuks";
+                                $prijs = decimal(($product['price'] * $i) - $korting, ',', '.');
+                            }
 
-<!--                        <input type="number" name="quantity" value="1" min="1" max="--><?//= $product['quantity'] ?><!--"-->
-<!--                               placeholder="Quantity" required>-->
+                                ?>
+                                <option value="<?= $i ?>" name="quantity"><?= $i ?> <?= $stuks?> -- € <?= $prijs ?></option>
+                        <?php endfor; ?>
+                        </select>
                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                         <input class="btn btn-primary" type="submit" value="In winkelmand">
                     </form>

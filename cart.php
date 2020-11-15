@@ -64,7 +64,8 @@ if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION[
 // Check the session variable for products in cart
 $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 $products = array();
-$subtotal = 0.00;
+$subtotal_no_korting = 0.00;
+$subtotal_korting = 0.00;
 // If there are products in cart
 if ($products_in_cart) {
     // There are products in the cart so we need to select those products from the database
@@ -77,7 +78,20 @@ if ($products_in_cart) {
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // Calculate the subtotal
     foreach ($products as $product) {
-        $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['id']];
+        //hier sicke berekening
+        if ($products_in_cart[$product['id']] > 1) {
+            $korting_per_stuk = 0.40;
+            $korting = $korting_per_stuk * ($products_in_cart[$product['id']] - 1);
+        } else {
+            $korting = 0.00;
+        }
+        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
+
+        $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
+        $subtotal_korting += $korting;
+
+        $subtotal = $subtotal_no_korting - $subtotal_korting;
+
     }
 }
 
@@ -85,6 +99,7 @@ if ($products_in_cart) {
 $_SESSION["products"] = $products;
 $_SESSION["subtotal"] = $subtotal;
 $_SESSION["products_in_cart"] = $products_in_cart;
+$_SESSION["prijs_met_korting"] = $prijs_met_korting;
 
 foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
@@ -105,7 +120,7 @@ if (count($products_in_cart) < 1) {
 /**
  * free shipping price calculate
  */
-if($subtotal > 50){
+if ($subtotal > 50) {
     $shipping_price = 0.00;
     $shipping = "gratis";
 }
@@ -180,7 +195,7 @@ $total = $subtotal + $shipping_price;
                                             </div>
                                             <div class="col-12 cart_margin">
                                                     <span class="f_right bold item_total">
-                                            &euro;<?= decimal($product['price'] * $products_in_cart[$product['id']], ',', '.') ?>
+                                            &euro;<?= decimal($prijs_met_korting, ',', '.') ?>
                                             </span>
                                             </div>
                                         </div>
@@ -264,7 +279,7 @@ $total = $subtotal + $shipping_price;
                                                         class="fas fa-trash-alt red"></i> Verwijder artikel</a>
 
                                             <span class="f_right bold item_total">
-                                            &euro;<?= decimal($product['price'] * $products_in_cart[$product['id']], ',', '.') ?>
+                                            &euro;<?= decimal($prijs_met_korting, ',', '.') ?>
                                             </span>
                                         </div>
 

@@ -1,4 +1,4 @@
-<?= template_header('Home') ?>
+<?= template_header('Over ons') ?>
 
 
 <?= template_footer() ?>

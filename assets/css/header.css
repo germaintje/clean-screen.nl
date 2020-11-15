@@ -79,6 +79,21 @@ header image
     margin-top: 10pc;
 }
 
+.nav-link {
+    width: max-content;
+}
+
+.shipping_banner {
+    text-align: center;
+    background: #c93131;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+}
+
+.twintig_px {
+    font-size: 20px;
+   }
 /**
 sponsor page
  */
@@ -377,4 +392,8 @@ order page styles
 .img_order{
     width: 30%;
     height: auto;
+}
+
+.error {
+    color: red;
 }
