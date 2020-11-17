@@ -47,16 +47,19 @@ function template_header($title)
 <div class="col-12 no_padding shipping_banner">Gratis verzending vanaf 50 euro!</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand rainbuster_logo" href="index.php"><img src="assets/img/clean_screen_logo.png" alt=""> </a>
+    
+        <a class="navbar-brand rainbuster_logo no_margin" href="index.php"><img src="assets/img/clean_screen_logo.png" alt=""> </a>
+       <h4 class="clean-screen no_margin"><a href="index.php" class="clean-screen-text"> Clean-screen</a></h4> 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse twintig_px" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" href="index.php">Home</a>
                 <a class="nav-link" href="index.php?page=products">Winkel</a>
-                <a class="nav-link" href="index.php?page=contact">Over ons</a>
+                <a class="nav-link" href="index.php?page=contact">Ons verhaal</a>
             </div>
 
             <div class="cart_width" style="width: 100%">
@@ -93,14 +96,14 @@ function template_footer()
                 <span class="acount-icon">          
                 <a class="fit" href="index.php?page=home"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
                 <a class="fit" href="index.php?page=products"><i class="fas fa-store" aria-hidden="true"></i> Winkel</a>
-                <a class="fit" href="index.php?page=contact"><i class="fas fa-store" aria-hidden="true"></i> Over ons</a>
+                <a class="fit" href="index.php?page=contact"><i class="fas fa-address-card"></i> Ons verhaal</a>
                 <a class="fit" href="https://instagram.com/cleanscreen.nl?igshid=1rdinvprr2935"><i class="fab fa-instagram" aria-hidden="true"></i> @clean-screen.nl</a>           
               </span>
                 </div>
             <div class="col-sm-4">
                 <h4 class="title">Gegevens clean-screen.nl</h4>
                 <span>KVK: 80538894</span><br>
-                <span>Btw: NL003453793871</span><br>
+                <span>Btw: NL003453793B71</span><br>
                 <span>IBAN: NL89 RABO 0360 1976 71</span><br>
                 <span>Tel: 06 42484650</span><br>
                 

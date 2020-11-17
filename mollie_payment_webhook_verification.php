@@ -84,5 +84,5 @@ try {
 
 } catch (\Mollie\Api\Exceptions\ApiException $e) {
     header("Location: " . "index.php", true, 303);
-//    echo "API call failed: " . \htmlspecialchars($e->getMessage());
+    echo "API call failed: " . \htmlspecialchars($e->getMessage());
 }

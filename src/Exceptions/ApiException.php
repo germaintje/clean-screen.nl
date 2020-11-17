@@ -99,8 +99,8 @@ class ApiException extends \Exception
         if (!empty($object->field)) {
             $field = $object->field;
         }
-//        return new self("Error executing API call ({$object->status}: {$object->title}): {$object->detail}", $response->getStatusCode(), $field, $request, $response, $previous);
-        header("Location: " . "index.php", true, 303);
+        return new self("Error executing API call ({$object->status}: {$object->title}): {$object->detail}", $response->getStatusCode(), $field, $request, $response, $previous);
+//        header("Location: " . "index.php", true, 303);
     }
     /**
      * @return string|null

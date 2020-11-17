@@ -2,8 +2,8 @@
 <?php
 require "./initialize.php";
 
-if(!isset ($_GET['id'])){
-    header("Location: " . "index.php", true, 303);
+if (!isset ($_GET['id'])) {
+//    header("Location: " . "index.php", true, 303);
 }
 
 $order_id = $_GET['id'];
@@ -59,6 +59,7 @@ $order_lines = $order->lines;
                     <th>item</th>
                     <th>prijs</th>
                     <th>aantal</th>
+                    <th>Korting</th>
                     <th>totaal</th>
                 </tr>
                 </thead>
@@ -68,6 +69,11 @@ $order_lines = $order->lines;
                         $line_Name = $lines->name;
                         $line_UnitPrice = $lines->unitPrice->value;
                         $line_Quantity = $lines->quantity;
+                        if(isset($lines->discountAmount->value)) {
+                            $discount_amount = $lines->discountAmount->value;
+                        }else{
+                            $discount_amount = 0.00;
+                        }
 
                         $lines_TotalAmount = $lines->totalAmount->value;
                         $lines_Subtotal += $lines_TotalAmount;
@@ -94,6 +100,7 @@ $order_lines = $order->lines;
                             <td><?= $productUrl_html ?></td>
                             <td><?= decimal($line_UnitPrice, ',', '.'); ?></td>
                             <td><?= $line_Quantity ?></td>
+                            <td><?= decimal($discount_amount, ',', '.') ?></td>
                             <td><?= decimal($lines_TotalAmount, ',', '.'); ?></td>
 
 
@@ -103,21 +110,21 @@ $order_lines = $order->lines;
                     }
                 } ?>
                 <tr>
-                    <!--                    <td></td>-->
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td><b>Subtotal:</b></td>
                     <td><?= decimal($lines_Subtotal, ',', '.'); ?></td>
                 </tr>
                 <tr>
-                    <!--                    <td></td>-->
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td><b>verzendkosten:</b></td>
                     <td><?= decimal($shipping_fee, ',', '.'); ?></td>
                 </tr>
                 <tr>
-                    <!--                    <td></td>-->
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td><b>Totaal:</b></td>

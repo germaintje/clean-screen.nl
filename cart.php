@@ -66,6 +66,8 @@ $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 $products = array();
 $subtotal_no_korting = 0.00;
 $subtotal_korting = 0.00;
+$subtotal = 0.00;
+$total = 0.00;
 // If there are products in cart
 if ($products_in_cart) {
     // There are products in the cart so we need to select those products from the database
@@ -76,30 +78,12 @@ if ($products_in_cart) {
     $stmt->execute(array_keys($products_in_cart));
     // Fetch the products from the database and return the result as an Array
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // Calculate the subtotal
-    foreach ($products as $product) {
-        //hier sicke berekening
-        if ($products_in_cart[$product['id']] > 1) {
-            $korting_per_stuk = 0.40;
-            $korting = $korting_per_stuk * ($products_in_cart[$product['id']] - 1);
-        } else {
-            $korting = 0.00;
-        }
-        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
 
-        $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
-        $subtotal_korting += $korting;
-
-        $subtotal = $subtotal_no_korting - $subtotal_korting;
-
-    }
 }
 
 // checkout session variables
 $_SESSION["products"] = $products;
-$_SESSION["subtotal"] = $subtotal;
 $_SESSION["products_in_cart"] = $products_in_cart;
-$_SESSION["prijs_met_korting"] = $prijs_met_korting;
 
 foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
@@ -117,13 +101,6 @@ if (count($products_in_cart) < 1) {
     $shipping = "€" . decimal($shipping_price, ',', '.');
     $checkout_button = "<a class=\"btn btn-primary ch_button\" type=\"submit\" href=\"index.php?page=checkout\">Checkout</a>";
 }
-/**
- * free shipping price calculate
- */
-if ($subtotal > 50) {
-    $shipping_price = 0.00;
-    $shipping = "gratis";
-}
 
 
 if (count($products_in_cart) > 1) {
@@ -133,10 +110,6 @@ if (count($products_in_cart) > 1) {
 } else {
     $product_shopping_cart = "";
 }
-//todo:: zet nog ff in de database
-
-$total = $subtotal + $shipping_price;
-
 ?>
 
 <?= template_header('Winkelwagen') ?>
@@ -157,6 +130,39 @@ $total = $subtotal + $shipping_price;
                                 </p>
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
+                                    <?php
+                                    for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
+                                        if ($i % 2 == 0) {
+                                            $korting = 0.40 * ($i - 1);
+                                        }
+                                    }
+
+                                    if ($products_in_cart[$product['id']] == 1) {
+                                        $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
+                                    } else {
+                                        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
+                                    }
+
+                                    $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
+                                    $subtotal_korting += $prijs_met_korting;
+
+                                    $subtotal = $subtotal_korting;
+                                    /**
+                                     * free shipping price calculate
+                                     */
+                                    if ($subtotal > 50) {
+                                        $shipping_price = 0.00;
+                                        $shipping = "gratis";
+                                    }
+
+                                    $total = $subtotal + $shipping_price;
+
+                                    $_SESSION["subtotal"] = $subtotal;
+                                    $_SESSION["prijs_met_korting"] = $prijs_met_korting;
+
+                                    ?>
+
+
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
                                             <a href="index.php?page=product&id=<?= $product['id'] ?>">
@@ -201,10 +207,13 @@ $total = $subtotal + $shipping_price;
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
+
                             <?php endif; ?>
-                            <button class="f_right btn btn-secondary" type="submit" name="update"><i
+                            <button class="f_right btn btn-secondary margin_btn" type="submit" name="update"><i
                                         class="fas fa-sync-alt"></i> Winkelmand bijwerken
                             </button>
+                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit" name="update">Verder winkelen
+                            </a>
                         </div>
                     </div>
                     <div class="col-12 col-xl-4 f_right">
@@ -220,7 +229,7 @@ $total = $subtotal + $shipping_price;
                             </div>
                             <div class="col-12 no_padding_l_r">
                                 <span class=""><b>Totaal:</b></span>
-                                <span class="f_right">&euro;<?= decimal($total, ',', '.') ?></span>
+                                <span class="f_right">&euro;<?= decimal($total, ',', '.') ?><span class="cart_btw_text">(Inclusief <?= decimal($total * 0.21, ',', '.') ?> btw)</span></span>
                             </div>
                             <div class="col-12 no_padding">
                                 <div class="col-12 no_padding">
@@ -245,6 +254,37 @@ $total = $subtotal + $shipping_price;
                                         nu!</a></p>
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
+                                    <?php
+                                    for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
+                                        if ($i % 2 == 0) {
+                                            $korting = 0.40 * ($i - 1);
+                                        }
+                                    }
+
+                                    if ($products_in_cart[$product['id']] == 1) {
+                                        $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
+                                    } else {
+                                        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
+                                    }
+
+                                    $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
+                                    $subtotal_korting += $prijs_met_korting;
+
+                                    $subtotal = $subtotal_korting;
+                                    /**
+                                     * free shipping price calculate
+                                     */
+                                    if ($subtotal > 50) {
+                                        $shipping_price = 0.00;
+                                        $shipping = "gratis";
+                                    }
+
+                                    $total = $subtotal + $shipping_price;
+
+                                    $_SESSION["subtotal"] = $subtotal;
+                                    $_SESSION["prijs_met_korting"] = $prijs_met_korting;
+
+                                    ?>
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
                                             <a href="index.php?page=product&id=<?= $product['id'] ?>">
@@ -287,9 +327,11 @@ $total = $subtotal + $shipping_price;
                                     </div>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                            <button class="f_left btn btn-secondary" type="submit" name="update"><i
+                            <button class="f_right btn btn-secondary margin_btn" type="submit" name="update"><i
                                         class="fas fa-sync-alt"></i> Winkelmand bijwerken
                             </button>
+                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit" name="update">Verder winkelen
+                            </a>
                         </div>
                     </div>
 

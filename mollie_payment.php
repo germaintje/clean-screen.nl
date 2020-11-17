@@ -62,9 +62,45 @@ try {
     $products = $_SESSION['products'];
 
     $total = 0;
-    $shipping_price_raw = $_SESSION["shipping_price"];
-    $shipping_price = number_format($shipping_price_raw, 2, '.', '');
+//    $shipping_price_raw = $_SESSION["shipping_price"];
+//    var_dump($shipping_price_raw);
+//    $shipping_price = number_format($shipping_price_raw, 2, '.', '');
+
+    $subtotal_no_korting = 0.00;
+    $subtotal_korting = 0.00;
     foreach ($products as $product) {
+        for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
+            if ($i % 2 == 0) {
+                $korting = decimal(0.40 * ($i - 1), '.', '.');
+            }
+        }
+
+        if ($products_in_cart[$product['id']] == 1) {
+            $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
+            $korting = decimal(0.00, '.', '.');
+        } else {
+            $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
+        }
+
+        $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
+        $subtotal_korting += $prijs_met_korting;
+
+        $subtotal = $subtotal_korting;
+
+        /**
+         * free shipping price calculate
+         */
+        if ($subtotal > 50) {
+            $shipping_price_raw = 0.00;
+            $shipping = decimal($shipping_price_raw, ',', '.');
+            $shipping = "gratis";
+        } else {
+            $shipping_price_raw = 4.95;
+            $shipping = decimal($shipping_price_raw, ',', '.');
+        }
+
+        $shipping_price = number_format($shipping_price_raw, 2, '.', '');
+
         $item_id = $product['id'];
         $item_name = $product['name'];
         $item_img = $product['img'];
@@ -75,7 +111,7 @@ try {
         $btw_procent = "121.00";
 
         $item_price = number_format($product['price'], 2, '.', '');
-        $total_amount = number_format($item_price * $item_quantity, 2, '.', '');
+        $total_amount = number_format($prijs_met_korting, 2, '.', '');
 
 
         $total_vat_amount = number_format($total_amount * ($btw / $btw_procent), 2, '.', '');
@@ -83,7 +119,6 @@ try {
         $total_vat_amount_shipping = number_format($shipping_price * ($btw / $btw_procent), 2, '.', '');
 
         $total += $total_amount;
-
 
         $lines[] = [
             "name" => "$item_name",
@@ -100,6 +135,10 @@ try {
                 "currency" => "EUR",
                 "value" => "$item_price"
             ],
+            "discountAmount" => [
+              "currency" => "EUR",
+              "value" => "$korting"
+            ],
             "totalAmount" => [
                 "currency" => "EUR",
                 "value" => "$total_amount"
@@ -109,9 +148,10 @@ try {
                 "value" => "$total_vat_amount"
             ]
         ];
+
     }
 
-    $total_with_shipping = number_format($total + $shipping_price, 2, '.', '');
+    $total_with_shipping = number_format($subtotal + $shipping_price, 2, '.', '');
 
     $lines[] = [
         "type" => "shipping_fee",
@@ -215,6 +255,6 @@ try {
     header("Location: " . $order->getCheckoutUrl(), true, 303);
 } catch (ApiException $e) {
     header("Location: " . "index.php", true, 303);
-//    echo "API call failed: " . htmlspecialchars($e->getMessage());
+    echo "API call failed: " . htmlspecialchars($e->getMessage());
 }
 

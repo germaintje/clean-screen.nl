@@ -4,27 +4,47 @@
  */
 $products_in_cart = $_SESSION['products_in_cart'];
 if (count($products_in_cart) < 1) {
-    header("Location:index.php ", true, 303);
+//    header("Location:index.php ", true, 303);
 }
+
+$subtotal_no_korting = 0.00;
+$subtotal_korting = 0.00;
+$subtotal = 0.00;
 
 $products = $_SESSION['products'];
-$subtotal = $_SESSION['subtotal'];
-$prijs_met_korting = $_SESSION['prijs_met_korting'];
+//$subtotal = $_SESSION['subtotal'];
+//foreach ($products as $product) {
+//    $subtotal = 0.00;
+//    for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
+//        if ($i % 2 == 0) {
+//            $korting = 0.40 * ($i - 1);
+//        }
+//    }
+//
+//    if ($products_in_cart[$product['id']] == 1) {
+//        $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
+//    } else {
+//        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
+//        var_dump($prijs_met_korting);
+//    }
+//
+//    $subtotal += $prijs_met_korting;
+//}
 
 
-/**
- * free shipping price calculate
- */
-if ($subtotal > 50) {
-    $shipping_price = 0.00;
-    $shipping = decimal($shipping_price, ',', '.');
-    $shipping = "gratis";
-} else {
-    $shipping_price = 4.95;
-    $shipping = decimal($shipping_price, ',', '.');
-}
-
-$total = $subtotal + $shipping_price;
+///**
+// * free shipping price calculate
+// */
+//if ($subtotal > 50) {
+//    $shipping_price = 0.00;
+//    $shipping = decimal($shipping_price, ',', '.');
+//    $shipping = "gratis";
+//} else {
+//    $shipping_price = 4.95;
+//    $shipping = decimal($shipping_price, ',', '.');
+//}
+//
+//$total = $subtotal + $shipping_price;
 
 /**
  * formulier handelingen
@@ -189,7 +209,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["country"] = $country;
         $_SESSION["phone_number"] = $phone_number;
         $_SESSION["mail_address"] = $mail_address;
-        $_SESSION["shipping_price"] = $shipping_price;
         header("Location: index.php?page=mollie_payment");
     }
 
@@ -293,6 +312,39 @@ function test_input($data)
                         <h4 class="title_pad">Te betalen bedrag</h4>
 
                         <?php foreach ($products as $product): ?>
+                            <?php
+                            for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
+                                if ($i % 2 == 0) {
+                                    $korting = 0.40 * ($i - 1);
+                                }
+                            }
+
+                            if ($products_in_cart[$product['id']] == 1) {
+                                $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
+                            } else {
+                                $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
+                            }
+
+                            $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
+                            $subtotal_korting += $prijs_met_korting;
+
+                            $subtotal = $subtotal_korting;
+                            /**
+                             * free shipping price calculate
+                             */
+                            if ($subtotal > 50) {
+                                $shipping_price = 0.00;
+                                $shipping = decimal($shipping_price, ',', '.');
+                                $shipping = "gratis";
+                            } else {
+                                $shipping_price = 4.95;
+                                $shipping = decimal($shipping_price, ',', '.');
+                            }
+
+                            $_SESSION["shipping_price"] = $shipping_price;
+                            $total = $subtotal + $shipping_price;
+
+                            ?>
                             <div class="col-12 padding_self_cart">
                                 <div class="col-8 no_padding">
                                     <?= $product['name'] ?> <b

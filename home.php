@@ -1,6 +1,6 @@
 <?php
 // Get the 4 most recently added products
-$stmt = $pdo->prepare('SELECT * FROM products WHERE available=0 AND homepage=1 LIMIT 4');
+$stmt = $pdo->prepare('SELECT * FROM products WHERE available=0 AND homepage=1 ORDER BY order_items');
 $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
