@@ -47,12 +47,30 @@ header image
  */
 
 .background_img {
-    background-image: url(https://via.placeholder.com/1500);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 500px;
+    text-align: center;
 }
+
+@media screen and (max-width: 480px) {
+    .video_back {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .video_back {
+        width: 70%;
+        float: right;
+        margin-top: 1px;
+    }
+}
+
+@media screen and (min-width: 481px){
+    .video_back {
+        width: 70%;
+        margin-top: 1px;
+    }
+}
+
 
 .product_img {
     width: 100%;
@@ -121,6 +139,11 @@ product page
 .detail_product_img {
     width: 100%;
     height: auto;
+}
+
+.add_cart_btn {
+    width: 100%;
+    margin-top: 5px;
 }
 
 /**

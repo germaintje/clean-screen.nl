@@ -44,87 +44,84 @@ try {
     $country = $_SESSION["country"];
     $phone_number = $_SESSION["phone_number"];
     $mail_address = $_SESSION["mail_address"];
-
-//    $first_name = $_POST['first_name'];
-//    $last_name = $_POST['last_name'];
-//    $company_name = $_POST['company_name'];
-//    $street_name = $_POST['street_name'];
-//    $street_number = $_POST['street_number'];
-//    $street_addons = $_POST['street_addons'];
-//    $zip_code = $_POST['zip_code'];
-//    $city = $_POST['city'];
-//    $phone_number = $_POST['phone_number'];
-//    $mail_address = $_POST['mail_address'];
-
     $full_address = $street_name . " " . $street_number;
     $payment_status = "open";
 
     $products = $_SESSION['products'];
 
     $total = 0;
-//    $shipping_price_raw = $_SESSION["shipping_price"];
-//    var_dump($shipping_price_raw);
-//    $shipping_price = number_format($shipping_price_raw, 2, '.', '');
+    $subtotal = 0.00;
 
-    $subtotal_no_korting = 0.00;
-    $subtotal_korting = 0.00;
     foreach ($products as $product) {
-        for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
-            if ($i % 2 == 0) {
-                $korting = decimal(0.40 * ($i - 1), '.', '.');
+        /**
+         * for loop for the discount on every item
+         */
+        for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
+            if ($product_count > $product['discount_first_step']) {
+                if ($product_count % $product['discount_steps'] == 0) {
+                    $count = $product_count / $product['discount_steps'];
+                }
+                $korting = ($product['discount_price'] * $product_count) * $count;
+            } elseif ($product_count <= $product['discount_first_step']) {
+                $korting = 0.00;
             }
+            $discount_amount = decimal($korting, '.', '.');
+            $prijs = ($product['price'] * $product_count) - $korting;
         }
-
-        if ($products_in_cart[$product['id']] == 1) {
-            $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
-            $korting = decimal(0.00, '.', '.');
-        } else {
-            $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
-        }
-
-        $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
-        $subtotal_korting += $prijs_met_korting;
-
-        $subtotal = $subtotal_korting;
+        $subtotal += $prijs;
 
         /**
-         * free shipping price calculate
+         * the shipping price from a session and set to 2 decimals with a dot seperated
          */
-        if ($subtotal > 50) {
-            $shipping_price_raw = 0.00;
-            $shipping = decimal($shipping_price_raw, ',', '.');
-            $shipping = "gratis";
-        } else {
-            $shipping_price_raw = 4.95;
-            $shipping = decimal($shipping_price_raw, ',', '.');
-        }
+        $shipping_price = decimal($_SESSION['shipping_price'], '.', '');
 
-        $shipping_price = number_format($shipping_price_raw, 2, '.', '');
-
+        /**
+         * all the item info for each order line
+         */
         $item_id = $product['id'];
         $item_name = $product['name'];
         $item_img = $product['img'];
         $item_description = $product['desc'];
         $item_quantity = $products_in_cart[$product['id']];
+        $item_price = decimal($product['price'], '.', '');
 
+        /**
+         * the btw that you get over the bought items
+         */
         $btw = "21.00";
         $btw_procent = "121.00";
 
-        $item_price = number_format($product['price'], 2, '.', '');
-        $total_amount = number_format($prijs_met_korting, 2, '.', '');
+        /**
+         * total_amount: the total price of each product multiplie with his quantity
+         * total_vat_amount: the total amount of the btw for all products
+         */
+        $total_amount = decimal($prijs, '.', '');
+        $total_vat_amount = decimal($total_amount * ($btw / $btw_procent),'.', '');
 
+        /**
+         * the total amount of btw of the shipping
+         */
+        $total_vat_amount_shipping = decimal($shipping_price * ($btw / $btw_procent),'.', '');
 
-        $total_vat_amount = number_format($total_amount * ($btw / $btw_procent), 2, '.', '');
-
-        $total_vat_amount_shipping = number_format($shipping_price * ($btw / $btw_procent), 2, '.', '');
-
+        /**
+         * the total amount of all products
+         */
         $total += $total_amount;
 
+        /**
+         * total price of all products with the shipping price included
+         */
+        $total_with_shipping = decimal($subtotal + $shipping_price, '.', '');
+
+
+        /**
+         * the order lines for each product
+         */
         $lines[] = [
             "name" => "$item_name",
             "sku" => $item_id,
             "productUrl" => "https://" . $hostname . $path . "/index.php?page=product&id=" . $item_id,
-            "imageUrl" => "https://" .$hostname . $path . '/assets/img/' . $item_img,
+            "imageUrl" => "https://" . $hostname . $path . '/assets/img/' . $item_img,
             "metadata" => [
                 "order_id" => $orderId,
                 "description" => $item_description
@@ -136,8 +133,8 @@ try {
                 "value" => "$item_price"
             ],
             "discountAmount" => [
-              "currency" => "EUR",
-              "value" => "$korting"
+                "currency" => "EUR",
+                "value" => "$discount_amount"
             ],
             "totalAmount" => [
                 "currency" => "EUR",
@@ -151,8 +148,10 @@ try {
 
     }
 
-    $total_with_shipping = number_format($subtotal + $shipping_price, 2, '.', '');
 
+    /**
+     * order line of the shipping cost
+     */
     $lines[] = [
         "type" => "shipping_fee",
         "name" => "shipping",
@@ -214,9 +213,9 @@ try {
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
 //        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-        "redirectUrl" => "	http://3933abca28a1.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "redirectUrl" => "	https://c5cd3f188091.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "	http://3933abca28a1.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "webhookUrl" => "	https://c5cd3f188091.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
         "lines" =>
             $lines

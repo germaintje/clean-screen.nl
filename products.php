@@ -1,6 +1,6 @@
 <?php
 // The amounts of products to show on each page
-$num_products_on_each_page = 8;
+$num_products_on_each_page = 100;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 //$current_company = isset($_GET['company']) && is_numeric($_GET['company']) ? (int)$_GET['company'] : 1;

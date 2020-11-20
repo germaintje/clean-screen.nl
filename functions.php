@@ -116,7 +116,8 @@ function template_footer()
                 </div>
             </div>
             <hr>
-            
+                <a href="">test</a>
+            <hr>
             <div class="text-center"><p>@ 2020 Clean-screen.nl</p></div>
 
         </div>

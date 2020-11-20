@@ -64,8 +64,6 @@ if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION[
 // Check the session variable for products in cart
 $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 $products = array();
-$subtotal_no_korting = 0.00;
-$subtotal_korting = 0.00;
 $subtotal = 0.00;
 $total = 0.00;
 // If there are products in cart
@@ -97,7 +95,7 @@ if (count($products_in_cart) < 1) {
     $shipping = "€" . decimal($shipping_price, ',', '.');
     $checkout_button = "<a class=\"btn btn-primary ch_button disabled\" type=\"submit\">Checkout</a>";
 } else {
-    $shipping_price = 4.95;
+    $shipping_price = 5.49;
     $shipping = "€" . decimal($shipping_price, ',', '.');
     $checkout_button = "<a class=\"btn btn-primary ch_button\" type=\"submit\" href=\"index.php?page=checkout\">Checkout</a>";
 }
@@ -131,22 +129,21 @@ if (count($products_in_cart) > 1) {
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
                                     <?php
-                                    for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
-                                        if ($i % 2 == 0) {
-                                            $korting = 0.40 * ($i - 1);
+                                    for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
+                                        if ($product_count > $product['discount_first_step']) {
+                                            if ($product_count % $product['discount_steps'] == 0) {
+                                                $count = $product_count / $product['discount_steps'];
+                                            }
+                                            $korting = ($product['discount_price'] * $product_count) * $count;
+                                        } elseif ($product_count <= $product['discount_first_step']) {
+                                            $korting = 0.00;
                                         }
+                                        $prijs = ($product['price'] * $product_count) - $korting;
+
+
                                     }
+                                    $subtotal += $prijs;
 
-                                    if ($products_in_cart[$product['id']] == 1) {
-                                        $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
-                                    } else {
-                                        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
-                                    }
-
-                                    $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
-                                    $subtotal_korting += $prijs_met_korting;
-
-                                    $subtotal = $subtotal_korting;
                                     /**
                                      * free shipping price calculate
                                      */
@@ -154,14 +151,10 @@ if (count($products_in_cart) > 1) {
                                         $shipping_price = 0.00;
                                         $shipping = "gratis";
                                     }
-
+                                    $_SESSION['shipping_price'] = $shipping_price;
                                     $total = $subtotal + $shipping_price;
-
                                     $_SESSION["subtotal"] = $subtotal;
-                                    $_SESSION["prijs_met_korting"] = $prijs_met_korting;
-
                                     ?>
-
 
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
@@ -192,7 +185,7 @@ if (count($products_in_cart) > 1) {
                                                     <input class="page-link" type="number"
                                                            name="quantity-<?= $product['id'] ?>"
                                                            value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                                           max="<?= $product['quantity_item_left'] ?>"
+                                                           max="<?= $product['max_products'] ?>"
                                                            placeholder="Quantity"
                                                            required>
                                                     <button class="plus page-link"><i class="fas fa-plus"></i>
@@ -201,7 +194,7 @@ if (count($products_in_cart) > 1) {
                                             </div>
                                             <div class="col-12 cart_margin">
                                                     <span class="f_right bold item_total">
-                                            &euro;<?= decimal($prijs_met_korting, ',', '.') ?>
+                                            &euro;<?= decimal($prijs, ',', '.') ?>
                                             </span>
                                             </div>
                                         </div>
@@ -212,7 +205,8 @@ if (count($products_in_cart) > 1) {
                             <button class="f_right btn btn-secondary margin_btn" type="submit" name="update"><i
                                         class="fas fa-sync-alt"></i> Winkelmand bijwerken
                             </button>
-                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit" name="update">Verder winkelen
+                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit"
+                               name="update">Verder winkelen
                             </a>
                         </div>
                     </div>
@@ -255,35 +249,17 @@ if (count($products_in_cart) > 1) {
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
                                     <?php
-                                    for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
-                                        if ($i % 2 == 0) {
-                                            $korting = 0.40 * ($i - 1);
+                                    for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
+                                        if ($product_count > $product['discount_first_step']) {
+                                            if ($product_count % $product['discount_steps'] == 0) {
+                                                $count = $product_count / $product['discount_steps'];
+                                            }
+                                            $korting = ($product['discount_price'] * $product_count) * $count;
+                                        } elseif ($product_count <= $product['discount_first_step']) {
+                                            $korting = 0.00;
                                         }
+                                        $prijs = ($product['price'] * $product_count) - $korting;
                                     }
-
-                                    if ($products_in_cart[$product['id']] == 1) {
-                                        $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
-                                    } else {
-                                        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
-                                    }
-
-                                    $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
-                                    $subtotal_korting += $prijs_met_korting;
-
-                                    $subtotal = $subtotal_korting;
-                                    /**
-                                     * free shipping price calculate
-                                     */
-                                    if ($subtotal > 50) {
-                                        $shipping_price = 0.00;
-                                        $shipping = "gratis";
-                                    }
-
-                                    $total = $subtotal + $shipping_price;
-
-                                    $_SESSION["subtotal"] = $subtotal;
-                                    $_SESSION["prijs_met_korting"] = $prijs_met_korting;
-
                                     ?>
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
@@ -319,7 +295,7 @@ if (count($products_in_cart) > 1) {
                                                         class="fas fa-trash-alt red"></i> Verwijder artikel</a>
 
                                             <span class="f_right bold item_total">
-                                            &euro;<?= decimal($prijs_met_korting, ',', '.') ?>
+                                            &euro;<?= decimal($prijs, ',', '.') ?>
                                             </span>
                                         </div>
 
@@ -330,7 +306,8 @@ if (count($products_in_cart) > 1) {
                             <button class="f_right btn btn-secondary margin_btn" type="submit" name="update"><i
                                         class="fas fa-sync-alt"></i> Winkelmand bijwerken
                             </button>
-                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit" name="update">Verder winkelen
+                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit"
+                               name="update">Verder winkelen
                             </a>
                         </div>
                     </div>

@@ -37,26 +37,40 @@ if (isset($_GET['id'])) {
                 <?php } else { ?>
                     <form action="index.php?page=cart" method="post">
                         <select name="quantity" class="form-control">
-                            <?php for ($i = 1; $i <= $product['quantity_item_left']; $i++) :
-                                if ($i % 2 == 0) {
-                                    $korting = 0.40 * ($i - 1);
-                                    $prijs = 0.00;
-                                }
-                                if ($i == 1) {
-                                    $stuks = "stuk";
-                                    $prijs = decimal($product['price'] * $i, ',', '.');
+                            <?php for ($product_count = 1; $product_count <= $product['max_products']; $product_count++) :
+                                if ($product_count == 1) {
+                                    $piece_text = "stuk";
                                 } else {
-                                    $stuks = "stuks";
-                                    $prijs = decimal(($product['price'] * $i) - $korting, ',', '.');
+                                    $piece_text = "stuks";
                                 }
 
+                                if ($product_count > $product['discount_first_step']) {
+                                    if ($product_count % $product['discount_steps'] == 0) {
+                                        $count = $product_count / $product['discount_steps'];
+                                    }
+                                    $korting = ($product['discount_price'] * $product_count) * $count;
+                                } elseif ($product_count <= $product['discount_first_step']) {
+                                    $korting = 0.00;
+                                }
+
+                                $prijs = decimal(($product['price'] * $product_count) - $korting, ',', '.');
                                 ?>
-                                <option value="<?= $i ?>" name="quantity"><?= $i ?> <?= $stuks ?> --
+                                <option value="<?= $product_count ?>"
+                                        name="quantity"><?= $product_count ?> <?= $piece_text;?> --
                                     € <?= $prijs ?></option>
                             <?php endfor; ?>
+                            <?php
+                            if ($product_count > $product['max_products']) : ?>
+                                <option value="index.php?page=contact"
+                                        name="quantity2" disabled>
+                                    <?= $product_count ?> of meer <?= $piece_text ?>? Neem contact op!
+                                </option>
+                            <?php endif; ?>
                         </select>
+                        <!--                        <p>-->
+                        <? //= $product_count ?><!--of meer? Neem <a href="index.php?page=contact">contact op! </a></p>-->
                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                        <input class="btn btn-primary" type="submit" value="In winkelmand">
+                        <input class="btn btn-primary add_cart_btn" type="submit" value="In winkelmand">
                     </form>
                 <?php } ?>
             </div>

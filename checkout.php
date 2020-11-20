@@ -7,44 +7,21 @@ if (count($products_in_cart) < 1) {
 //    header("Location:index.php ", true, 303);
 }
 
-$subtotal_no_korting = 0.00;
-$subtotal_korting = 0.00;
 $subtotal = 0.00;
+$total = 0.00;
 
 $products = $_SESSION['products'];
-//$subtotal = $_SESSION['subtotal'];
-//foreach ($products as $product) {
-//    $subtotal = 0.00;
-//    for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
-//        if ($i % 2 == 0) {
-//            $korting = 0.40 * ($i - 1);
-//        }
-//    }
-//
-//    if ($products_in_cart[$product['id']] == 1) {
-//        $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
-//    } else {
-//        $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
-//        var_dump($prijs_met_korting);
-//    }
-//
-//    $subtotal += $prijs_met_korting;
-//}
 
+if (count($products_in_cart) < 1) {
+    $shipping_price = 0.00;
+    $shipping = "€" . decimal($shipping_price, ',', '.');
+    $checkout_button = "<button class=\"btn btn-secondary ch_button disabled\" type=\"submit\">Bestelling plaatsen</button>";
+} else {
+    $shipping_price = $_SESSION['shipping_price'];
+    $shipping = "€" . decimal($shipping_price, ',', '.');
+    $checkout_button = "<button class=\"btn btn-secondary ch_button\" type=\"submit\">Bestelling plaatsen</button>";
+}
 
-///**
-// * free shipping price calculate
-// */
-//if ($subtotal > 50) {
-//    $shipping_price = 0.00;
-//    $shipping = decimal($shipping_price, ',', '.');
-//    $shipping = "gratis";
-//} else {
-//    $shipping_price = 4.95;
-//    $shipping = decimal($shipping_price, ',', '.');
-//}
-//
-//$total = $subtotal + $shipping_price;
 
 /**
  * formulier handelingen
@@ -313,37 +290,32 @@ function test_input($data)
 
                         <?php foreach ($products as $product): ?>
                             <?php
-                            for ($i = 1; $i <= $products_in_cart[$product['id']]; $i++) {
-                                if ($i % 2 == 0) {
-                                    $korting = 0.40 * ($i - 1);
+                            for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
+                                if ($product_count > $product['discount_first_step']) {
+                                    if ($product_count % $product['discount_steps'] == 0) {
+                                        $count = $product_count / $product['discount_steps'];
+                                    }
+                                    $korting = ($product['discount_price'] * $product_count) * $count;
+                                } elseif ($product_count <= $product['discount_first_step']) {
+                                    $korting = 0.00;
                                 }
+                                $prijs = ($product['price'] * $product_count) - $korting;
+
+
                             }
+                            $subtotal += $prijs;
 
-                            if ($products_in_cart[$product['id']] == 1) {
-                                $prijs_met_korting = $product['price'] * $products_in_cart[$product['id']];
-                            } else {
-                                $prijs_met_korting = ($product['price'] * $products_in_cart[$product['id']]) - $korting;
-                            }
-
-                            $subtotal_no_korting += ((float)$product['price']) * (int)$products_in_cart[$product['id']];
-                            $subtotal_korting += $prijs_met_korting;
-
-                            $subtotal = $subtotal_korting;
                             /**
                              * free shipping price calculate
                              */
                             if ($subtotal > 50) {
-                                $shipping_price = 0.00;
-                                $shipping = decimal($shipping_price, ',', '.');
+                                $shipping_price = $_SESSION['shipping_price'];
                                 $shipping = "gratis";
                             } else {
-                                $shipping_price = 4.95;
+                                $shipping_price = $_SESSION['shipping_price'];
                                 $shipping = decimal($shipping_price, ',', '.');
                             }
-
-                            $_SESSION["shipping_price"] = $shipping_price;
                             $total = $subtotal + $shipping_price;
-
                             ?>
                             <div class="col-12 padding_self_cart">
                                 <div class="col-8 no_padding">
@@ -352,7 +324,7 @@ function test_input($data)
                                 </div>
                                 <div class="col-4 no_padding">
                                         <span class="f_right">
-                                        &euro;<?= decimal($prijs_met_korting, ',', '.') ?>
+                                        &euro;<?= decimal($prijs, ',', '.') ?>
                                         </span>
                                 </div>
                             </div>
@@ -371,8 +343,7 @@ function test_input($data)
                         </div>
                         <div class="col-12 no_padding">
                             <div class="col-12 no_padding">
-                                <button class="btn btn-secondary ch_button" type="submit">Bestelling plaatsen
-                                </button>
+                                <?= $checkout_button ?>
                             </div>
                         </div>
                     </div>

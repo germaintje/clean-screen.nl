@@ -7,19 +7,17 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?= template_header('Home') ?>
 <div class="row">
-    <div class="col-12 no_padding back">
-
-        <div class="background_img">
-            <video autoplay muted loop id="myVideo" width="100%" height="100%">
+    <div class="col-12 no_padding">
+        <div class="background_img no_padding col-sm-12 col-md-6">
+            <video autoplay muted loop id="myVideo" class="video_back" width="100%" height="100%">
                 <source src="assets/vid/rain_buster_vid.mov" type="video/mp4">
             </video>
-            <div class="header_text_container text_center">
-                <div class="header_text_middle">
-
-                    <h1>RAINBUSTER</h1>
-                    <h5>Proeftekst wat wil je hier!</h5>
-                    <a href="index.php?page=products" class="btn btn-primary">WEBSHOP</a>
-                </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="col-12 col-xl-4 no_padding">
+                <h4>Clean-screen</h4>
+                <p>Benieuwd wat clean-screen.nl nog meer verkoopt? Klik op de knop hieronder</p>
+                <a href="index.php?page=products" class="btn btn-primary">Bekijk producten</a>
             </div>
         </div>
     </div>
@@ -57,7 +55,7 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <form action="index.php?page=cart" method="post" class="products_add_ov">
                             <div class="number pagination ">
-                                <button class="minus page-link" <?=$voorraad_btn?>><i class="fas fa-minus"></i>
+                                <button class="minus page-link" <?= $voorraad_btn ?>><i class="fas fa-minus"></i>
                                 </button>
 
                                 <input class="page-link" type="number"
@@ -65,13 +63,13 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                        value="1" min="1"
                                        max="<?= $product['quantity_item_left'] ?>"
                                        placeholder="Quantity"
-                                       required <?=$voorraad_btn?>>
+                                       required <?= $voorraad_btn ?>>
 
-                                <button class="plus page-link" <?=$voorraad_btn?>><i class="fas fa-plus"></i>
+                                <button class="plus page-link" <?= $voorraad_btn ?>><i class="fas fa-plus"></i>
                                 </button>
                             </div>
                             <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                            <button class="page-link" type="submit" value="In" <?=$voorraad_btn?>><i
+                            <button class="page-link" type="submit" value="In" <?= $voorraad_btn ?>><i
                                         class="fas fa-cart-plus"></i></button>
                         </form>
 
