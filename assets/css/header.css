@@ -108,7 +108,8 @@ header image
 
 .shipping_banner {
     text-align: center;
-    background: #c93131;
+    /*background: #c93131;*/
+    background: #88a66a;
     color: white;
     font-weight: bold;
     padding: 2px;

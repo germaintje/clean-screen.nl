@@ -70,10 +70,9 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
                                         <input class="page-link" type="number"
                                                name="quantity"
                                                value="1" min="1"
-                                               max="<?= $product['quantity_item_left'] ?>"
+                                               max="<?= $product['max_products'] ?>"
                                                placeholder="Quantity"
                                                required <?=$voorraad_btn?>>
-
                                         <button class="plus page-link" <?=$voorraad_btn?>><i class="fas fa-plus"></i>
                                         </button>
                                     </div>

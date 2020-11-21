@@ -1,17 +1,17 @@
 <?php
 function pdo_connect_mysql()
 {
-        // Update the details below with your MySQL details
-        $DATABASE_HOST = 'localhost';
-        $DATABASE_USER = 'root';
-        $DATABASE_PASS = '';
-        $DATABASE_NAME = 'clean-screen';
-        try {
-            return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
-        } catch (PDOException $exception) {
-            // If there is an error with the connection, stop the script and display the error.
-            die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
-        }
+    // Update the details below with your MySQL details
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'clean-screen';
+    try {
+        return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
+    } catch (PDOException $exception) {
+        // If there is an error with the connection, stop the script and display the error.
+        die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
+    }
 }
 
 
@@ -114,12 +114,22 @@ function template_footer()
                 <li><a href="https://www.mollie.com/en/payments/paypal"><i class="fab fa-cc-paypal" aria-hidden="true"></i></a></li>
                 </ul>
                 </div>
+            
+            <hr class="col-12 no_padding">
+            
+            <div class="col-12 col-xl-6 no_padding text-center">
+                <a href="/assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.docx" download>Algemene voorwaarden</a>
             </div>
-            <hr>
-                <a href="">test</a>
-            <hr>
-            <div class="text-center"><p>@ 2020 Clean-screen.nl</p></div>
-
+            <div class="col-12 col-xl-6 no_padding text-center">
+                <a href="/assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.docx" download>Privacyverklaring</a>
+            </div>
+           
+            <hr class="col-12 no_padding">
+            <div class="col-12 no_padding">
+                <div class="text-center"><p>@ 2020 Clean-screen.nl</p></div>
+            </div>
+            
+           </div>
         </div>
         
         

@@ -61,9 +61,9 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <input class="page-link" type="number"
                                        name="quantity"
                                        value="1" min="1"
-                                       max="<?= $product['quantity_item_left'] ?>"
+                                       max="<?= $product['max_products'] ?>"
                                        placeholder="Quantity"
-                                       required <?= $voorraad_btn ?>>
+                                       required <?=$voorraad_btn?>>
 
                                 <button class="plus page-link" <?= $voorraad_btn ?>><i class="fas fa-plus"></i>
                                 </button>

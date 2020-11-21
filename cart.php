@@ -87,6 +87,9 @@ foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
 }
 
+$_POST['coupon'];
+
+
 /**
  * Shipping price calculate
  */
@@ -99,7 +102,6 @@ if (count($products_in_cart) < 1) {
     $shipping = "€" . decimal($shipping_price, ',', '.');
     $checkout_button = "<a class=\"btn btn-primary ch_button\" type=\"submit\" href=\"index.php?page=checkout\">Checkout</a>";
 }
-
 
 if (count($products_in_cart) > 1) {
     $product_shopping_cart = "(" . count($products_in_cart) . " Artikelen)";
@@ -151,6 +153,13 @@ if (count($products_in_cart) > 1) {
                                         $shipping_price = 0.00;
                                         $shipping = "gratis";
                                     }
+
+                                    if ($products_in_cart[$product['id']] > $product['max_products']) {
+                                        $quantityErr = "<p class='alert alert-info'>U heeft meer dan het aanbevolen aantal. We raden je aan <a href='index.php?page=contact'>contact</a> op te nemen met ons.</p>";
+                                    } else {
+                                        $quantityErr = "";
+                                    }
+
                                     $_SESSION['shipping_price'] = $shipping_price;
                                     $total = $subtotal + $shipping_price;
                                     $_SESSION["subtotal"] = $subtotal;
@@ -185,11 +194,12 @@ if (count($products_in_cart) > 1) {
                                                     <input class="page-link" type="number"
                                                            name="quantity-<?= $product['id'] ?>"
                                                            value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                                           max="<?= $product['max_products'] ?>"
+                                                           max="<?= $product['quantity_item_left'] ?>"
                                                            placeholder="Quantity"
                                                            required>
                                                     <button class="plus page-link"><i class="fas fa-plus"></i>
                                                     </button>
+
                                                 </div>
                                             </div>
                                             <div class="col-12 cart_margin">
@@ -197,6 +207,9 @@ if (count($products_in_cart) > 1) {
                                             &euro;<?= decimal($prijs, ',', '.') ?>
                                             </span>
                                             </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <?= $quantityErr ?>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -231,6 +244,10 @@ if (count($products_in_cart) > 1) {
                                 </div>
                             </div>
                         </div>
+                        <p>Coupon:</p>
+                        <input type="text" class="form-control" name="coupon">
+                        <button class="btn btn-secondary ch_button" type="submit">toepassen</button>
+
                     </div>
                 </form>
             </div>
@@ -260,6 +277,13 @@ if (count($products_in_cart) > 1) {
                                         }
                                         $prijs = ($product['price'] * $product_count) - $korting;
                                     }
+
+                                    if ($products_in_cart[$product['id']] > $product['max_products']) {
+                                        $quantityErr = "<p class='alert alert-info'>U heeft meer dan het aanbevolen aantal. We raden je aan <a href='index.php?page=contact'>contact</a> op te nemen met ons.</p>";
+                                    } else {
+                                        $quantityErr = "";
+                                    }
+
                                     ?>
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
@@ -282,7 +306,7 @@ if (count($products_in_cart) > 1) {
                                                 <input class="page-link input_number_quantity no_padding" type="number"
                                                        name="quantity-<?= $product['id'] ?>"
                                                        value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                                       max="<?= $product['quantity_item_left'] ?>"
+                                                       max="<?= $product['max_products'] ?>"
                                                        placeholder="Quantity"
                                                        required>
                                                 <button class="plus page-link"><i class="fas fa-plus"></i>
@@ -299,6 +323,9 @@ if (count($products_in_cart) > 1) {
                                             </span>
                                         </div>
 
+                                        <div class="col-12">
+                                            <?= $quantityErr ?>
+                                        </div>
 
                                     </div>
                                 <?php endforeach; ?>

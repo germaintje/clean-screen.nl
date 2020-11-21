@@ -22,15 +22,14 @@ if (count($products_in_cart) < 1) {
     $checkout_button = "<button class=\"btn btn-secondary ch_button\" type=\"submit\">Bestelling plaatsen</button>";
 }
 
-
 /**
  * formulier handelingen
  */
 
 // define variables and set to empty values
-$first_nameErr = $last_nameErr = $countryErr = $zip_codeErr = $street_nameErr = $street_numberErr = $street_addonsErr = $cityErr = $phone_numberErr = $mail_addressErr = "";
-$first_name = $last_name = $country = $zip_code = $street_name = $street_number = $street_addons = $city = $phone_number = $mail_address = "";
-$first_name_submit = $last_name_submit = $zip_code_submit = $street_name_submit = $street_number_submit = $city_submit = $phone_number_submit = $mail_address_submit = false;
+$first_nameErr = $last_nameErr = $countryErr = $zip_codeErr = $street_nameErr = $street_numberErr = $street_addonsErr = $cityErr = $phone_numberErr = $mail_addressErr = $checkboxErr = "";
+$first_name = $last_name = $country = $zip_code = $street_name = $street_number = $street_addons = $city = $phone_number = $mail_address = $terms = $privacy = "";
+$first_name_submit = $last_name_submit = $zip_code_submit = $street_name_submit = $street_number_submit = $city_submit = $phone_number_submit = $mail_address_submit = $terms_submit = $privacy_submit = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -164,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      */
 
     if (empty($_POST["mail_address"])) {
-        $mail_addressErr = "Email is required";
+        $mail_addressErr = "Email is verplicht";
     } else {
         $mail_address = test_input($_POST["mail_address"]);
         // check if e-mail address is well-formed
@@ -175,7 +174,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if ($first_name_submit == true && $last_name_submit == true && $zip_code_submit == true && $street_name_submit == true && $street_number_submit == true && $city_submit == true && $phone_number_submit == true && $mail_address_submit == true) {
+//    /**
+//     * check if terms are checked
+//     */
+//    if (empty($_POST['algemene-voorwaarden'])) {
+//        $termsErr = "Je moet de voorwaarden accepteren";
+//    } else {
+//        $terms = test_input($_POST["algemene-voorwaarden"]);
+//        $terms_submit = true;
+//    }
+
+    /**
+     * check if the privacy and terms is checked
+     */
+    if (empty($_POST['privacyverklaring']) || empty($_POST['algemene-voorwaarden'])) {
+        $checkboxErr = "Je moet allebei  de voorwaarden accepteren";
+    } else {
+        $privacy = test_input($_POST["privacyverklaring"]);
+        $privacy_submit = true;
+
+        $terms = test_input($_POST["algemene-voorwaarden"]);
+        $terms_submit = true;
+    }
+
+    if ($first_name_submit == true && $last_name_submit == true && $zip_code_submit == true && $street_name_submit == true && $street_number_submit == true && $city_submit == true && $phone_number_submit == true && $mail_address_submit == true && $terms_submit == true && $privacy_submit == true) {
         $_SESSION["first_name"] = $first_name;
         $_SESSION["last_name"] = $last_name;
         $_SESSION["street_name"] = $street_name;
@@ -346,6 +368,21 @@ function test_input($data)
                                 <?= $checkout_button ?>
                             </div>
                         </div>
+                        <div class="col-12 no_padding">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input type="checkbox" name="algemene-voorwaarden" value="true">
+                        <label for="algemene-voorwaarden"> Ik accepteer de <a
+                                    href="assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.doc"
+                                    download>Algemene voorwaarden</a>.</label><br>
+<!--                        <span class="error">--><?php //echo $termsErr; ?><!--</span><br>-->
+
+                        <input type="checkbox" name="privacyverklaring" value="true">
+                        <label for="privacyverklaring"> Ik accepteer de <a
+                                    href="assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.docx"
+                                    download>Privacyverklaring</a>. </label><br>
+                        <span class="error"><?php echo $checkboxErr; ?></span><br>
                     </div>
 
             </form>

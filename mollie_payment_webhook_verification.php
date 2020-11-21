@@ -55,14 +55,19 @@ try {
                 }
             }
         }
+        session_destroy();
+        header("Location: " . "index.php?page=order&id=$order->id", true, 303);
+
     } elseif ($order->isCanceled()) {
         /*
          * The order is canceled.
          */
+        header("Location: " . "index.php", true, 303);
     } elseif ($order->isExpired()) {
         /*
          * The order is expired.
          */
+        header("Location: " . "index.php?page=checkout", true, 303);
     } elseif ($order->isCompleted()) {
         /*
          * The order is completed.
@@ -71,6 +76,8 @@ try {
         /*
          * The order is pending.
          */
+    } else {
+        header("Location: " . "index.php?page=checkout", true, 303);
     }
 
     $stmt = $pdo->prepare('UPDATE transactions SET payment_status = ? WHERE order_id = ?');
@@ -78,9 +85,7 @@ try {
         $payment_status = "paid",
         $orderId
     ]);
-
-    session_destroy();
-    header("Location: " . "index.php?page=order&id=$order->id", true, 303);
+//    header("Location: " . "index.php?page=cart", true, 303);
 
 } catch (\Mollie\Api\Exceptions\ApiException $e) {
     header("Location: " . "index.php", true, 303);
