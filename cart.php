@@ -85,9 +85,55 @@ $_SESSION["products_in_cart"] = $products_in_cart;
 
 foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
+
+//    var_dump($product['quantity_item_left']);
+//    if ($products_in_cart[$product['id']] <= $product['quantity_item_left']) {
+//        $_SESSION['quantityErr'] = "";
+//    }
+
 }
 
-$_POST['coupon'];
+$cpn = $pdo->prepare('SELECT * FROM coupon');
+$cpn->execute();
+// Fetch the product from the database and return the result as an Array
+$coupons = $cpn->fetchAll(PDO::FETCH_ASSOC);
+
+/**
+ * coupon code logic
+ */
+foreach ($coupons as $coupon) {
+    if (!empty($_SESSION['discount_name']) or !empty($_SESSION['discount']) or !empty($_SESSION['set'])) {
+        if (!isset($_POST['coupon'])) {
+            $_POST['coupon'] = "";
+        } else {
+            if ($_POST['coupon'] == $coupon['coupon_code']) {
+                $discount_price = "€" . decimal(0.00, ',', '.');
+                $discount_name = $coupon['coupon_code'];
+                $discount = $coupon['discount'];
+
+                $_SESSION['discount_price'] = $discount_price;
+                $_SESSION['discount_name'] = $discount_name;
+                $_SESSION['discount'] = $discount;
+            }
+        }
+    } else {
+        $discount_price = "";
+        $discount = 0;
+        $discount_name = "";
+
+        $_SESSION['discount_price_raw'] = 0.00;
+        $_SESSION['discount_price'] = $discount_price;
+        $_SESSION['discount_name'] = $discount_name;
+        $_SESSION['discount'] = $discount;
+        $_SESSION['set'] = true;
+    }
+}
+
+
+//var_dump($discount_name);
+
+//var_dump($coupon);
+//var_dump($_POST['coupon']);
 
 
 /**
@@ -110,6 +156,12 @@ if (count($products_in_cart) > 1) {
 } else {
     $product_shopping_cart = "";
 }
+
+if(!isset($_SESSION['quantityErr_over_max'])){
+    $_SESSION['quantityErr_over_max'] = "";
+}
+
+
 ?>
 
 <?= template_header('Winkelwagen') ?>
@@ -120,6 +172,9 @@ if (count($products_in_cart) > 1) {
             <div class="desktop_cart">
                 <form action="index.php?page=cart" method="post">
                     <div class="col-12 col-xl-8">
+                        <div class="">
+                            <?= $_SESSION['quantityErr_over_max'] ?>
+                        </div>
                         <div class="col-12 cart_lines_border">
                             <h4>winkelmand <?= $product_shopping_cart ?></h4>
                             <?php if (empty($products_in_cart)): ?>
@@ -129,8 +184,12 @@ if (count($products_in_cart) > 1) {
                                         nu!</a>
                                 </p>
                             <?php else: ?>
+
                                 <?php foreach ($products as $product): ?>
                                     <?php
+                                    if ($products_in_cart[$product['id']] <= $product['quantity_item_left']) {
+                                        $_SESSION['quantityErr_over_max'] = "";
+                                    }
                                     for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
                                         if ($product_count > $product['discount_first_step']) {
                                             if ($product_count % $product['discount_steps'] == 0) {
@@ -141,11 +200,14 @@ if (count($products_in_cart) > 1) {
                                             $korting = 0.00;
                                         }
                                         $prijs = ($product['price'] * $product_count) - $korting;
-
-
                                     }
                                     $subtotal += $prijs;
 
+                                    $discount_price = "€" . decimal(($subtotal / 100) * $_SESSION['discount'], ',', '.');
+                                    $_SESSION['discount_price'] = $discount_price;
+                                    $discount_price_raw = ($subtotal / 100) * $_SESSION['discount'];
+                                    $_SESSION['discount_price_raw'] = $discount_price_raw;
+//                                    var_dump($discount_price);
                                     /**
                                      * free shipping price calculate
                                      */
@@ -159,11 +221,11 @@ if (count($products_in_cart) > 1) {
                                     } else {
                                         $quantityErr = "";
                                     }
-
                                     $_SESSION['shipping_price'] = $shipping_price;
-                                    $total = $subtotal + $shipping_price;
+                                    $total = ($subtotal + $shipping_price) - $discount_price_raw;
                                     $_SESSION["subtotal"] = $subtotal;
                                     ?>
+
 
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
@@ -221,8 +283,15 @@ if (count($products_in_cart) > 1) {
                             <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit"
                                name="update">Verder winkelen
                             </a>
+                            <div class="f_right margin_btn coupon_div">
+                                <input type="text" class="form-control coupon_input" name="coupon"
+                                       placeholder="Voeg coupon toe">
+                                <button class="btn btn-primary coupon_button" type="submit">+</button>
+                            </div>
+
                         </div>
                     </div>
+
                     <div class="col-12 col-xl-4 f_right">
                         <div class="col-12 cart_lines_border">
                             <h4 class="title_pad">Te betalen bedrag</h4>
@@ -230,9 +299,15 @@ if (count($products_in_cart) > 1) {
                                 <span class="">Subtotaal</span>
                                 <span class="f_right">&euro;<?= decimal($subtotal, ',', '.') ?></span>
                             </div>
-                            <div class="col-12 padding_self_cart border_underline">
+                            <div class="col-12 padding_self_cart">
                                 <span class="">Verzendkosten</span>
                                 <span class="f_right"><?= $shipping ?></span>
+                            </div>
+                            <div class="col-12 padding_self_cart border_underline">
+                                <span class="">Kortingscode: <b><span
+                                                class="green"><?= $_SESSION['discount_name'] ?></span> </b></span>
+                                <span class="f_right"><span
+                                            class="green"><?= $_SESSION['discount_price'] ?></span></span>
                             </div>
                             <div class="col-12 no_padding_l_r">
                                 <span class=""><b>Totaal:</b></span>
@@ -244,11 +319,8 @@ if (count($products_in_cart) > 1) {
                                 </div>
                             </div>
                         </div>
-                        <p>Coupon:</p>
-                        <input type="text" class="form-control" name="coupon">
-                        <button class="btn btn-secondary ch_button" type="submit">toepassen</button>
-
                     </div>
+
                 </form>
             </div>
 
@@ -257,6 +329,9 @@ if (count($products_in_cart) > 1) {
             <div class="mobile_cart">
                 <form action="index.php?page=cart" method="post">
                     <div class="col-12">
+                        <div class="">
+                            <?= $_SESSION['quantityErr_over_max'] ?>
+                        </div>
                         <div class="col-12 cart_lines_border">
                             <h4>winkelmand <?= $product_shopping_cart ?></h4>
                             <?php if (empty($products)): ?>
@@ -306,7 +381,7 @@ if (count($products_in_cart) > 1) {
                                                 <input class="page-link input_number_quantity no_padding" type="number"
                                                        name="quantity-<?= $product['id'] ?>"
                                                        value="<?= $products_in_cart[$product['id']] ?>" min="1"
-                                                       max="<?= $product['max_products'] ?>"
+                                                       max="<?= $product['quantity_item_left'] ?>"
                                                        placeholder="Quantity"
                                                        required>
                                                 <button class="plus page-link"><i class="fas fa-plus"></i>
@@ -346,9 +421,15 @@ if (count($products_in_cart) > 1) {
                                 <span class="">Subtotaal</span>
                                 <span class="f_right">&euro;<?= decimal($subtotal, ',', '.') ?></span>
                             </div>
-                            <div class="col-12 padding_self_cart border_underline">
+                            <div class="col-12 padding_self_cart">
                                 <span class="">Verzendkosten</span>
                                 <span class="f_right"><?= $shipping ?></span>
+                            </div>
+                            <div class="col-12 padding_self_cart border_underline">
+                                <span class="">Kortingscode: <b><span
+                                                class="green"><?= $_SESSION['discount_name'] ?></span> </b></span>
+                                <span class="f_right"><span
+                                            class="green"><?= $_SESSION['discount_price'] ?></span></span>
                             </div>
                             <div class="col-12 no_padding_l_r">
                                 <span class=""><b>Totaal:</b></span>

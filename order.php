@@ -12,6 +12,7 @@ $order = $mollie->orders->get("$order_id", ["embed" => "payments,refunds"]);
 $lines_Subtotal = 0;
 
 // order variables
+$order_id = $order->id;
 $id = $order->orderNumber;
 $amount = $order->amount->value;
 $address = $order->shippingAddress->streetAndNumber;
@@ -23,6 +24,7 @@ $first_name = $order->shippingAddress->givenName;
 $last_name = $order->shippingAddress->familyName;
 $email = $order->shippingAddress->email;
 $phone_number = $order->metadata->telefoon_nummer;
+$coupon_name = $order->metadata->kortingscode;
 $order_lines = $order->lines;
 //print_r($order);
 
@@ -33,6 +35,7 @@ $order_lines = $order->lines;
             <h4 class="" id="customers">Bestelling [<?= $id ?>]</h4>
             <div class="col-12 col-xl-6">
                 <h5>Gegevens</h5>
+                <span><b>Order: </b><?= $order_id ?></span><br>
                 <span><b>Voornaam: </b><?= $first_name ?></span><br>
                 <span><b>Achternaam: </b><?= $last_name ?></span><br>
                 <span><b>Telefoonnummer: </b><?= $phone_number ?></span><br>
@@ -98,15 +101,21 @@ $order_lines = $order->lines;
                         <tr>
                             <!--                            <td>--><? //= $imageUrl_html ?><!--</td>-->
                             <td><?= $productUrl_html ?></td>
-                            <td><?= decimal($line_UnitPrice, ',', '.'); ?></td>
+                            <td>€<?= decimal($line_UnitPrice, ',', '.'); ?></td>
                             <td><?= $line_Quantity ?></td>
-                            <td><?= decimal($discount_amount, ',', '.') ?></td>
-                            <td><?= decimal($lines_TotalAmount, ',', '.'); ?></td>
+                            <td>€<?= decimal($discount_amount, ',', '.') ?></td>
+                            <td>€<?= decimal($lines_TotalAmount, ',', '.'); ?></td>
 
 
                         </tr>
                     <?php } elseif ($lines->type == "shipping_fee") {
-                        $shipping_fee = $lines->totalAmount->value;
+                        $shipping_fee = $lines->unitPrice->value;
+
+                        if(isset($lines->discountAmount->value)) {
+                            $coupon_discount = $lines->discountAmount->value;
+                        }else{
+                            $coupon_discount = 0.00;
+                        }
                     }
                 } ?>
                 <tr>
@@ -114,21 +123,28 @@ $order_lines = $order->lines;
                     <td></td>
                     <td></td>
                     <td><b>Subtotal:</b></td>
-                    <td><?= decimal($lines_Subtotal, ',', '.'); ?></td>
+                    <td>€<?= decimal($lines_Subtotal, ',', '.'); ?></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td><b>verzendkosten:</b></td>
-                    <td><?= decimal($shipping_fee, ',', '.'); ?></td>
+                    <td>€<?= decimal($shipping_fee, ',', '.'); ?></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Kortingscode: <?= $coupon_name ?></b></td>
+                    <td>-€<?= decimal($coupon_discount, ',', '.'); ?></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td><b>Totaal:</b></td>
-                    <td><?= decimal($amount, ',', '.'); ?></td>
+                    <td>€<?= decimal($amount, ',', '.'); ?></td>
                 </tr>
                 </tbody>
 

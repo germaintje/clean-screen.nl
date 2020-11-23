@@ -31,7 +31,7 @@ try {
 
     //checkout form posts
 
-    $subtotal = $_SESSION['subtotal'];
+//    $subtotal = $_SESSION['subtotal'];
     $products_in_cart = $_SESSION['products_in_cart'];
 
     $first_name = $_SESSION["first_name"];
@@ -70,11 +70,12 @@ try {
         }
         $subtotal += $prijs;
 
+        $coupon_price = decimal($_SESSION['discount_price_raw'], '.', '');
         /**
          * the shipping price from a session and set to 2 decimals with a dot seperated
          */
         $shipping_price = decimal($_SESSION['shipping_price'], '.', '');
-
+        $total_amount_shipping = decimal($shipping_price - $coupon_price, '.', '');
         /**
          * all the item info for each order line
          */
@@ -96,12 +97,12 @@ try {
          * total_vat_amount: the total amount of the btw for all products
          */
         $total_amount = decimal($prijs, '.', '');
-        $total_vat_amount = decimal($total_amount * ($btw / $btw_procent),'.', '');
+        $total_vat_amount = decimal($total_amount * ($btw / $btw_procent), '.', '');
 
         /**
          * the total amount of btw of the shipping
          */
-        $total_vat_amount_shipping = decimal($shipping_price * ($btw / $btw_procent),'.', '');
+        $total_vat_amount_shipping = decimal($total_amount_shipping * ($btw / $btw_procent), '.', '');
 
         /**
          * the total amount of all products
@@ -111,7 +112,7 @@ try {
         /**
          * total price of all products with the shipping price included
          */
-        $total_with_shipping = decimal($subtotal + $shipping_price, '.', '');
+        $total_with_shipping = decimal((($subtotal + $shipping_price) - $coupon_price), '.', '');
 
 
         /**
@@ -161,16 +162,20 @@ try {
             "currency" => "EUR",
             "value" => "$shipping_price"
         ],
+        "discountAmount" => [
+            "currency" => "EUR",
+            "value" => "$coupon_price"
+        ],
         "totalAmount" => [
             "currency" => "EUR",
-            "value" => "$shipping_price"
+            "value" => "$total_amount_shipping"
         ],
         "vatAmount" => [
             "currency" => "EUR",
             "value" => $total_vat_amount_shipping
         ]
     ];
-//    print_r($lines);
+    print_r($lines);
 
     /*
     * Payment parameters:
@@ -208,14 +213,16 @@ try {
             "order_id" => $orderId,
             "telefoon_nummer" => $phone_number,
             "land" => $country,
-            "straat_toevoegingen" => $street_addons
+            "straat_toevoegingen" => $street_addons,
+            "totale_korting_kortingscode" => $_SESSION['discount_price_raw'],
+            "kortingscode" => $_SESSION['discount_name']
         ],
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
 //        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-        "redirectUrl" => "	http://9880976f5f7a.ngrok.io//clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "redirectUrl" => "	https://f23d2f1700d0.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "	http://9880976f5f7a.ngrok.io//clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "webhookUrl" => "	https://f23d2f1700d0.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
         "lines" =>
             $lines
@@ -228,24 +235,24 @@ try {
     /*
     * In this example we store the order with its payment status in a database.
     */
-    $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-    $stmt->execute([
-        $orderId,
-        $subtotal,
-        $payment_status,
-        $item_id,
-        $item_quantity,
-        date('Y-m-d H:i:s'),
-        $_POST['mail_address'],
-        $_POST['first_name'],
-        $_POST['last_name'],
-        $full_address,
-        $_POST['street_addons'],
-        $_POST['city'],
-        $_POST['zip_code'],
-        $_POST['phone_number'],
-        "netherlands"
-    ]);
+//    $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+//    $stmt->execute([
+//        $orderId,
+//        $subtotal,
+//        $payment_status,
+//        $item_id,
+//        $item_quantity,
+//        date('Y-m-d H:i:s'),
+//        $_POST['mail_address'],
+//        $_POST['first_name'],
+//        $_POST['last_name'],
+//        $full_address,
+//        $_POST['street_addons'],
+//        $_POST['city'],
+//        $_POST['zip_code'],
+//        $_POST['phone_number'],
+//        "netherlands"
+//    ]);
 
     /*
     * Send the customer off to complete the payment.

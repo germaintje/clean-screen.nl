@@ -89,7 +89,7 @@ function template_footer()
 
             <div class="col-sm-4">
                 <h4 class="title">Clean-screen.nl</h4>
-                <p>[Kort wat info over het bedrijf.]</p>
+                <p>Verkoop van schoonmaak producten voor auto’s, busjes, vrachtwagen en motoren.</p>
                 </div>
             <div class="col-sm-4">
                 <h4 class="title">Pagina's</h4>

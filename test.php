@@ -3,8 +3,6 @@
 $stmt = $pdo->prepare('SELECT * FROM products WHERE available=0 AND homepage=1 ORDER BY order_items');
 $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$products_in_cart = $_SESSION['products_in_cart'];
 ?>
 
 <?= template_header('Home') ?>
@@ -30,15 +28,6 @@ $products_in_cart = $_SESSION['products_in_cart'];
                 <h2>Artikelen</h2>
             </div>
             <?php foreach ($recently_added_products as $product): ?>
-                <?php
-                $max = $product['quantity_item_left'];
-                foreach ($products_in_cart as $product_id => $product_quantity) {
-                    if ($product['id'] == $product_id) {
-                        $max = $product['quantity_item_left'] - $product_quantity;
-                    }
-                }
-
-                ?>
                 <div class="col-12 col-md-4 col-xl-4 text_center">
                     <div class="col-12 product_background">
                         <div class="product">
@@ -73,7 +62,7 @@ $products_in_cart = $_SESSION['products_in_cart'];
                                     <input class="page-link" type="number"
                                            name="quantity"
                                            value="1" min="1"
-                                           max="<?= $max ?>"
+                                           max="<?= $product['quantity_item_left'] ?>"
                                            placeholder="Quantity"
                                            required <?= $voorraad_btn ?>>
                                     <button class="plus page-link" <?= $voorraad_btn ?>><i class="fas fa-plus"></i>
@@ -81,10 +70,9 @@ $products_in_cart = $_SESSION['products_in_cart'];
                                 </div>
                                 <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                                 <button class="page-link" type="submit" value="In" <?= $voorraad_btn ?>><i
-                                            class="fas fa-cart-plus"></i></button>
+                                        class="fas fa-cart-plus"></i></button>
                             </form>
                         </div>
-
 
                     </div>
                 </div>

@@ -22,6 +22,16 @@ if (count($products_in_cart) < 1) {
     $checkout_button = "<button class=\"btn btn-secondary ch_button\" type=\"submit\">Bestelling plaatsen</button>";
 }
 
+$quantityErr_over_max = "";
+foreach ($products as $product) {
+    if ($products_in_cart[$product['id']] > $product['quantity_item_left']) {
+        $quantityErr_over_max .= "<p class='alert alert-danger'>* Je hebt te veel producten van [<a href='index.php?page=product&id=" . $product['id'] . "'>" . $product['name'] . "</a>] dan er in voorraad zijn. Max[" . $product['quantity_item_left'] . "]</p>";
+        header("Location: index.php?page=cart");
+    }
+}
+$_SESSION['quantityErr_over_max'] = $quantityErr_over_max;
+
+
 /**
  * formulier handelingen
  */
@@ -337,7 +347,7 @@ function test_input($data)
                                 $shipping_price = $_SESSION['shipping_price'];
                                 $shipping = decimal($shipping_price, ',', '.');
                             }
-                            $total = $subtotal + $shipping_price;
+                            $total = ($subtotal + $shipping_price) - $_SESSION['discount_price_raw'];
                             ?>
                             <div class="col-12 padding_self_cart">
                                 <div class="col-8 no_padding">
@@ -357,7 +367,13 @@ function test_input($data)
                         </div>
                         <div class="col-12 no_padding">
                             <span class=""><b>Verzendkosten</b></span>
-                            <span class="f_right"><?= $shipping ?></span>
+                            <span class="f_right">€<?= $shipping ?></span>
+                        </div>
+                        <div class="col-12 no_padding">
+                                <span class=""><b>Kortingscode:</b> <b><span
+                                                class="green"><?= $_SESSION['discount_name'] ?></span> </b></span>
+                            <span class="f_right"><span
+                                        class="green">-<?= $_SESSION['discount_price'] ?></span></span>
                         </div>
                         <div class="col-12 no_padding_l_r">
                             <span class=""><b>Totaal:</b></span>
@@ -376,7 +392,7 @@ function test_input($data)
                         <label for="algemene-voorwaarden"> Ik accepteer de <a
                                     href="assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.doc"
                                     download>Algemene voorwaarden</a>.</label><br>
-<!--                        <span class="error">--><?php //echo $termsErr; ?><!--</span><br>-->
+                        <!--                        <span class="error">--><?php //echo $termsErr; ?><!--</span><br>-->
 
                         <input type="checkbox" name="privacyverklaring" value="true">
                         <label for="privacyverklaring"> Ik accepteer de <a

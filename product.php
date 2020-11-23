@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
     }
 } else {
     // Simple error to display if the id wasn't specified
-//    header("Location: " . "index.php", true, 303);
+    header("Location: " . "index.php", true, 303);
     die ('Product does not exist!');
 }
 
@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
                                                                            alt="<?= $product['name'] ?>"></a>
                 <!--                <span class="price bold">&euro; -->
                 <? //= decimal($product['price'], ',', '.') ?><!--</span><br>-->
-                <?php if ($product['quantity_item_left'] == 0) { ?>
+                <?php if ($product['quantity_item_left'] <= 0) { ?>
                     <input class="btn btn-primary" type="submit" value="Binnenkort beschikbaar" disabled>
                 <?php } else { ?>
                     <form action="index.php?page=cart" method="post">
@@ -54,10 +54,12 @@ if (isset($_GET['id'])) {
                                 }
 
                                 $prijs = decimal(($product['price'] * $product_count) - $korting, ',', '.');
-                                ?>
-                                <option value="<?= $product_count ?>"
-                                        name="quantity"><?= $product_count ?> <?= $piece_text;?> --
-                                    € <?= $prijs ?></option>
+                                if ($product_count < $product['quantity_item_left']):
+                                    ?>
+                                    <option value="<?= $product_count ?>"
+                                            name="quantity"><?= $product_count ?> <?= $piece_text; ?> --
+                                        € <?= $prijs ?></option>
+                                <?php endif; ?>
                             <?php endfor; ?>
                             <?php
                             if ($product_count > $product['max_products']) : ?>

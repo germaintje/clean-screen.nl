@@ -21,6 +21,8 @@ $company = $cat->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of products
 $total_products = $pdo->query('SELECT * FROM products')->rowCount();
 
+$products_in_cart = $_SESSION['products_in_cart'];
+
 ?>
 
 
@@ -37,7 +39,16 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
                 </div>
 
                 <?php foreach ($products as $product): ?>
-                    <?php if ($company_name['company_id'] == $product['company_id']) { ?>
+                    <?php if ($company_name['company_id'] == $product['company_id']) : ?>
+                        <?php
+                        $max = $product['quantity_item_left'];
+                        foreach ($products_in_cart as $product_id => $product_quantity) {
+                            if ($product['id'] == $product_id) {
+                                $max = $product['quantity_item_left'] - $product_quantity;
+                            }
+                        }
+
+                        ?>
                         <div class="col-12 col-md-4 col-xl-4 text_center">
                             <div class="col-12 product_background">
                                 <div class="product">
@@ -46,13 +57,17 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
                                              alt="<?= $product['name'] ?>">
                                     </a>
                                 </div>
-                                <div class="product">
+
+                                <div class="product product_title_margin">
                                     <a href="index.php?page=product&id=<?= $product['id'] ?>" class="no_deco">
                                         <span class="product_title"><?= $product['name'] ?></span><br></a>
+                                </div>
+
+                                <div class="product quantity_form">
                                     <a href="index.php?page=product&id=<?= $product['id'] ?>" class="no_deco">
                                         <span class="">&euro;<?= decimal($product['price'], ',', '.') ?></span></a>
 
-                                    <?php if ($product['quantity_item_left'] == 0) { ?>
+                                    <?php if ($product['quantity_item_left'] <= 0) { ?>
                                         <?= "<span class=\"red\"><i class=\"fas fa-times\"></i> Niet op voorraad</span>"; ?>
                                         <?php $voorraad_btn = "disabled"; ?>
                                     <?php } else { ?>
@@ -60,30 +75,31 @@ $total_products = $pdo->query('SELECT * FROM products')->rowCount();
                                         <?php $voorraad_btn = ""; ?>
                                     <?php } ?>
 
+                                    <form action="index.php?page=cart" method="post" class="products_add_ov">
+                                        <div class="number pagination ">
+                                            <button class="minus page-link" <?= $voorraad_btn ?>><i
+                                                        class="fas fa-minus"></i>
+                                            </button>
+                                            <input class="page-link" type="number"
+                                                   name="quantity"
+                                                   value="1" min="1"
+                                                   max="<?= $max ?>"
+                                                   placeholder="Quantity"
+                                                   required <?= $voorraad_btn ?>>
+                                            <button class="plus page-link" <?= $voorraad_btn ?>><i
+                                                        class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                        <button class="page-link" type="submit" value="In" <?= $voorraad_btn ?>><i
+                                                    class="fas fa-cart-plus"></i></button>
+                                    </form>
                                 </div>
-
-                                <form action="index.php?page=cart" method="post" class="products_add_ov">
-                                    <div class="number pagination ">
-                                        <button class="minus page-link" <?=$voorraad_btn?>><i class="fas fa-minus"></i>
-                                        </button>
-
-                                        <input class="page-link" type="number"
-                                               name="quantity"
-                                               value="1" min="1"
-                                               max="<?= $product['max_products'] ?>"
-                                               placeholder="Quantity"
-                                               required <?=$voorraad_btn?>>
-                                        <button class="plus page-link" <?=$voorraad_btn?>><i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                                    <button class="page-link" type="submit" value="In" <?=$voorraad_btn?>><i
-                                                class="fas fa-cart-plus"></i></button>
-                                </form>
 
                             </div>
                         </div>
-                    <?php } ?>
+
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php endforeach; ?>
         </div>
