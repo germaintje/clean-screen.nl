@@ -85,12 +85,6 @@ $_SESSION["products_in_cart"] = $products_in_cart;
 
 foreach ($products as $product) {
     $_SESSION["item_id"] = $product['id'];
-
-//    var_dump($product['quantity_item_left']);
-//    if ($products_in_cart[$product['id']] <= $product['quantity_item_left']) {
-//        $_SESSION['quantityErr'] = "";
-//    }
-
 }
 
 $cpn = $pdo->prepare('SELECT * FROM coupon');
@@ -128,25 +122,17 @@ foreach ($coupons as $coupon) {
         $_SESSION['set'] = true;
     }
 }
-
-
-//var_dump($discount_name);
-
-//var_dump($coupon);
-//var_dump($_POST['coupon']);
-
-
 /**
  * Shipping price calculate
  */
 if (count($products_in_cart) < 1) {
     $shipping_price = 0.00;
     $shipping = "€" . decimal($shipping_price, ',', '.');
-    $checkout_button = "<a class=\"btn btn-primary ch_button disabled\" type=\"submit\">Checkout</a>";
+    $checkout_button = "<a class='btn btn-primary ch_button disabled'>Checkout</a>";
 } else {
     $shipping_price = 5.49;
     $shipping = "€" . decimal($shipping_price, ',', '.');
-    $checkout_button = "<a class=\"btn btn-primary ch_button\" type=\"submit\" href=\"index.php?page=checkout\">Checkout</a>";
+    $checkout_button = "<a class='btn btn-primary ch_button' href='index.php?page=checkout'>Checkout</a>";
 }
 
 if (count($products_in_cart) > 1) {
@@ -157,7 +143,7 @@ if (count($products_in_cart) > 1) {
     $product_shopping_cart = "";
 }
 
-if(!isset($_SESSION['quantityErr_over_max'])){
+if (!isset($_SESSION['quantityErr_over_max'])) {
     $_SESSION['quantityErr_over_max'] = "";
 }
 
@@ -192,7 +178,7 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                                     }
                                     for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
                                         if ($product_count > $product['discount_first_step']) {
-                                            if ($product_count % $product['discount_steps'] == 0) {
+                                            if ($product_count % $product['discount_steps'] == 0 && $product_count <= $product['max_products']) {
                                                 $count = $product_count / $product['discount_steps'];
                                             }
                                             $korting = ($product['discount_price'] * $product_count) * $count;
@@ -207,7 +193,6 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                                     $_SESSION['discount_price'] = $discount_price;
                                     $discount_price_raw = ($subtotal / 100) * $_SESSION['discount'];
                                     $_SESSION['discount_price_raw'] = $discount_price_raw;
-//                                    var_dump($discount_price);
                                     /**
                                      * free shipping price calculate
                                      */
@@ -230,7 +215,7 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
                                             <a href="index.php?page=product&id=<?= $product['id'] ?>">
-                                                <img class="cart_img" src="assets/img/<?= $product['img'] ?>"
+                                                <img class="cart_img" src="assets/img/<?= $product['highlight_img'] ?>"
                                                      alt="<?= $product['name'] ?>">
                                             </a>
                                         </div>
@@ -280,8 +265,8 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                             <button class="f_right btn btn-secondary margin_btn" type="submit" name="update"><i
                                         class="fas fa-sync-alt"></i> Winkelmand bijwerken
                             </button>
-                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit"
-                               name="update">Verder winkelen
+                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit">Verder
+                                winkelen
                             </a>
                             <div class="f_right margin_btn coupon_div">
                                 <input type="text" class="form-control coupon_input" name="coupon"
@@ -341,9 +326,12 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
                                     <?php
+                                    if ($products_in_cart[$product['id']] <= $product['quantity_item_left']) {
+                                        $_SESSION['quantityErr_over_max'] = "";
+                                    }
                                     for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
                                         if ($product_count > $product['discount_first_step']) {
-                                            if ($product_count % $product['discount_steps'] == 0) {
+                                            if ($product_count % $product['discount_steps'] == 0 && $product_count <= $product['max_products']) {
                                                 $count = $product_count / $product['discount_steps'];
                                             }
                                             $korting = ($product['discount_price'] * $product_count) * $count;
@@ -408,9 +396,13 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                             <button class="f_right btn btn-secondary margin_btn" type="submit" name="update"><i
                                         class="fas fa-sync-alt"></i> Winkelmand bijwerken
                             </button>
-                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn" type="submit"
-                               name="update">Verder winkelen
+                            <a href="index.php?page=products" class="f_right btn btn-primary margin_btn">Verder winkelen
                             </a>
+                            <div class="f_right margin_btn coupon_div">
+                                <input type="text" class="form-control coupon_input" name="coupon"
+                                       placeholder="Voeg coupon toe">
+                                <button class="btn btn-primary coupon_button" type="submit">+</button>
+                            </div>
                         </div>
                     </div>
 
@@ -445,7 +437,6 @@ if(!isset($_SESSION['quantityErr_over_max'])){
                 </form>
             </div>
             <!--            End mobile styles-->
-
 
         </div>
     </div>

@@ -1,6 +1,22 @@
 <?php
+//var_dump("d");
+// Very simple loader
+function loadConfig( $vars = array() ) {
+    foreach( $vars as $v ) {
+        define( $v, get_cfg_var( "myapp.cfg.$v" ) );
+    }
+}
+
+// Then call :
+$cfg = array( 'DB_HOST', 'DB_USER', 'DB_PASS' );
+loadConfig( $cfg );
+
+//var_dump($cfg);
+
 function pdo_connect_mysql()
 {
+
+
     // Update the details below with your MySQL details
     $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'root';

@@ -2,8 +2,6 @@
 /*
 * How to prepare a new payment with the Mollie API.
 */
-
-//use Mollie\Api\Exceptions\ApiException;
 namespace _PhpScoper5f8847d7a6e47;
 
 try {
@@ -30,8 +28,6 @@ try {
 
 
     //checkout form posts
-
-//    $subtotal = $_SESSION['subtotal'];
     $products_in_cart = $_SESSION['products_in_cart'];
 
     $first_name = $_SESSION["first_name"];
@@ -58,7 +54,7 @@ try {
          */
         for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
             if ($product_count > $product['discount_first_step']) {
-                if ($product_count % $product['discount_steps'] == 0) {
+                if ($product_count % $product['discount_steps'] == 0 && $product_count <= $product['max_products']) {
                     $count = $product_count / $product['discount_steps'];
                 }
                 $korting = ($product['discount_price'] * $product_count) * $count;
@@ -220,44 +216,17 @@ try {
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
 //        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-        "redirectUrl" => "	https://f23d2f1700d0.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "redirectUrl" => "	https://57fa5d1ac988.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "	https://f23d2f1700d0.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
+        "webhookUrl" => "	https://57fa5d1ac988.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
 //        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
         "lines" =>
             $lines
     ]);
 
-//    print_r($order);
-
     $_SESSION['tr_payment_id'] = $order->id;
 
-    /*
-    * In this example we store the order with its payment status in a database.
-    */
-//    $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-//    $stmt->execute([
-//        $orderId,
-//        $subtotal,
-//        $payment_status,
-//        $item_id,
-//        $item_quantity,
-//        date('Y-m-d H:i:s'),
-//        $_POST['mail_address'],
-//        $_POST['first_name'],
-//        $_POST['last_name'],
-//        $full_address,
-//        $_POST['street_addons'],
-//        $_POST['city'],
-//        $_POST['zip_code'],
-//        $_POST['phone_number'],
-//        "netherlands"
-//    ]);
 
-    /*
-    * Send the customer off to complete the payment.
-    * This request should always be a GET, thus we enforce 303 http response code
-    */
     header("Location: " . $order->getCheckoutUrl(), true, 303);
 } catch (ApiException $e) {
     header("Location: " . "index.php", true, 303);

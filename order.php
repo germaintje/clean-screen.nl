@@ -3,7 +3,7 @@
 require "./initialize.php";
 
 if (!isset ($_GET['id'])) {
-//    header("Location: " . "index.php", true, 303);
+    header("Location: " . "index.php", true, 303);
 }
 
 $order_id = $_GET['id'];
@@ -26,8 +26,6 @@ $email = $order->shippingAddress->email;
 $phone_number = $order->metadata->telefoon_nummer;
 $coupon_name = $order->metadata->kortingscode;
 $order_lines = $order->lines;
-//print_r($order);
-
 ?>
 <div class="container">
     <div class="row">

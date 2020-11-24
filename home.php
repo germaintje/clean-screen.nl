@@ -1,10 +1,14 @@
 <?php
 // Get the 4 most recently added products
-$stmt = $pdo->prepare('SELECT * FROM products WHERE available=0 AND homepage=1 ORDER BY order_items');
+$stmt = $pdo->prepare('SELECT * FROM products AS p WHERE available=0 AND homepage=1 ORDER BY order_items');
 $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$products_in_cart = $_SESSION['products_in_cart'];
+if (isset($_SESSION['products_in_cart'])) {
+    $products_in_cart = $_SESSION['products_in_cart'];
+} else {
+    $products_in_cart = [];
+}
 ?>
 
 <?= template_header('Home') ?>
@@ -43,7 +47,7 @@ $products_in_cart = $_SESSION['products_in_cart'];
                     <div class="col-12 product_background">
                         <div class="product">
                             <a href="index.php?page=product&id=<?= $product['id'] ?>" class="">
-                                <img class="product_img" src="assets/img/<?= $product['img'] ?>"
+                                <img class="product_img" src="assets/img/<?= $product['highlight_img'] ?>"
                                      alt="<?= $product['name'] ?>">
                             </a>
                         </div>

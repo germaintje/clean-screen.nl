@@ -3,7 +3,6 @@
 $num_products_on_each_page = 100;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
-//$current_company = isset($_GET['company']) && is_numeric($_GET['company']) ? (int)$_GET['company'] : 1;
 // Select products ordered by the date added
 $stmt = $pdo->prepare("SELECT * FROM products AS p JOIN company AS c ON p.company_id=c.company_id WHERE available=0 ORDER BY date_added DESC LIMIT ?,?");
 $cat = $pdo->prepare("SELECT * FROM company");
@@ -21,7 +20,11 @@ $company = $cat->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of products
 $total_products = $pdo->query('SELECT * FROM products')->rowCount();
 
-$products_in_cart = $_SESSION['products_in_cart'];
+if (isset($_SESSION['products_in_cart'])) {
+    $products_in_cart = $_SESSION['products_in_cart'];
+} else {
+    $products_in_cart = [];
+}
 
 ?>
 
@@ -53,7 +56,7 @@ $products_in_cart = $_SESSION['products_in_cart'];
                             <div class="col-12 product_background">
                                 <div class="product">
                                     <a href="index.php?page=product&id=<?= $product['id'] ?>" class="">
-                                        <img class="product_img" src="assets/img/<?= $product['img'] ?>"
+                                        <img class="product_img" src="assets/img/<?= $product['highlight_img'] ?>"
                                              alt="<?= $product['name'] ?>">
                                     </a>
                                 </div>

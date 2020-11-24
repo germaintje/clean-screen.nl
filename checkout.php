@@ -4,7 +4,7 @@
  */
 $products_in_cart = $_SESSION['products_in_cart'];
 if (count($products_in_cart) < 1) {
-//    header("Location:index.php ", true, 303);
+    header("Location:index.php ", true, 303);
 }
 
 $subtotal = 0.00;
@@ -184,16 +184,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-//    /**
-//     * check if terms are checked
-//     */
-//    if (empty($_POST['algemene-voorwaarden'])) {
-//        $termsErr = "Je moet de voorwaarden accepteren";
-//    } else {
-//        $terms = test_input($_POST["algemene-voorwaarden"]);
-//        $terms_submit = true;
-//    }
-
     /**
      * check if the privacy and terms is checked
      */
@@ -234,7 +224,7 @@ function test_input($data)
 
 ?>
 
-<?= template_header('Winkelwagen') ?>
+<?= template_header('checkout') ?>
 
 <div class="row">
     <div class="col-12 no_padding">
@@ -324,7 +314,7 @@ function test_input($data)
                             <?php
                             for ($product_count = 1; $product_count <= $products_in_cart[$product['id']]; $product_count++) {
                                 if ($product_count > $product['discount_first_step']) {
-                                    if ($product_count % $product['discount_steps'] == 0) {
+                                    if ($product_count % $product['discount_steps'] == 0 && $product_count <= $product['max_products']) {
                                         $count = $product_count / $product['discount_steps'];
                                     }
                                     $korting = ($product['discount_price'] * $product_count) * $count;
@@ -392,8 +382,6 @@ function test_input($data)
                         <label for="algemene-voorwaarden"> Ik accepteer de <a
                                     href="assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.doc"
                                     download>Algemene voorwaarden</a>.</label><br>
-                        <!--                        <span class="error">--><?php //echo $termsErr; ?><!--</span><br>-->
-
                         <input type="checkbox" name="privacyverklaring" value="true">
                         <label for="privacyverklaring"> Ik accepteer de <a
                                     href="assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.docx"
