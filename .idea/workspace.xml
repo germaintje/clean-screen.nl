@@ -2,79 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/img/2147483647_rainbuster_bottle_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/bin/encrypt-env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/bin/encrypt-env.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/bin/generate-defuse-key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/bin/generate-defuse-key.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/bin/phpunit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/bin/phpunit.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/.php_cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/bin/generate-defuse-key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/dist/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/dist/box.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/dist/signingkey.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/CryptoDetails.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/FAQ.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/InstallingAndVerifying.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/InternalDeveloperDocs.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/Tutorial.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/UpgradingFromV1.2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/classes/Crypto.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/classes/File.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/classes/Key.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/docs/classes/KeyProtectedByPassword.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/psalm.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Core.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Crypto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/DerivedKeys.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Encoding.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Exception/BadFormatException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Exception/CryptoException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Exception/EnvironmentIsBrokenException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Exception/IOException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Exception/WrongKeyOrModifiedCiphertextException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/File.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/Key.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/KeyOrPassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/KeyProtectedByPassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/defuse/php-encryption/src/RuntimeTests.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/clean-screen.nl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/clean-screen.nl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/cancel-order-lines.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/cancel-order.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/create-order.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/list-methods.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/list-orders.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/refund-order-completely.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/orders/refund-order-partially.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mollie_payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/mollie_payment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/products.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/ApiException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ApiException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,15 +96,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\rainbuster.shop" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\clean-screen.nl\node_modules\jspdf" />
       <recent name="C:\xampp\htdocs\clean-screen.nl\assets\img" />
       <recent name="C:\xampp\htdocs\rainbuster.shop" />
       <recent name="C:\xampp\htdocs\rainbuster.shop\vendor\mollie\mollie-api-php" />
       <recent name="C:\xampp\htdocs\rainbuster.shop\vendor\mollie\mollie-api-php\examples" />
-      <recent name="C:\xampp\htdocs\rainbuster.shop\vendor" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\rainbuster.shop" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -255,6 +185,7 @@
       <workItem from="1606121947006" duration="14376000" />
       <workItem from="1606156638221" duration="1729000" />
       <workItem from="1606168682850" duration="1594000" />
+      <workItem from="1606232580456" duration="966000" />
     </task>
     <task id="LOCAL-00001" summary="niewe styles toegepast">
       <created>1601473105843</created>

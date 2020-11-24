@@ -1,22 +1,6 @@
 <?php
-//var_dump("d");
-// Very simple loader
-function loadConfig( $vars = array() ) {
-    foreach( $vars as $v ) {
-        define( $v, get_cfg_var( "myapp.cfg.$v" ) );
-    }
-}
-
-// Then call :
-$cfg = array( 'DB_HOST', 'DB_USER', 'DB_PASS' );
-loadConfig( $cfg );
-
-//var_dump($cfg);
-
 function pdo_connect_mysql()
 {
-
-
     // Update the details below with your MySQL details
     $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'root';
@@ -29,7 +13,6 @@ function pdo_connect_mysql()
         die ('Er is iets verkeerd gegaan contacteer de systeembeheerder');
     }
 }
-
 
 // Template header, feel free to customize this
 function template_header($title)
@@ -87,18 +70,15 @@ function template_header($title)
 </nav>
 </header>
 <main>
-
 EOT;
 }
 
 // Template footer
 function template_footer()
 {
-    $year = date('Y');
     echo <<<EOT
         </main>
         <!--   FOOTER START================== -->
-    
     <footer class="footer">
     <div class="container">
         <div class="row">
@@ -147,8 +127,6 @@ function template_footer()
             
            </div>
         </div>
-        
-        
     </footer>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -156,7 +134,7 @@ function template_footer()
         <script src="node_modules/lity/dist/lity.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="assets/js/quality-button.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+        <script src="node_modules/jspdf/jspdf.js"></script>
     </body>
 </html>
 EOT;
