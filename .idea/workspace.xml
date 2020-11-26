@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/initialize.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mollie_payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/mollie_payment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/order.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +188,7 @@
       <workItem from="1606232580456" duration="6773000" />
       <workItem from="1606299947237" duration="2763000" />
       <workItem from="1606315771033" duration="9000" />
-      <workItem from="1606385752244" duration="1461000" />
+      <workItem from="1606385752244" duration="2084000" />
     </task>
     <task id="LOCAL-00001" summary="niewe styles toegepast">
       <created>1601473105843</created>
@@ -391,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606233626360</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="little fixes">
+      <created>1606389957761</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1606389957761</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +407,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="node_modules" />
     <MESSAGE value="node_modules 2.0" />
     <MESSAGE value="shopping cart mobile" />
     <MESSAGE value="footer" />
@@ -437,7 +431,8 @@
     <MESSAGE value="product discount prices v1.1.0" />
     <MESSAGE value="product discount prices v1.2.0" />
     <MESSAGE value="last things to do" />
-    <option name="LAST_COMMIT_MESSAGE" value="last things to do" />
+    <MESSAGE value="little fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="little fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1603033089518">
@@ -456,11 +451,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602625776683" />
-    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1606233625568">
+    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1606389956708">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1429" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1605280055928" />
-    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606233625568" />
+    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606389956708" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601314225971" />
     <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1606315778311">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -479,11 +474,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606087250910" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606233628069">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606389959622">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1469" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1604860413906" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606233628069" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606389959622" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601314232266" />
     <state x="-1264" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1605632432277">
       <screen x="-1920" y="0" width="1920" height="1040" />
