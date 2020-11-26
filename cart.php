@@ -95,33 +95,45 @@ $coupons = $cpn->fetchAll(PDO::FETCH_ASSOC);
 /**
  * coupon code logic
  */
-foreach ($coupons as $coupon) {
-    if (!empty($_SESSION['discount_name']) or !empty($_SESSION['discount']) or !empty($_SESSION['set'])) {
-        if (!isset($_POST['coupon'])) {
-            $_POST['coupon'] = "";
-        } else {
-            if ($_POST['coupon'] == $coupon['coupon_code']) {
-                $discount_price = "€" . decimal(0.00, ',', '.');
-                $discount_name = $coupon['coupon_code'];
-                $discount = $coupon['discount'];
+if (empty($coupons)) {
+    $discount_price = "";
+    $discount = 0;
+    $discount_name = "";
 
-                $_SESSION['discount_price'] = $discount_price;
-                $_SESSION['discount_name'] = $discount_name;
-                $_SESSION['discount'] = $discount;
+    $_SESSION['discount_price'] = $discount_price;
+    $_SESSION['discount'] = $discount;
+    $_SESSION['discount_name'] = $discount_name;
+} else {
+    foreach ($coupons as $coupon) {
+        if (!empty($_SESSION['discount_name']) or !empty($_SESSION['discount']) or !empty($_SESSION['set']) AND $coupon != NULL) {
+            if (!isset($_POST['coupon'])) {
+                $_POST['coupon'] = "";
+            } else {
+                if ($_POST['coupon'] == $coupon['coupon_code']) {
+                    $discount_price = "€" . decimal(0.00, ',', '.');
+                    $discount_name = $coupon['coupon_code'];
+                    $discount = $coupon['discount'];
+
+                    $_SESSION['discount_price'] = $discount_price;
+                    $_SESSION['discount_name'] = $discount_name;
+                    $_SESSION['discount'] = $discount;
+                }
             }
-        }
-    } else {
-        $discount_price = "";
-        $discount = 0;
-        $discount_name = "";
+        } else {
+            $discount_price = "";
+            $discount = 0;
+            $discount_name = "";
 
-        $_SESSION['discount_price_raw'] = 0.00;
-        $_SESSION['discount_price'] = $discount_price;
-        $_SESSION['discount_name'] = $discount_name;
-        $_SESSION['discount'] = $discount;
-        $_SESSION['set'] = true;
+            $_SESSION['discount_price_raw'] = 0.00;
+            $_SESSION['discount_price'] = $discount_price;
+            $_SESSION['discount_name'] = $discount_name;
+
+            $_SESSION['discount'] = $discount;
+            $_SESSION['set'] = true;
+        }
     }
 }
+
 /**
  * Shipping price calculate
  */
@@ -210,7 +222,6 @@ if (!isset($_SESSION['quantityErr_over_max'])) {
                                     $total = ($subtotal + $shipping_price) - $discount_price_raw;
                                     $_SESSION["subtotal"] = $subtotal;
                                     ?>
-
 
                                     <div class="col-12 border_underline">
                                         <div class="col-4 no_padding">
@@ -308,9 +319,7 @@ if (!isset($_SESSION['quantityErr_over_max'])) {
 
                 </form>
             </div>
-
             <!--            Mobile cart styles -->
-
             <div class="mobile_cart">
                 <form action="index.php?page=cart" method="post">
                     <div class="col-12">
@@ -437,10 +446,7 @@ if (!isset($_SESSION['quantityErr_over_max'])) {
                 </form>
             </div>
             <!--            End mobile styles-->
-
         </div>
     </div>
-
 </div>
-
 <?= template_footer() ?>

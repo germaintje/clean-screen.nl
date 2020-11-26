@@ -380,11 +380,11 @@ function test_input($data)
                     <div class="col-12">
                         <input type="checkbox" name="algemene-voorwaarden" value="true">
                         <label for="algemene-voorwaarden"> Ik accepteer de <a
-                                    href="assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.doc"
+                                    href="assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.pdf"
                                     download>Algemene voorwaarden</a>.</label><br>
                         <input type="checkbox" name="privacyverklaring" value="true">
                         <label for="privacyverklaring"> Ik accepteer de <a
-                                    href="assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.docx"
+                                    href="assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.pdf"
                                     download>Privacyverklaring</a>. </label><br>
                         <span class="error"><?php echo $checkboxErr; ?></span><br>
                     </div>

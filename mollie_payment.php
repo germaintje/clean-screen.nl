@@ -215,11 +215,8 @@ try {
         ],
         "locale" => "nl_NL",
         "orderNumber" => \strval($orderId),
-//        "redirectUrl" => "https://9c3ef8965f14.ngrok.io/clean-screen.nl/index.php?page=mollie_payment",
-        "redirectUrl" => "	https://57fa5d1ac988.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
-//        "redirectUrl" => "{$protocol}://{$hostname}{$path}/orders/return.php?order_id={$orderId}",
-        "webhookUrl" => "	https://57fa5d1ac988.ngrok.io/clean-screen.nl/index.php?page=mollie_payment_webhook_verification",
-//        "webhookUrl" => "{$protocol}://{$hostname}{$path}/orders/webhook.php",
+        "redirectUrl" => "{$protocol}://{$hostname}{$path}/index.php?page=mollie_payment_webhook_verification",
+        "webhookUrl" => "{$protocol}://{$hostname}{$path}/index.php?page=mollie_payment_webhook_verification",
         "lines" =>
             $lines
     ]);

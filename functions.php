@@ -105,19 +105,19 @@ function template_footer()
                 
                 <ul class="payment">
                 <li><a href="https://www.mollie.com/en/payments/ideal"><i class="fab fa-ideal" aria-hidden="true"></i></a></li>         
-                <li><a href="https://www.mollie.com/en/payments/credit-card"><i class="fab fa-cc-mastercard" aria-hidden="true"></i></a></li>
+<!--                <li><a href="https://www.mollie.com/en/payments/credit-card"><i class="fab fa-cc-mastercard" aria-hidden="true"></i></a></li>-->
                 <li><a href="https://www.mollie.com/en/payments/apple-pay"><i class="fab fa-cc-apple-pay" aria-hidden="true"></i></a></li>
-                <li><a href="https://www.mollie.com/en/payments/paypal"><i class="fab fa-cc-paypal" aria-hidden="true"></i></a></li>
+<!--                <li><a href="https://www.mollie.com/en/payments/paypal"><i class="fab fa-cc-paypal" aria-hidden="true"></i></a></li>-->
                 </ul>
                 </div>
             
             <hr class="col-12 no_padding">
             
             <div class="col-12 col-xl-6 no_padding text-center">
-                <a href="/assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.docx" download>Algemene voorwaarden</a>
+                <a href="/assets/documents/Algemene-Voorwaarden-Webshop-Clean-Screen.nl_1062.pdf" download>Algemene voorwaarden</a>
             </div>
             <div class="col-12 col-xl-6 no_padding text-center">
-                <a href="/assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.docx" download>Privacyverklaring</a>
+                <a href="/assets/documents/Privacyverklaring-Wet-AVG-Clean-Screen.nl_1061.pdf" download>Privacyverklaring</a>
             </div>
            
             <hr class="col-12 no_padding">

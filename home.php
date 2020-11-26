@@ -15,7 +15,7 @@ if (isset($_SESSION['products_in_cart'])) {
 <div class="row">
     <div class="col-12 no_padding">
         <div class="background_img no_padding col-sm-12 col-md-6">
-            <video autoplay muted loop id="myVideo" class="video_back" width="100%" height="100%">
+            <video autoplay playsinline muted loop id="myVideo" class="video_back" width="100%" height="100%">
                 <source src="assets/vid/rain_buster_vid.mov" type="video/mp4">
             </video>
         </div>

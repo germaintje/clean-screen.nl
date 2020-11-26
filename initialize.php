@@ -8,7 +8,7 @@ namespace _PhpScoper5f8847d7a6e47;
     \ini_set('display_errors', 1);
     \ini_set('display_startup_errors', 1);
     \error_reporting(\E_ALL);
-    require_once __DIR__ . "./vendor/autoload.php";
+    require_once "./vendor/autoload.php";
     /*
      * Initialize the Mollie API library with your API key.
      *
@@ -16,7 +16,3 @@ namespace _PhpScoper5f8847d7a6e47;
      */
     $mollie = new \Mollie\Api\MollieApiClient();
     $mollie->setApiKey("test_FfyaVfT2fEgM4Qe5fBSbgynGGAgNr6");
-
-//    header("Location: " . "index.php", true, 303);
-
-
