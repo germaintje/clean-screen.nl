@@ -15,13 +15,12 @@ $message .= "
 <body>";
 $message .= "
 <div class='container' style='width: 70%; margin: 0 auto;'>
-<div class='col-12' style='background-color: #9cbc7b; width: min-content; padding: 10px;'>
+<div class='col-12' style='background-color: #9cbc7b; width: min-content; padding: 10px; text-align: center;'>
 <h1>Bedankt voor je bestelling!</h1>
 <h2>Fijn dat je koos voor Clean-screen.nl</h2>
-
 </div>";
 
-$message .= "<h3>Dit heb je Besteld</h3>";
+$message .= "<h2>Dit heb je Besteld</h2>";
 
 $message .= "<table class=\"table table-bordered table-responsive-sm\">";
 //                    $message .= "<thead>";
@@ -121,10 +120,10 @@ $message .= "
 <h2>Details over je bestelling</h2>
 <div class='col-12'>
 <h4>Bezorgadres</h4>
-<span>$first_name $last_name</span>
-<span>$address</span>
-<span>$zipcode $city</span>
-<span>$country</span>
+<span>$first_name $last_name</span><br>
+<span>$address</span><br>
+<span>$zipcode $city</span><br>
+<span>$country</span><br>
 </div>
 ";
 
