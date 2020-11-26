@@ -1,7 +1,7 @@
 <?php
 
 $to = $email;
-$subject = "Bestelling [" . $order_id . "]";
+$subject = "Bestelling [" . $id . "]";
 
 $message = "";
 
@@ -56,7 +56,7 @@ $message .= "<table class=\"table table-bordered table-responsive-sm\">";
 
                             $message .= "<tr>";
                             $message .= "<td>$productUrl_html </td>";
-                            $message .= "<td>€ decimal($line_UnitPrice, ',', '.'); </td>";
+                            $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
                             $message .= "<td>$line_Quantity </td>";
                             $message .= "<td>€ decimal($discount_amount, ',', '.') </td>";
                             $message .= "<td>€ decimal($lines_TotalAmount, ',', '.'); </td>";
