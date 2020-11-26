@@ -200,6 +200,3 @@ $order_lines = $order->lines;
         }
 
     </script>
-<?php
-require_once "mail.php";
-?>
