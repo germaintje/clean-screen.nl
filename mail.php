@@ -13,22 +13,11 @@ $message .= "
 <link rel='stylesheet' href='node_modules/bootstrap/dist/css/bootstrap.css'>
 </head>
 <body>";
-
-$message .= "
-<header class='background_container'>        
-<nav class='navbar navbar-expand-lg navbar-light bg-light'>
-    <div class='container'>
-        <a class='navbar-brand rainbuster_logo no_margin' href='index.php'><img src='assets/img/clean_screen_logo.png' alt=''> </a>
-       <h4 class='clean-screen no_margin'><a href='index.php' class='clean-screen-text'> Clean-screen</a></h4> 
-        </div>
-    </div>
-</nav>
-</header>";
-
 $message .= "
 <div class='container' style='width: 70%; margin: 0 auto;'>
-<div class='col-12' style='background-color: #9cbc7b;'>
-<h1>Bedankt voor je bestelling!</h1><br><h2>Fijn dat je koos voor Clean-screen.nl</h2>
+<div class='col-12' style='background-color: #9cbc7b; width: min-content; padding: 10px;'>
+<h1>Bedankt voor je bestelling!</h1>
+<h2>Fijn dat je koos voor Clean-screen.nl</h2>
 
 </div>";
 
