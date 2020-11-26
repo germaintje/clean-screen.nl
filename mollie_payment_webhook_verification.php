@@ -58,39 +58,21 @@ try {
         }
 
         $email = $order->shippingAddress->email;
+        $id = $order->orderNumber;
+        $amount = $order->amount->value;
+        $address = $order->shippingAddress->streetAndNumber;
+        $street_addons = $order->metadata->straat_toevoegingen;
+        $zipcode = $order->shippingAddress->postalCode;
+        $city = $order->shippingAddress->city;
+        $country = $order->metadata->land;
+        $first_name = $order->shippingAddress->givenName;
+        $last_name = $order->shippingAddress->familyName;
+        $email = $order->shippingAddress->email;
+        $phone_number = $order->metadata->telefoon_nummer;
+        $coupon_name = $order->metadata->kortingscode;
+        $order_lines = $order->lines;
 
-        $to = $email;
-        $subject = "Bestelling [" . $order_id . "]";
-
-        $message = "
-<html>
-<head>
-    <title>Bestelling[ $order_id ]</title>
-</head>
-<body>
-<p>This email contains HTML Tags!</p>
-<table>
-    <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-    </tr>
-    <tr>
-        <td>John</td>
-        <td>Doe</td>
-    </tr>
-</table>
-</body>
-</html>
-";
-
-// Always set content-type when sending HTML email
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-// More headers
-        $headers .= 'From: clean-screen@no-reply.com' . "\r\n";
-
-        mail($to, $subject, $message, $headers);
+        include_once "mail.php";
 
         session_destroy();
         header("Location: " . "index.php?page=order&id=$order->id", true, 303);

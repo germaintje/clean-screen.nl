@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="907fd616-2808-48ff-a066-d0ef91560fa5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/mail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mollie_payment_webhook_verification.php" beforeDir="false" afterPath="$PROJECT_DIR$/mollie_payment_webhook_verification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/order.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +189,7 @@
       <workItem from="1606232580456" duration="6773000" />
       <workItem from="1606299947237" duration="2763000" />
       <workItem from="1606315771033" duration="9000" />
-      <workItem from="1606385752244" duration="3440000" />
+      <workItem from="1606385752244" duration="4146000" />
     </task>
     <task id="LOCAL-00001" summary="niewe styles toegepast">
       <created>1601473105843</created>
@@ -415,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606391759459</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="clean.germaindejong.nl test v3.0">
+      <created>1606392200678</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1606392200678</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +443,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="mollie payment test" />
     <MESSAGE value="mollie payment test 2.0" />
     <MESSAGE value="automatic database connection between: local | live" />
     <MESSAGE value="mollie test payment files update" />
@@ -461,7 +467,8 @@
     <MESSAGE value="clean.germaindejong.nl test v1.0" />
     <MESSAGE value="clean.germaindejong.nl test v1.1" />
     <MESSAGE value="clean.germaindejong.nl test v2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean.germaindejong.nl test v2.0" />
+    <MESSAGE value="clean.germaindejong.nl test v3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean.germaindejong.nl test v3.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1603033089518">
@@ -480,11 +487,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602625776683" />
-    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1606391758729">
+    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1606392200012">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1429" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1605280055928" />
-    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606391758729" />
+    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606392200012" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601314225971" />
     <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1606315778311">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -503,11 +510,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606087250910" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606391760814">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606392202590">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1469" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1604860413906" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606391760814" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606392202590" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601314232266" />
     <state x="-1264" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1605632432277">
       <screen x="-1920" y="0" width="1920" height="1040" />
