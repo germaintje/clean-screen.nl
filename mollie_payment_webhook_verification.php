@@ -57,6 +57,7 @@ try {
             }
         }
 
+        $order_id = $order->id;
         $email = $order->shippingAddress->email;
         $id = $order->orderNumber;
         $amount = $order->amount->value;

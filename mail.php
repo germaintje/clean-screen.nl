@@ -58,8 +58,8 @@ $message .= "<table class=\"table table-bordered table-responsive-sm\">";
                             $message .= "<td>$productUrl_html </td>";
                             $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
                             $message .= "<td>$line_Quantity </td>";
-                            $message .= "<td>€ decimal($discount_amount, ',', '.') </td>";
-                            $message .= "<td>€ decimal($lines_TotalAmount, ',', '.'); </td>";
+                            $message .= "<td>€" . decimal($discount_amount, ',', '.') . "</td>";
+                            $message .= "<td>€" . decimal($lines_TotalAmount, ',', '.') . "</td>";
                             $message .= "</tr>";
 
                         } elseif ($lines->type == "shipping_fee") {
@@ -77,32 +77,34 @@ $message .= "<table class=\"table table-bordered table-responsive-sm\">";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td><b>Subtotal:</b></td>";
-                        $message .= "<td>€ decimal($lines_Subtotal, ',', '.'); </td>";
+                        $message .= "<td>€" . decimal($lines_Subtotal, ',', '.') . "</td>";
                     $message .= "</tr>";
                     $message .= "<tr>";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td><b>verzendkosten:</b></td>";
-                        $message .= "<td>€ decimal($shipping_fee, ',', '.'); </td>";
+                        $message .= "<td>€" . decimal($shipping_fee, ',', '.') . "</td>";
                     $message .= "</tr>";
                     $message .= "<tr>";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td><b>Kortingscode: $coupon_name </b></td>";
-                        $message .= "<td>-€ decimal($coupon_discount, ',', '.'); </td>";
+                        $message .= "<td>-€" . decimal($coupon_discount, ',', '.') . "</td>";
                     $message .= "</tr>";
                     $message .= "<tr>";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td></td>";
                         $message .= "<td><b>Totaal:</b></td>";
-                        $message .= "<td>€ decimal($amount, ',', '.'); </td>";
+                        $message .= "<td>€" . decimal($amount, ',', '.') . "</td>";
                     $message .= "</tr>";
                     $message .= "</tbody>";
 
                 $message .= "</table>";
+
+                $message .= "Bekijk je <a href='clean-screen.nl/index.php?order=$order_id'>bestelling</a>.";
 $message .= "</body>";
 $message .= "</html>";
 
