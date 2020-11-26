@@ -11,7 +11,7 @@ $message .= "<title>Bestelling[ $id ]</title>";
 $message .= "</head>";
 $message .= "<body>";
 $message .= "<h1>Bedankt voor je bestelling!</h1>";
-$message .= "<table class=\"table table-bordered table-responsive-sm\">"
+$message .= "<table class=\"table table-bordered table-responsive-sm\">";
                     $message .= "<thead>";
                     $message .= "<tr>";
                         $message .= "<th></th>";
