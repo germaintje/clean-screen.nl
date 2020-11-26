@@ -55,9 +55,6 @@ try {
                 }
             }
         }
-
-        require_once "mail.php";
-
         session_destroy();
         header("Location: " . "index.php?page=order&id=$order->id", true, 303);
 
