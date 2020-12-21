@@ -1,7 +1,8 @@
 <?php
 
 $to = $email;
-$subject = "Bedankt voor je bestelling emt bestelnummer [" . $id . "]";
+$subject = "Bedankt voor je bestelling met bestelnummer [" . $id . "]";
+
 
 $message = "";
 
@@ -15,24 +16,14 @@ $message .= "
 <body>";
 $message .= "
 <div class='container' style='width: 70%; margin: 0 auto;'>
-<div class='col-12' style='background-color: #9cbc7b; width: min-content; padding: 10px; text-align: center;'>
+<div class='col-12' width: min-content; padding: 10px; text-align: center;'>
 <h1>Bedankt voor je bestelling!</h1>
-<h2>Fijn dat je koos voor Clean-screen.nl</h2>
-</div>";
+<h2>Fijn dat je koos voor Clean-screen.nl</h2>";
 
 $message .= "<h2>Dit heb je Besteld</h2>";
 
 $message .= "<table class=\"table table-bordered table-responsive-sm\">";
-//                    $message .= "<thead>";
-//                    $message .= "<tr>";
-//                        $message .= "<th>item</th>";
-//                        $message .= "<th>prijs</th>";
-//                        $message .= "<th>aantal</th>";
-//                        $message .= "<th>Korting</th>";
-//                        $message .= "<th>totaal</th>";
-//                    $message .= "</tr>";
-//                    $message .= "</thead>";
-$message .= "<tbody>";
+$message .= "<tbody style='border: 1px solid black;'>";
 foreach ($order_lines as $lines) {
     if ($lines->type != "shipping_fee") {
         $line_Name = $lines->name;
@@ -65,10 +56,11 @@ foreach ($order_lines as $lines) {
         }
 
         $message .= "<tr>";
+        $message .= "<td>$imageUrl_html</td>";
         $message .= "<td>$productUrl_html </td>";
-        $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
+//        $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
         $message .= "<td>$line_Quantity </td>";
-        $message .= "<td>€" . decimal($discount_amount, ',', '.') . "</td>";
+//        $message .= "<td>€" . decimal($discount_amount, ',', '.') . "</td>";
         $message .= "<td>€" . decimal($lines_TotalAmount, ',', '.') . "</td>";
         $message .= "</tr>";
 
@@ -85,12 +77,10 @@ foreach ($order_lines as $lines) {
 $message .= "<tr>";
 $message .= "<td></td>";
 $message .= "<td></td>";
-$message .= "<td></td>";
 $message .= "<td><b>Subtotal:</b></td>";
 $message .= "<td>€" . decimal($lines_Subtotal, ',', '.') . "</td>";
 $message .= "</tr>";
 $message .= "<tr>";
-$message .= "<td></td>";
 $message .= "<td></td>";
 $message .= "<td></td>";
 $message .= "<td><b>verzendkosten:</b></td>";
@@ -99,27 +89,25 @@ $message .= "</tr>";
 $message .= "<tr>";
 $message .= "<td></td>";
 $message .= "<td></td>";
-$message .= "<td></td>";
 $message .= "<td><b>Kortingscode: $coupon_name </b></td>";
 $message .= "<td>-€" . decimal($coupon_discount, ',', '.') . "</td>";
 $message .= "</tr>";
 $message .= "<tr>";
 $message .= "<td></td>";
 $message .= "<td></td>";
-$message .= "<td></td>";
 $message .= "<td><b>Totaal:</b></td>";
 $message .= "<td>€" . decimal($amount, ',', '.') . "</td>";
 $message .= "</tr>";
+$message .= "<tr>";
+$message .= "<td colspan='4' style='text-align: center;'>Wil je je bestelling bekijken klik dan <a href='clean-screen.nl/index.php?order=$order_id'>hier.</a></td>";
+$message .= "</tr>";
 $message .= "</tbody>";
-
 $message .= "</table>";
-
-$message .= "Bekijk je <a href='clean-screen.nl/index.php?order=$order_id'>bestelling</a>.";
 
 $message .= "
 <h2>Details over je bestelling</h2>
 <div class='col-12'>
-<h4>Bezorgadres</h4>
+<h4>Factuur- en bezorgadres</h4>
 <span>$first_name $last_name</span><br>
 <span>$address</span><br>
 <span>$zipcode $city</span><br>
@@ -132,7 +120,7 @@ $message .= "
 <p>Je krijgt een mail zodra we je artikelen verzenden.</p>
 ";
 
-$message .= "</div>";
+$message .= "</div></div>";
 $message .= "</body>";
 $message .= "</html>";
 

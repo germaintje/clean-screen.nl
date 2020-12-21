@@ -120,8 +120,7 @@ try {
             "productUrl" => "https://" . $hostname . $path . "/index.php?page=product&id=" . $item_id,
             "imageUrl" => "https://" . $hostname . $path . '/assets/img/' . $item_img,
             "metadata" => [
-                "order_id" => $orderId,
-                "description" => $item_description
+                "order_id" => $orderId
             ],
             "quantity" => $item_quantity,
             "vatRate" => $btw,
