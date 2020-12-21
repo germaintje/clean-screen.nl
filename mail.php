@@ -16,7 +16,8 @@ $message .= "
 <body>";
 $message .= "
 <div class='container' style='width: 70%; margin: 0 auto;'>
-<div class='col-12' width: min-content; padding: 10px; text-align: center;'>
+<div class='row'>
+<div class='col-12' style='width: min-content; padding: 10px; text-align: center;'>
 <h1>Bedankt voor je bestelling!</h1>
 <h2>Fijn dat je koos voor Clean-screen.nl</h2>";
 
@@ -120,7 +121,7 @@ $message .= "
 <p>Je krijgt een mail zodra we je artikelen verzenden.</p>
 ";
 
-$message .= "</div></div>";
+$message .= "</div></div></div>";
 $message .= "</body>";
 $message .= "</html>";
 
