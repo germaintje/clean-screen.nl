@@ -38,14 +38,14 @@ foreach ($order_lines as $lines) {
 
         if (isset($lines->_links->imageUrl->href)) {
             $imageUrl = $lines->_links->imageUrl->href;
-            $imageUrl_html = "<img class='img_order' src='$imageUrl'>";
+            $imageUrl_html = "<img src='$imageUrl'>";
         } else {
             $imageUrl = "#";
             $imageUrl_html = "";
         }
 
         $message .= "<tr>";
-        $message .= "<td>$imageUrl</td>";
+        $message .= "<td>$imageUrl_html</td>";
         $message .= "<td>$productUrl_html </td>";
 //        $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
         $message .= "<td>$line_Quantity </td>";

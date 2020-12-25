@@ -204,21 +204,7 @@
       <workItem from="1608549577658" duration="8816000" />
       <workItem from="1608719811018" duration="1188000" />
       <workItem from="1608837719201" duration="249000" />
-      <workItem from="1608889250259" duration="4015000" />
-    </task>
-    <task id="LOCAL-00012" summary="- order map addes&#10;- updated file structure for testing">
-      <created>1602437999812</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1602437999812</updated>
-    </task>
-    <task id="LOCAL-00013" summary="- order map added">
-      <created>1602438241515</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1602438241515</updated>
+      <workItem from="1608889250259" duration="4470000" />
     </task>
     <task id="LOCAL-00014" summary="- finetuning">
       <created>1602438604475</created>
@@ -549,7 +535,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608912508336</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="clean.germaindejong.nl mail v9.6">
+      <created>1608912601856</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1608912601856</updated>
+    </task>
+    <task id="LOCAL-00062" summary="clean.germaindejong.nl mail v9.6.1">
+      <created>1608912737184</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1608912737184</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,8 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="clean.germaindejong.nl test v5.1" />
-    <MESSAGE value="clean.germaindejong.nl test v5.2" />
     <MESSAGE value="clean.germaindejong.nl test v5.3" />
     <MESSAGE value="clean.germaindejong.nl test v6.0" />
     <MESSAGE value="clean.germaindejong.nl test v7.0" />
@@ -595,7 +593,9 @@
     <MESSAGE value="clean.germaindejong.nl mail v9.3.2" />
     <MESSAGE value="clean.germaindejong.nl mail v9.4" />
     <MESSAGE value="clean.germaindejong.nl mail v9.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean.germaindejong.nl mail v9.5" />
+    <MESSAGE value="clean.germaindejong.nl mail v9.6" />
+    <MESSAGE value="clean.germaindejong.nl mail v9.6.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean.germaindejong.nl mail v9.6.1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1603033089518">
@@ -614,11 +614,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602625776683" />
-    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1608912601297">
+    <state x="491" y="9" key="CommitChangelistDialog2" timestamp="1608912736610">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1429" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1605280055928" />
-    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608912601297" />
+    <state x="491" y="9" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608912736610" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601314225971" />
     <state x="90" y="0" key="DiffContextDialog" timestamp="1608554510192">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -641,11 +641,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1606087250910" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1608912603174">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1608912738540">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1469" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1604860413906" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608912603174" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1608912738540" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601314232266" />
     <state x="-1264" y="346" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1605632432277">
       <screen x="-1920" y="0" width="1920" height="1040" />
