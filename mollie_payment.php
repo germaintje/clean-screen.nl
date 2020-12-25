@@ -170,7 +170,7 @@ try {
             "value" => $total_vat_amount_shipping
         ]
     ];
-    print_r($lines);
+//    print_r($lines);
 
     /*
     * Payment parameters:

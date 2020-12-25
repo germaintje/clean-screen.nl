@@ -26,6 +26,8 @@ $email = $order->shippingAddress->email;
 $phone_number = $order->metadata->telefoon_nummer;
 $coupon_name = $order->metadata->kortingscode;
 $order_lines = $order->lines;
+
+var_dump($order);
 ?>
     <div class="container">
         <div class="row">
