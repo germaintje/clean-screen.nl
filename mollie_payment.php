@@ -224,9 +224,9 @@ try {
     $_SESSION['tr_payment_id'] = $order->id;
 
 
-    header("Location: " . $order->getCheckoutUrl(), true, 303);
+//    header("Location: " . $order->getCheckoutUrl(), true, 303);
 } catch (ApiException $e) {
-    header("Location: " . "index.php", true, 303);
+//    header("Location: " . "index.php", true, 303);
     echo "API call failed: " . htmlspecialchars($e->getMessage());
 }
 
