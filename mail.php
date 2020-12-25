@@ -3,21 +3,13 @@
 $to = $email;
 $subject = "Bedankt voor je bestelling met bestelnummer [" . $id . "]";
 
+$test = file_get_contents("order.php");
 
 $message = "";
-
 $message .= "
-<!DOCTYPE html>
-<head>
-<title>Bestelling[ $id ]</title>
-<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-<link rel='stylesheet' href='node_modules/bootstrap/dist/css/bootstrap.css'>
-</head>
-<body>";
-$message .= "
-<div class='container' style='width: 75%; margin: 0 auto;'>
-<div class='row'>
-<div class='col-12'>
+<div style='width: 75%; margin: 0 auto;'>
+<div class='row' style='width: 75%; margin: 0 auto;'>
+<div class='col-12' style='width: 75%; margin: 0 auto;'>
 <h1>Bedankt voor je bestelling!</h1>
 <h2>Fijn dat je koos voor Clean-screen.nl</h2>";
 
@@ -121,10 +113,6 @@ $message .= "
 <p>Je krijgt een mail zodra we je artikelen verzenden.</p>
 ";
 
-$message .= "</div></div></div>";
-$message .= "</body>";
-$message .= "</html>";
-
 
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
@@ -133,4 +121,4 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 // More headers
 $headers .= 'From: clean-screen@no-reply.com' . "\r\n";
 
-mail($to, $subject, $message, $headers);
+mail($to, $subject, $test, $headers);
