@@ -77,8 +77,7 @@ try {
          */
         $item_id = $product['id'];
         $item_name = $product['name'];
-        $item_img = $product['img'];
-        var_dump($item_img);
+        $item_img = $product['highlight_img'];
         $item_description = $product['desc'];
         $item_quantity = $products_in_cart[$product['id']];
         $item_price = decimal($product['price'], '.', '');
@@ -224,9 +223,9 @@ try {
     $_SESSION['tr_payment_id'] = $order->id;
 
 
-//    header("Location: " . $order->getCheckoutUrl(), true, 303);
+    header("Location: " . $order->getCheckoutUrl(), true, 303);
 } catch (ApiException $e) {
-//    header("Location: " . "index.php", true, 303);
+    header("Location: " . "index.php", true, 303);
     echo "API call failed: " . htmlspecialchars($e->getMessage());
 }
 
