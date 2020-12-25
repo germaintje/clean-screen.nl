@@ -78,6 +78,7 @@ try {
         $item_id = $product['id'];
         $item_name = $product['name'];
         $item_img = $product['img'];
+        var_dump($item_img);
         $item_description = $product['desc'];
         $item_quantity = $products_in_cart[$product['id']];
         $item_price = decimal($product['price'], '.', '');
