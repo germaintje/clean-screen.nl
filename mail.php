@@ -45,7 +45,7 @@ foreach ($order_lines as $lines) {
         }
 
         $message .= "<tr>";
-        $message .= "<td>$imageUrl_html</td>";
+        $message .= "<td>$imageUrl</td>";
         $message .= "<td>$productUrl_html </td>";
 //        $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
         $message .= "<td>$line_Quantity </td>";
