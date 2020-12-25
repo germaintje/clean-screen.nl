@@ -38,7 +38,7 @@ foreach ($order_lines as $lines) {
 
         if (isset($lines->_links->imageUrl->href)) {
             $imageUrl = $lines->_links->imageUrl->href;
-            $imageUrl_html = "<img src='$imageUrl' width='30px' height='30px'>";
+            $imageUrl_html = "<img src='$imageUrl' width='30' height='30'>";
         } else {
             $imageUrl = "#";
             $imageUrl_html = "";
