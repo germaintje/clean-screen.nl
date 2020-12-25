@@ -1,9 +1,7 @@
 <?php
-
 $to = $email;
 $subject = "Bedankt voor je bestelling met bestelnummer [" . $id . "]";
 
-$test = file_get_contents("order.php");
 
 $message = "";
 $message .= "
@@ -121,4 +119,4 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 // More headers
 $headers .= 'From: clean-screen@no-reply.com' . "\r\n";
 
-mail($to, $subject, $test, $headers);
+mail($to, $subject, $message, $headers);
