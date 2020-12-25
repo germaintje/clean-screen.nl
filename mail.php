@@ -6,14 +6,12 @@ $subject = "Bedankt voor je bestelling met bestelnummer [" . $id . "]";
 $message = "";
 $message .= "
 <div style='width: 75%; margin: 0 auto;'>
-<div class='row' style='width: 75%; margin: 0 auto;'>
-<div class='col-12' style='width: 75%; margin: 0 auto;'>
 <h1>Bedankt voor je bestelling!</h1>
 <h2>Fijn dat je koos voor Clean-screen.nl</h2>";
 
 $message .= "<h2>Dit heb je Besteld</h2>";
 
-$message .= "<table class=\"table table-bordered table-responsive-sm\">";
+$message .= "<table>";
 $message .= "<tbody style='border: 1px solid black;'>";
 foreach ($order_lines as $lines) {
     if ($lines->type != "shipping_fee") {
@@ -47,7 +45,7 @@ foreach ($order_lines as $lines) {
         }
 
         $message .= "<tr>";
-        $message .= "<td>" . var_dump($imageUrl) . var_dump($imageUrl_html) . "</td>";
+        $message .= "<td>" . var_dump($imageUrl) . "</td>";
         $message .= "<td>$productUrl_html </td>";
 //        $message .= "<td>€" . decimal($line_UnitPrice, ',', '.') . "</td>";
         $message .= "<td>$line_Quantity </td>";
